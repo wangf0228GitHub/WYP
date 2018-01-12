@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="app">
+      <UniqueIdentifier>{544830c0-6401-4d75-8acf-bb3256581891}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bin">
+      <UniqueIdentifier>{191bd8eb-69e5-42fd-be96-4de6a66e999a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{6371de63-baf4-4e08-b951-f723d9ca55ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\json">
+      <UniqueIdentifier>{84279c47-e7c8-41f3-83b0-87a04a5eb8c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\user">
+      <UniqueIdentifier>{b37dfc48-7d2f-4797-ae0e-cad7ec593c73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ld">
+      <UniqueIdentifier>{3e238464-e272-4fcc-9730-6e1dace5631d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{1c89e690-7962-49f3-9424-ba87642a013c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{4fd3046a-0420-45a3-a0b6-400772f23f9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\user\程序文件">
+      <UniqueIdentifier>{7df3e02b-fc0c-4ba2-a7c8-ce84146db613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app\user\头文件">
+      <UniqueIdentifier>{e0dc6976-394b-4e8c-81e9-c783990d7234}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\airkiss.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\at_custom.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\c_types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\eagle_soc.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espconn.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\espnow.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ets_sys.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gpio.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ip_addr.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mesh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\os_type.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\osapi.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ping.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pwm.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\queue.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\smartconfig.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sntp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\spi_flash.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\upgrade.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\user_interface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\json\json.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="include\json\jsonparse.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="include\json\jsontree.h">
+      <Filter>include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="app\user\TypeDefine.h">
+      <Filter>app\user\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="app\user\DS18B20.h">
+      <Filter>app\user\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="app\user\Display.h">
+      <Filter>app\user\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="app\user\uart_register.h">
+      <Filter>app\user\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="app\user\user_config.h">
+      <Filter>app\user\头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\blank.bin">
+      <Filter>bin</Filter>
+    </None>
+    <None Include="bin\eagle.flash.bin">
+      <Filter>bin</Filter>
+    </None>
+    <None Include="bin\eagle.irom0text.bin">
+      <Filter>bin</Filter>
+    </None>
+    <None Include="bin\esp_init_data_default.bin">
+      <Filter>bin</Filter>
+    </None>
+    <None Include="app\user\Makefile">
+      <Filter>app\user</Filter>
+    </None>
+    <None Include=".cproject" />
+    <None Include=".project" />
+    <None Include="License" />
+    <None Include="Makefile" />
+    <None Include="app\Makefile">
+      <Filter>app</Filter>
+    </None>
+    <None Include="ld\eagle.app.v6.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="ld\eagle.app.v6.new.512.app1.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="ld\eagle.app.v6.new.512.app2.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="ld\eagle.app.v6.new.1024.app1.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="ld\eagle.app.v6.new.1024.app2.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="ld\eagle.app.v6.new.2048.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="ld\eagle.app.v6.old.512.app1.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="ld\eagle.app.v6.old.512.app2.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="ld\eagle.app.v6.old.1024.app1.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="ld\eagle.app.v6.old.1024.app2.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="ld\eagle.rom.addr.v6.ld">
+      <Filter>ld</Filter>
+    </None>
+    <None Include="lib\libairkiss.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libat.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libcrypto.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libdriver.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libespnow.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libgcc.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libjson.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\liblwip.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libmain.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libmesh.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libnet80211.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libphy.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libpp.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libpwm.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libsmartconfig.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libssl.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libupgrade.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libwpa.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libwpa2.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\libwps.a">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="tools\gen_appbin.py">
+      <Filter>tools</Filter>
+    </None>
+    <None Include="tools\make_cacert.py">
+      <Filter>tools</Filter>
+    </None>
+    <None Include="tools\make_cert.py">
+      <Filter>tools</Filter>
+    </None>
+    <None Include="tools\makefile.sh">
+      <Filter>tools</Filter>
+    </None>
+    <None Include="tools\README.md">
+      <Filter>tools</Filter>
+    </None>
+    <None Include="blank.bin" />
+    <None Include="esp_init_data_default.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="app\user\user_main.c">
+      <Filter>app\user\程序文件</Filter>
+    </ClCompile>
+    <ClCompile Include="app\user\DS18B20.c">
+      <Filter>app\user\程序文件</Filter>
+    </ClCompile>
+    <ClCompile Include="app\user\Display.c">
+      <Filter>app\user\程序文件</Filter>
+    </ClCompile>
+    <ClCompile Include="app\user\key.c">
+      <Filter>app\user\程序文件</Filter>
+    </ClCompile>
+    <ClCompile Include="app\user\user_esp_platform.c">
+      <Filter>app\user\程序文件</Filter>
+    </ClCompile>
+    <ClCompile Include="app\user\Flash.c">
+      <Filter>app\user\程序文件</Filter>
+    </ClCompile>
+    <ClCompile Include="app\user\smartlink.c">
+      <Filter>app\user\程序文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

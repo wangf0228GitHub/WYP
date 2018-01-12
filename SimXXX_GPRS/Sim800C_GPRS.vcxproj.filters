@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="资源文件\Sim800C">
+      <UniqueIdentifier>{d52433b4-b92c-4f81-bef1-e03357997152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\Sim800C\TestFast">
+      <UniqueIdentifier>{42d4ed55-0434-46aa-8f8e-cf4f508f09d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\Sim900A">
+      <UniqueIdentifier>{44a9ab0a-726b-4d16-95be-dd56ad70c5b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\Sim900A\旧版电路">
+      <UniqueIdentifier>{f4bea758-c858-4849-b955-2f96f8e3c4e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\Sim900A\旧版电路\Test12M">
+      <UniqueIdentifier>{1328c54b-ff94-4f52-9b52-50369403bcb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\Sim900A\旧版电路\TestFast">
+      <UniqueIdentifier>{09f9bf56-9f2d-413e-9264-0245bc07fd0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\Sim800C\Teat12M">
+      <UniqueIdentifier>{a83306d5-e1ee-4418-b22f-a9aeafc18f9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test2M">
+      <UniqueIdentifier>{0935c867-07a6-4e5b-974f-0adc96fc2edd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\Sim800C\12129">
+      <UniqueIdentifier>{c5952a4c-b1e0-45a0-9b8f-5bbd349e7229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\Sim900A\旧版电路\12129">
+      <UniqueIdentifier>{92d8f7d3-6156-4cc8-ac49-15f8a6ab2b77}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Display.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Function.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Init.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LowPowerProc.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestProc.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Display.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FlagDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareProfile.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pic16f1937.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sim800C_GPRS_Test2M.mcp">
+      <Filter>Test2M</Filter>
+    </None>
+    <None Include="Sim800C_GPRS_Test2M.mcs">
+      <Filter>Test2M</Filter>
+    </None>
+    <None Include="Sim800C_GPRS_Test2M.mcw">
+      <Filter>Test2M</Filter>
+    </None>
+    <None Include="Sim800C_GPRS_TestFast.mcp">
+      <Filter>资源文件\Sim800C\TestFast</Filter>
+    </None>
+    <None Include="Sim800C_GPRS_TestFast.mcs">
+      <Filter>资源文件\Sim800C\TestFast</Filter>
+    </None>
+    <None Include="Sim800C_GPRS_TestFast.mcw">
+      <Filter>资源文件\Sim800C\TestFast</Filter>
+    </None>
+    <None Include="Debug\Sim800C_GPRS_TestFast.hex">
+      <Filter>资源文件\Sim800C\TestFast</Filter>
+    </None>
+    <None Include="Debug\Sim800C_GPRS_Test2M.hex">
+      <Filter>Test2M</Filter>
+    </None>
+    <None Include="Debug\Sim800C_GPRS.hex">
+      <Filter>资源文件\Sim800C</Filter>
+    </None>
+    <None Include="Sim800C_GPRS.mcp">
+      <Filter>资源文件\Sim800C</Filter>
+    </None>
+    <None Include="Sim800C_GPRS.mcs">
+      <Filter>资源文件\Sim800C</Filter>
+    </None>
+    <None Include="Sim800C_GPRS.mcw">
+      <Filter>资源文件\Sim800C</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS.mcp">
+      <Filter>资源文件\Sim900A\旧版电路</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS.mcs">
+      <Filter>资源文件\Sim900A\旧版电路</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS.mcw">
+      <Filter>资源文件\Sim900A\旧版电路</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS_Test12M.mcp">
+      <Filter>资源文件\Sim900A\旧版电路\Test12M</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS_Test12M.mcs">
+      <Filter>资源文件\Sim900A\旧版电路\Test12M</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS_Test12M.mcw">
+      <Filter>资源文件\Sim900A\旧版电路\Test12M</Filter>
+    </None>
+    <None Include="Debug\oldSim900A_GPRS_TestFast.hex">
+      <Filter>资源文件\Sim900A\旧版电路\TestFast</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS_TestFast.mcs">
+      <Filter>资源文件\Sim900A\旧版电路\TestFast</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS_TestFast.mcw">
+      <Filter>资源文件\Sim900A\旧版电路\TestFast</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS_TestFast.mcp">
+      <Filter>资源文件\Sim900A\旧版电路\TestFast</Filter>
+    </None>
+    <None Include="Debug\oldSim900A_GPRS.hex">
+      <Filter>资源文件\Sim900A\旧版电路</Filter>
+    </None>
+    <None Include="Debug\oldSim900A_GPRS_Test12M.hex">
+      <Filter>资源文件\Sim900A\旧版电路\Test12M</Filter>
+    </None>
+    <None Include="Debug\Sim800C_GPRS_Test12M.hex">
+      <Filter>资源文件\Sim800C\Teat12M</Filter>
+    </None>
+    <None Include="Sim800C_GPRS_Test12M.mcp">
+      <Filter>资源文件\Sim800C\Teat12M</Filter>
+    </None>
+    <None Include="Sim800C_GPRS_Test12M.mcs">
+      <Filter>资源文件\Sim800C\Teat12M</Filter>
+    </None>
+    <None Include="Sim800C_GPRS_Test12M.mcw">
+      <Filter>资源文件\Sim800C\Teat12M</Filter>
+    </None>
+    <None Include="pSIM900a.DSN" />
+    <None Include="Sim800C_GPRS_12129.mcp">
+      <Filter>资源文件\Sim800C\12129</Filter>
+    </None>
+    <None Include="Sim800C_GPRS_12129.mcs">
+      <Filter>资源文件\Sim800C\12129</Filter>
+    </None>
+    <None Include="Sim800C_GPRS_12129.mcw">
+      <Filter>资源文件\Sim800C\12129</Filter>
+    </None>
+    <None Include="Debug\Sim800C_GPRS_12129.hex">
+      <Filter>资源文件\Sim800C\12129</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS_12129.mcp">
+      <Filter>资源文件\Sim900A\旧版电路\12129</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS_12129.mcs">
+      <Filter>资源文件\Sim900A\旧版电路\12129</Filter>
+    </None>
+    <None Include="oldSim900A_GPRS_12129.mcw">
+      <Filter>资源文件\Sim900A\旧版电路\12129</Filter>
+    </None>
+    <None Include="Debug\oldSim900A_GPRS_12129.hex">
+      <Filter>资源文件\Sim900A\旧版电路\12129</Filter>
+    </None>
+  </ItemGroup>
+</Project>
