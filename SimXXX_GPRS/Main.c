@@ -1,6 +1,6 @@
 //Build F:\work_tfs\MCU\WYP\Saving2\Saving2 for device 18F6621
 //Using driver C:\Program Files\HI-TECH Software\PICC-18\PRO\9.63\bin\picc18.exe
-#include "HardwareProfile.h"
+#include "main.h"
 __CONFIG(FOSC_HS&WDTE_ON&PWRTE_ON&MCLRE_ON&BOREN_ON&CLKOUTEN_OFF&CP_ON&CPD_ON);
 __CONFIG(PLLEN_OFF&STVREN_ON&WRT_ALL);//ø¥√≈π∑2s∏¥Œª
 #include "string.h"

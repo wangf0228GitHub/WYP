@@ -1,5 +1,5 @@
-#ifndef __HardwareProfile_h__
-#define __HardwareProfile_h__
+#ifndef __main_h__
+#define __main_h__
 
 //#define Proteus
 
@@ -11,12 +11,16 @@
 
 
 #include <htc.h>
+#include <stdint.h>
 #define _XTAL_FREQ 4000000
 #include "TypeDefine.h"
 #include "FlagDefine.h"
 #define WFRomOperation
-#include "afx.h"
+
+#define Verify_CRC8
+#define Verify_Sum
 #include "Verify.h"
+#include "afx.h"
 
 #define T1CYCLE_4M 15536 //100ms
 
@@ -84,7 +88,7 @@
 #define Uart_Uart1
 #define Uart_TRMT TRMT
 #define Uart_TXREG TXREG
-#include "Uart.h"
+#include "picUart.h"
 #define ATCommand_MaxRX 100
 #define ATCommand_WaitClientInterval_Ex
 #define ATCommand_WaitClientInterval() __delay_20ms(100);
@@ -105,7 +109,7 @@ unsigned int NeedMeasurementTick;
 unsigned int RunTick;
 
 unsigned char CSQ;
-uint CurTemp;
+u16_wf CurTemp;
 _GFlags gFlags;
 unsigned char ErrState;
 enum {NoErr=0,MissT,Miss900a,MissAT,MissSimCard,MissNet,ErrMSG,ErrCSQ,	
@@ -122,7 +126,7 @@ void CallSend(void);
 void ReadTData(void);
 void InitGPRS(void);
 unsigned char InteractServer();
-void MakeTxTemperature(uint T);
+void MakeTxTemperature(u16_wf T);
 // void CallTestProc(void);
 // void CallTestSend(void);
 void TestProc(void);

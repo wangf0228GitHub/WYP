@@ -1,4 +1,4 @@
-#include "HardwareProfile.h"
+#include "main.h"
 #include "string.h"
 #include "stdio.h"
 #include <ctype.h>

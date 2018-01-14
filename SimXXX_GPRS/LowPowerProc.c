@@ -1,4 +1,4 @@
-#include "HardwareProfile.h"
+#include "main.h"
 void BigDelay(unsigned int x)//20msÎª»ùÊı
 {
 	unsigned int x1;

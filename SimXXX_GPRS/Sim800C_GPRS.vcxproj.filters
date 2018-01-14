@@ -71,10 +71,13 @@
     <ClInclude Include="FlagDefine.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="HardwareProfile.h">
+    <ClInclude Include="pic16f1937.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="pic16f1937.h">
+    <ClInclude Include="main.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SimI2C_Conf.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

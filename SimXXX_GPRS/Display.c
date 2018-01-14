@@ -1,4 +1,3 @@
-#include "HardwareProfile.h"
 #include "Display.h"
 #include <stdio.h>
 

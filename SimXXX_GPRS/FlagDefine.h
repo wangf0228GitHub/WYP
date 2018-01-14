@@ -1,5 +1,6 @@
 #ifndef   __FlagDefine_h__
 #define   __FlagDefine_h__
+
 /************************************************************************/
 /* 第一个为最低位                                                       */
 /************************************************************************/
@@ -41,7 +42,7 @@ typedef union
 #define MaxTList 12
 typedef union   
 {
-	uint T[MaxTList];
+	u16_wf T[MaxTList];
 	unsigned char All[MaxTList*2];
 } _TList;        // general flags
 //_ROMParams ROMParams;

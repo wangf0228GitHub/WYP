@@ -1,4 +1,4 @@
-#include "HardwareProfile.h"
+#include "main.h"
 #include "string.h"
 #include "stdio.h"
 #include <ctype.h>
@@ -175,7 +175,7 @@ unsigned char InteractServer()
 {
 	unsigned char res=0; 
 	unsigned char retry,i,j,k,addr;
-	uint t;
+	u16_wf t;
 	retry=1;//ATCommand_RetryTimes;
 	res=ATACK_Null;
 	while(retry!=0)
@@ -355,7 +355,7 @@ unsigned char InteractServer()
 	//等待服务器回复
 	return res;
 }
-void MakeTxTemperature(uint T)
+void MakeTxTemperature(u16_wf T)
 {
 	unsigned char x;
 	x=HIGH_NIBBLE(T.u8H);

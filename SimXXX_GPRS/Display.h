@@ -1,6 +1,8 @@
 #ifndef __Display_H__
 #define __Display_H__
 
+#include "main.h"
+
 #define Smg_a    0x01
 #define Smg_b    0x02
 #define Smg_c    0x04

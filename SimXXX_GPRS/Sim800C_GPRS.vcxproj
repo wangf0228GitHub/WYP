@@ -75,8 +75,9 @@
   <ItemGroup>
     <ClInclude Include="Display.h" />
     <ClInclude Include="FlagDefine.h" />
-    <ClInclude Include="HardwareProfile.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="pic16f1937.h" />
+    <ClInclude Include="SimI2C_Conf.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Debug\oldSim900A_GPRS.hex" />
