@@ -88,7 +88,7 @@
 #define Uart_Uart1
 #define Uart_TRMT TRMT
 #define Uart_TXREG TXREG
-#include "picUart.h"
+#include "Uart.h"
 #define ATCommand_MaxRX 100
 #define ATCommand_WaitClientInterval_Ex
 #define ATCommand_WaitClientInterval() __delay_20ms(100);

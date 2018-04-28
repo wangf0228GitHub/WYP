@@ -80,6 +80,9 @@
     <ClInclude Include="SimI2C_Conf.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="stdint.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Sim800C_GPRS_Test2M.mcp">
