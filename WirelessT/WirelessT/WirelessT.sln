@@ -13,7 +13,7 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "手持设备上位机安装
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "设定设备ID", "..\设定设备ID\设定设备ID.csproj", "{C9DF6B6A-1DD8-4E0E-A746-9B34344F0C55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFNetLib40", "..\..\..\..\AllNet\WFNetLib40\WFNetLib40.csproj", "{FF8FFA8D-5A95-4BCE-877D-00DF5076A2F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFNetLib40", "..\..\..\WFLib\WFNetLib\WFNetLib40.csproj", "{FF8FFA8D-5A95-4BCE-877D-00DF5076A2F4}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
