@@ -7,10 +7,10 @@
 "LanguageId" = "3:2052"
 "CodePage" = "3:936"
 "UILanguageId" = "3:2052"
-"SccProjectName" = "8:SAK"
-"SccLocalPath" = "8:SAK"
-"SccAuxPath" = "8:SAK"
-"SccProvider" = "8:SAK"
+"SccProjectName" = "8:"
+"SccLocalPath" = "8:"
+"SccAuxPath" = "8:"
+"SccProvider" = "8:"
     "Hierarchy"
     {
         "Entry"
@@ -75,6 +75,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -696,7 +704,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_44E980A3F73840BE83DCDA409EB8E929"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\obj\\x86\\2.0\\供热管网热平衡诊断仪数据录入读取工具.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D94CA3A897154F57A299B7DC1693D476"

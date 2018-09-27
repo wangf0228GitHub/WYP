@@ -56,7 +56,9 @@ extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN Private defines */
-
+extern uint8_t huart1Rx;
+extern uint8_t huart2Rx;
+extern uint8_t huart3Rx;
 /* USER CODE END Private defines */
 
 extern void _Error_Handler(char *, int);

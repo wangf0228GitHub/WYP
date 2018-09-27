@@ -6,17 +6,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WF_Device", "..\..\WF_Device\WF_Device.vcxproj", "{90B86704-708E-4979-BE79-BAC2870D5B98}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs33
-		SccProjectUniqueName0 = ..\\..\\WF_Device\\WF_Device.vcxproj
-		SccProjectName0 = ../../WF_Device
-		SccLocalPath0 = ..\\..\\WF_Device
-		SccProjectUniqueName1 = Sim800C_GPRS.vcxproj
-		SccLocalPath1 = .
-		SccLocalPath2 = .
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		2.0|Win32 = 2.0|Win32
 		Debug|Win32 = Debug|Win32

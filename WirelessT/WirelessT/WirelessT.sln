@@ -16,32 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFNetLib40", "..\..\..\WFLib\WFNetLib\WFNetLib40.csproj", "{FF8FFA8D-5A95-4BCE-877D-00DF5076A2F4}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs33
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = WirelessT.vcxproj
-		SccLocalPath1 = .
-		SccProjectUniqueName2 = ..\\..\\..\\WF_Device\\WF_Device.vcxproj
-		SccProjectName2 = ../../../WF_Device
-		SccLocalPath2 = ..\\..\\..\\WF_Device
-		SccProjectUniqueName3 = ShouChi\\ShouChi.vcxproj
-		SccProjectName3 = ShouChi
-		SccLocalPath3 = ShouChi
-		SccProjectUniqueName4 = ..\\手持设备上位机\\手持设备上位机.csproj
-		SccProjectName4 = ../手持设备上位机
-		SccLocalPath4 = ..\\手持设备上位机
-		SccProjectUniqueName5 = ..\\手持设备上位机\\手持设备上位机安装\\手持设备上位机安装.vdproj
-		SccProjectName5 = ../手持设备上位机/手持设备上位机安装
-		SccLocalPath5 = ..\\手持设备上位机\\手持设备上位机安装
-		SccProjectUniqueName6 = ..\\设定设备ID\\设定设备ID.csproj
-		SccProjectName6 = ../设定设备ID
-		SccLocalPath6 = ..\\设定设备ID
-		SccProjectUniqueName7 = ..\\..\\..\\..\\AllNet\\WFNetLib40\\WFNetLib40.csproj
-		SccProjectName7 = ../../../../AllNet/WFNetLib40
-		SccLocalPath7 = ..\\..\\..\\..\\AllNet\\WFNetLib40
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		2.0|Any CPU = 2.0|Any CPU
 		2.0|Mixed Platforms = 2.0|Mixed Platforms

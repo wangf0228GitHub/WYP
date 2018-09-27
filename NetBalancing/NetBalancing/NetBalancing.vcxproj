@@ -43,7 +43,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>.;$(TOOLCHAIN_ROOT)\arm-eabi\include\c++\7.2.0;$(TOOLCHAIN_ROOT)\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m3;$(TOOLCHAIN_ROOT)\arm-eabi\include\c++\7.2.0\backward;$(TOOLCHAIN_ROOT)\lib\gcc\arm-eabi\7.2.0\include;$(TOOLCHAIN_ROOT)\lib\gcc\arm-eabi\7.2.0\include-fixed;$(TOOLCHAIN_ROOT)\arm-eabi\sys-include;$(TOOLCHAIN_ROOT)\arm-eabi\include;F:\work\WYP\NetBalancing\NetBalancing\..\Inc;F:\work\WYP\NetBalancing\NetBalancing\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include;F:\work\WYP\NetBalancing\NetBalancing\..\Drivers\STM32F1xx_HAL_Driver\Inc;F:\work\WYP\NetBalancing\NetBalancing\..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy;F:\work\WYP\NetBalancing\NetBalancing\..\Drivers\STM32F1xx_HAL_Driver\Src;F:\work\WYP\NetBalancing\NetBalancing\../Drivers/CMSIS/Include;F:\work\WYP\NetBalancing\NetBalancing\../wf;F:\work\WYP\NetBalancing\NetBalancing\../../../WF_Device/stm32;F:\work\WYP\NetBalancing\NetBalancing\../../../WF_Device;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>.;$(TOOLCHAIN_ROOT)\arm-eabi\include\c++\7.2.0;$(TOOLCHAIN_ROOT)\arm-eabi\include\c++\7.2.0\arm-eabi\thumb\cortex_m3;$(TOOLCHAIN_ROOT)\arm-eabi\include\c++\7.2.0\backward;$(TOOLCHAIN_ROOT)\lib\gcc\arm-eabi\7.2.0\include;$(TOOLCHAIN_ROOT)\lib\gcc\arm-eabi\7.2.0\include-fixed;$(TOOLCHAIN_ROOT)\arm-eabi\sys-include;$(TOOLCHAIN_ROOT)\arm-eabi\include;F:\work\WYP\NetBalancing\NetBalancing\../Drivers/CMSIS/Include;F:\work\WYP\NetBalancing\NetBalancing\../wf;F:\work\WYP\NetBalancing\NetBalancing\../../../WF_Device/stm32;F:\work\WYP\NetBalancing\NetBalancing\../../../WF_Device;F:\work\WYP\NetBalancing\NetBalancing\../WirelessParam;F:\work\WYP\NetBalancing\NetBalancing\..\Inc;F:\work\WYP\NetBalancing\NetBalancing\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include;F:\work\WYP\NetBalancing\NetBalancing\..\Drivers\STM32F1xx_HAL_Driver\Inc;F:\work\WYP\NetBalancing\NetBalancing\..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy;F:\work\WYP\NetBalancing\NetBalancing\..\Drivers\STM32F1xx_HAL_Driver\Src;F:\work\WYP\NetBalancing\NetBalancing\../wf/VisualTFT;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(BSP_ROOT)\stm32_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
     <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)"  "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
@@ -74,8 +74,17 @@
   </ImportGroup>
   <ItemGroup />
   <ItemGroup>
+    <ClCompile Include="..\..\..\WF_Device\ATCommand.c" />
+    <ClCompile Include="..\..\..\WF_Device\CP1616_Client.c" />
+    <ClCompile Include="..\..\..\WF_Device\Si4463.c" />
     <ClCompile Include="..\..\..\WF_Device\SimSPI.c" />
+    <ClCompile Include="..\..\..\WF_Device\SPIROM.c" />
     <ClCompile Include="..\..\..\WF_Device\stm32\wfSys.c" />
+    <ClCompile Include="..\..\..\WF_Device\Verify.c" />
+    <ClCompile Include="..\..\..\WF_Device\wfUart.c" />
+    <ClCompile Include="..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc.c" />
+    <ClCompile Include="..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc_ex.c" />
+    <ClCompile Include="..\Src\adc.c" />
     <ClCompile Include="..\Src\gpio.c" />
     <ClCompile Include="..\Src\stm32f1xx_it.c" />
     <ClCompile Include="..\Src\stm32f1xx_hal_msp.c" />
@@ -94,13 +103,48 @@
     <ClCompile Include="..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash_ex.c" />
     <ClCompile Include="..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.c" />
     <ClCompile Include="..\Src\usart.c" />
-    <ClCompile Include="..\wf\rf.c" />
+    <ClCompile Include="..\wf\FRAM.c" />
+    <ClCompile Include="..\wf\SIM800CProc.c" />
+    <ClCompile Include="..\wf\TFTWorkProc.c" />
+    <ClCompile Include="..\wf\VisualTFT\cmd_process.c" />
+    <ClCompile Include="..\wf\VisualTFT\cmd_queue.c" />
+    <ClCompile Include="..\wf\VisualTFT\hmi_driver.c" />
+    <ClCompile Include="..\wf\WirelessProc.c" />
+    <ClCompile Include="..\wf\WorkMode_History.c" />
+    <ClCompile Include="..\wf\WorkMode_RealTime.c" />
+    <ClInclude Include="..\..\..\WF_Device\ATCommand.h" />
+    <ClInclude Include="..\..\..\WF_Device\CP1616_Client.h" />
+    <ClInclude Include="..\..\..\WF_Device\DS18x20.h" />
+    <ClInclude Include="..\..\..\WF_Device\Si4463.h" />
     <ClInclude Include="..\..\..\WF_Device\SimSPI.h" />
+    <ClInclude Include="..\..\..\WF_Device\SPIROM.h" />
     <ClInclude Include="..\..\..\WF_Device\stm32\wfSys.h" />
+    <ClInclude Include="..\..\..\WF_Device\TypeDefine.h" />
+    <ClInclude Include="..\..\..\WF_Device\Verify.h" />
+    <ClInclude Include="..\..\..\WF_Device\wfDefine.h" />
+    <ClInclude Include="..\..\..\WF_Device\wfUart.h" />
+    <ClInclude Include="..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc.h" />
+    <ClInclude Include="..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_adc_ex.h" />
+    <ClInclude Include="..\Inc\adc.h" />
     <ClInclude Include="..\Inc\usart.h" />
-    <ClInclude Include="..\wf\rf.h" />
+    <ClInclude Include="..\wf\ATCommand_Conf.h" />
+    <ClInclude Include="..\wf\CP1616_Client_Conf.h" />
+    <ClInclude Include="..\wf\FlagDefine.h" />
+    <ClInclude Include="..\wf\FRAM.h" />
+    <ClInclude Include="..\wf\Si4463_Conf.h" />
+    <ClInclude Include="..\wf\SIM800CProc.h" />
     <ClInclude Include="..\wf\SimSPI_Conf.h" />
-    <ClInclude Include="..\wf\sx1276_LoRa_Conf.h" />
+    <ClInclude Include="..\wf\SPIROM_Conf.h" />
+    <ClInclude Include="..\wf\TFTWorkProc.h" />
+    <ClInclude Include="..\wf\VisualTFT\cmd_process.h" />
+    <ClInclude Include="..\wf\VisualTFT\cmd_queue.h" />
+    <ClInclude Include="..\wf\VisualTFT\hmi_driver.h" />
+    <ClInclude Include="..\wf\wfUart_Conf.h" />
+    <ClInclude Include="..\wf\WirelessProc.h" />
+    <ClInclude Include="..\wf\WorkMode_History.h" />
+    <ClInclude Include="..\wf\WorkMode_RealTime.h" />
+    <ClInclude Include="..\WirelessParam\config_470rx.h" />
+    <ClInclude Include="..\WirelessParam\PickParamDefine.h" />
     <None Include="stm32.mak" />
     <ClCompile Include="$(BSP_ROOT)\STM32F1xxxx\StartupFiles\startup_stm32f103xe.c" />
     <ClInclude Include="..\Inc\gpio.h" />

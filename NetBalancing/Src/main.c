@@ -39,11 +39,19 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
+#include "adc.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-#include "..\wf\rf.h"
+#include "Si4463.h"
+#include "ATCommand.h"
+#include "CP1616_Client.h"
+#include "..\wf\VisualTFT\cmd_queue.h"
+#include "..\wf\VisualTFT\cmd_process.h"
+#include "TFTWorkProc.h"
+#include "WirelessProc.h"
+#include "WorkMode_RealTime.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -51,7 +59,9 @@
 /* USER CODE BEGIN PV */
 
 /* Private variables ---------------------------------------------------------*/
-
+_gFlags gFlags;
+uint32_t SystemSleepTick;
+_SensorData SensorData4Save;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -74,7 +84,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	qsize  size = 0;
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -98,25 +108,39 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-
-  sx1276_7_8_Config(0);
-  sx1276_7_8_LoRaEntryRx();
+  Si4463_Init();
+  Si4463_RESET();
+  ATCommand_Init();	
+  CP1616_Client_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
+  while(HAL_UART_Receive_IT(&huart1,&huart1Rx,1)==HAL_OK);
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  size = queue_find_cmd(cmd_buffer,CMD_MAX_SIZE); //从缓冲区中获取一条指令        
+	  if(size>0)//接收到指令
+	  {
+		  ProcessMessage((PCTRL_MSG)cmd_buffer, size);//指令处理
+	  }	
+	  if(gFlags.bNewSensorData)
+	  {
+		  ReadRTC();
+		  SensorData4Save.Month=RTCData.month;
+		  SensorData4Save.Day=RTCData.day;
+		  SensorData4Save.Hour=RTCData.hour;
+		  SensorData4Save.Minute=RTCData.minute;
+		  SensorData4Save.SensorData=PickDatas.SensorData;
+		  rtDataIndex++;
+		  TFT_NewSensorDataProc();
+	  }
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-	  sx1276_7_8_LoRaEntryTx();
-	  sx1276_7_8_LoRaTxPacket();
-	  sx1276_7_8_LoRaEntryRx();
-	  wfDelay_ms(1000);
-	  sx1276_7_8_LoRaRxPacket();
+	HAL_Delay(32);
   }
   /* USER CODE END 3 */
 
@@ -131,6 +155,7 @@ void SystemClock_Config(void)
 
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
+  RCC_PeriphCLKInitTypeDef PeriphClkInit;
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
@@ -156,6 +181,13 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }

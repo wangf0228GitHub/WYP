@@ -45,12 +45,28 @@
 
 /* USER CODE BEGIN Includes */
 #include "stm32f1xx_hal.h"
+#include "FlagDefine.h"
 /* USER CODE END Includes */
 
 /* Private define ------------------------------------------------------------*/
 
+#define DS18B20_Pin GPIO_PIN_13
+#define DS18B20_GPIO_Port GPIOC
+#define RUN_LED_C_Pin GPIO_PIN_1
+#define RUN_LED_C_GPIO_Port GPIOC
+#define BUTTON_Pin GPIO_PIN_2
+#define BUTTON_GPIO_Port GPIOC
+#define STATUS2MCU_Pin GPIO_PIN_3
+#define STATUS2MCU_GPIO_Port GPIOC
 #define RF_IRQ_Pin GPIO_PIN_0
 #define RF_IRQ_GPIO_Port GPIOA
+#define RF_IRQ_EXTI_IRQn EXTI0_IRQn
+#define GSM_PWR_Pin GPIO_PIN_1
+#define GSM_PWR_GPIO_Port GPIOA
+#define RET_POWER_C_Pin GPIO_PIN_4
+#define RET_POWER_C_GPIO_Port GPIOA
+#define POWER_I_Pin GPIO_PIN_6
+#define POWER_I_GPIO_Port GPIOA
 #define RF_SCLK_Pin GPIO_PIN_13
 #define RF_SCLK_GPIO_Port GPIOB
 #define RF_MISO_Pin GPIO_PIN_14
@@ -70,7 +86,9 @@
 /* #define USE_FULL_ASSERT    1U */
 
 /* USER CODE BEGIN Private defines */
+#define Verify_Sum
 #define bRFIRQ() HAL_GPIO_ReadPin(RF_IRQ_GPIO_Port,RF_IRQ_Pin)
+extern _gFlags gFlags;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

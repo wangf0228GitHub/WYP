@@ -1371,15 +1371,17 @@
 //$(TOOLCHAIN_ROOT)\lib\gcc\arm-eabi\7.2.0\include-fixed
 //$(TOOLCHAIN_ROOT)\arm-eabi\sys-include
 //$(TOOLCHAIN_ROOT)\arm-eabi\include
+//../Drivers/CMSIS/Include
+//../wf
+//../../../WF_Device/stm32
+//../../../WF_Device
+//../WirelessParam
 //..\Inc
 //..\Drivers\CMSIS\Device\ST\STM32F1xx\Include
 //..\Drivers\STM32F1xx_HAL_Driver\Inc
 //..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy
 //..\Drivers\STM32F1xx_HAL_Driver\Src
-//../Drivers/CMSIS/Include
-//../wf
-//../../../WF_Device/stm32
-//../../../WF_Device
+//../wf/VisualTFT
 // --- Include directories end --- //
 
 

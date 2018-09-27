@@ -43,7 +43,47 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "ATCommand.h"
+#include "..\wf\VisualTFT\cmd_queue.h"
+uint8_t huart1Rx;
+uint8_t huart2Rx;
+uint8_t huart3Rx;
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *UartHandle)
+{
+	if(UartHandle->Instance==huart1.Instance)
+	{
+		huart1.RxState = HAL_UART_STATE_READY;
+		while(HAL_UART_Receive_IT(&huart1,&huart1Rx,1)==HAL_OK);
+	}
+	else if(UartHandle->Instance==huart2.Instance)
+	{
+		huart2.RxState = HAL_UART_STATE_READY;
+		while(HAL_UART_Receive_IT(&huart2,&huart2Rx,1)==HAL_OK);
+	}
+	else if(UartHandle->Instance==huart3.Instance)
+	{
+		huart3.RxState = HAL_UART_STATE_READY;
+		while(HAL_UART_Receive_IT(&huart3,&huart3Rx,1)==HAL_OK);
+	}
+}
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef* UartHandle)
+{
+	if(UartHandle->Instance==huart1.Instance)
+	{
+		queue_push(huart1Rx);
+		while(HAL_UART_Receive_IT(&huart1,&huart1Rx,1)==HAL_OK);
+	}
+	else if(UartHandle->Instance==huart2.Instance)
+	{
+		ATCommand_ProcRx(huart2Rx);
+		while(HAL_UART_Receive_IT(&huart2,&huart2Rx,1)==HAL_OK);
+	}
+	else if(UartHandle->Instance==huart3.Instance)
+	{
+		//RIO_ProcRx(RIO_Rx);
+		while(HAL_UART_Receive_IT(&huart3,&huart3Rx,1)==HAL_OK);
+	}
+}
 /* USER CODE END 0 */
 
 UART_HandleTypeDef huart1;
@@ -75,7 +115,7 @@ void MX_USART2_UART_Init(void)
 {
 
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
+  huart2.Init.BaudRate = 9600;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
@@ -134,6 +174,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+    /* USART1 interrupt Init */
+    HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(USART1_IRQn);
   /* USER CODE BEGIN USART1_MspInit 1 */
 
   /* USER CODE END USART1_MspInit 1 */
@@ -160,6 +203,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+    /* USART2 interrupt Init */
+    HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(USART2_IRQn);
   /* USER CODE BEGIN USART2_MspInit 1 */
 
   /* USER CODE END USART2_MspInit 1 */
@@ -186,6 +232,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+    /* USART3 interrupt Init */
+    HAL_NVIC_SetPriority(USART3_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(USART3_IRQn);
   /* USER CODE BEGIN USART3_MspInit 1 */
 
   /* USER CODE END USART3_MspInit 1 */
@@ -209,6 +258,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     */
     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9|GPIO_PIN_10);
 
+    /* USART1 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(USART1_IRQn);
   /* USER CODE BEGIN USART1_MspDeInit 1 */
 
   /* USER CODE END USART1_MspDeInit 1 */
@@ -227,6 +278,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     */
     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_2|GPIO_PIN_3);
 
+    /* USART2 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(USART2_IRQn);
   /* USER CODE BEGIN USART2_MspDeInit 1 */
 
   /* USER CODE END USART2_MspDeInit 1 */
@@ -245,6 +298,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
     */
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_10|GPIO_PIN_11);
 
+    /* USART3 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(USART3_IRQn);
   /* USER CODE BEGIN USART3_MspDeInit 1 */
 
   /* USER CODE END USART3_MspDeInit 1 */
