@@ -110,6 +110,7 @@
     <ClCompile Include="..\wf\VisualTFT\cmd_queue.c" />
     <ClCompile Include="..\wf\VisualTFT\hmi_driver.c" />
     <ClCompile Include="..\wf\WirelessProc.c" />
+    <ClCompile Include="..\wf\WithPC.c" />
     <ClCompile Include="..\wf\WorkMode_History.c" />
     <ClCompile Include="..\wf\WorkMode_RealTime.c" />
     <ClInclude Include="..\..\..\WF_Device\ATCommand.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="..\wf\VisualTFT\hmi_driver.h" />
     <ClInclude Include="..\wf\wfUart_Conf.h" />
     <ClInclude Include="..\wf\WirelessProc.h" />
+    <ClInclude Include="..\wf\WithPC.h" />
     <ClInclude Include="..\wf\WorkMode_History.h" />
     <ClInclude Include="..\wf\WorkMode_RealTime.h" />
     <ClInclude Include="..\WirelessParam\config_470rx.h" />

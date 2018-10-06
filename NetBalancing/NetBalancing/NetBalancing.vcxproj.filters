@@ -321,6 +321,9 @@
     <ClCompile Include="..\wf\WorkMode_History.c">
       <Filter>wf\功能模块</Filter>
     </ClCompile>
+    <ClCompile Include="..\wf\WithPC.c">
+      <Filter>wf</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Inc\gpio.h">
@@ -424,6 +427,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\WF_Device\DS18x20.h">
       <Filter>wf\LIB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wf\WithPC.h">
+      <Filter>wf</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -61,7 +61,6 @@
 /* Private variables ---------------------------------------------------------*/
 _gFlags gFlags;
 uint32_t SystemSleepTick;
-_SensorData SensorData4Save;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -118,6 +117,8 @@ int main(void)
 
   /* Infinite loop */
   while(HAL_UART_Receive_IT(&huart1,&huart1Rx,1)==HAL_OK);
+  while(HAL_UART_Receive_IT(&huart2,&huart2Rx,1)==HAL_OK);
+  while(HAL_UART_Receive_IT(&huart3,&huart3Rx,1)==HAL_OK);
   /* USER CODE BEGIN WHILE */
   while (1)
   {
@@ -126,16 +127,15 @@ int main(void)
 	  {
 		  ProcessMessage((PCTRL_MSG)cmd_buffer, size);//÷∏¡Ó¥¶¿Ì
 	  }	
+	  if(CP1616_Client_Flags.Bits.bRx)
+	  {
+		  ProcCommandFromPC();
+		  CP1616_Client_Flags.Bits.bRx=0;
+	  }
 	  if(gFlags.bNewSensorData)
 	  {
-		  ReadRTC();
-		  SensorData4Save.Month=RTCData.month;
-		  SensorData4Save.Day=RTCData.day;
-		  SensorData4Save.Hour=RTCData.hour;
-		  SensorData4Save.Minute=RTCData.minute;
-		  SensorData4Save.SensorData=PickDatas.SensorData;
-		  rtDataIndex++;
-		  TFT_NewSensorDataProc();
+		  WorkMode_RealTimeProc();
+		  gFlags.bNewSensorData=0;
 	  }
   /* USER CODE END WHILE */
 

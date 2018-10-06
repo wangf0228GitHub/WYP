@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "TFTWorkProc.h"
 #include "..\WirelessProc.h"
+#include "WorkMode_RealTime.h"
 
 uint8 cmd_buffer[CMD_MAX_SIZE];
 /*! 
@@ -138,8 +139,13 @@ void NotifyButton(uint16 screen_id, uint16 control_id, uint8  state)
 		return;
 	switch(screen_id)
 	{
-	case 2://实时数据
-		
+	case 4://实时温度柱形图
+		if(control_id==cID_btBackward || control_id==cID_btForward)//柱形图换页
+		{
+			RealTime_TBarChartsSwitchPage(control_id);
+		}
+		break;
+	case 5://实时压力柱形图
 		break;
 	}
 }

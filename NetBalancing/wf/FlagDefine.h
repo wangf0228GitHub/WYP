@@ -28,7 +28,7 @@ typedef union
 } _SensorData; 
 
 #define ROMParamsAddr 0
-#define ROMParamsCount 16
+#define ROMParamsCount 36
 typedef union   
 {
 	struct
@@ -52,36 +52,65 @@ typedef union
 		uint16_t TimeSpan4;
 		uint16_t SleepTimeSpan;
 		uint16_t bak;
+		char InstallArea[20];//安装的小区
 	};
 	uint8_t All[ROMParamsCount];
 } _ROMParams;        // general flags
 
-#define SensorDataInfoCount 24
+#define SensorDataInfoCount 8
 typedef union   
 {
 	struct
 	{
-		char InstallPosition[21];
+		uint8_t Addr1;
+		uint8_t Addr2;
 		uint8_t LastState;	
 		uint8_t bLoop;
-		uint8_t curIndex;
+		uint8_t curDataSaveIndex;
+		uint8_t bak1;
+		uint8_t bak2;
+		uint8_t bak3;
 	};
 	uint8_t All[SensorDataInfoCount];
 } _SensorDataInfo; 
 
-#define Sensor1DataAddr 0x00000020   //32
-#define SensorDataListCount 0x00000505   //1285
-#define SensorDataCount 210
+#define TSensor1DataAddr 0x00000080   
+#define PSensor1DataAddr 0x0000fb00   
+#define SensorDataListCount 0x00000280   //1285
+#define SensorDataItemCount 100
 typedef union   
 {
 	struct
 	{
 		_SensorDataInfo SensorDataInfo;
-		_SensorData SensorData[SensorDataCount];
+		_SensorData SensorData[SensorDataItemCount];
 	};
 	uint8_t All[SensorDataListCount];
 } _SensorDataList; 
 
+typedef union   
+{
+	struct
+	{
+		uint8_t Addr1;
+		uint8_t Addr2;
+		uint8_t bak1;
+		uint8_t bak2;
+	};
+	uint8_t All[4];
+} _SensorAddrInfo;
+
+typedef union   
+{
+	struct
+	{
+		uint8_t SensorIndex;
+		uint8_t Addr1;
+		uint8_t Addr2;		
+		uint8_t bak1;
+	};
+	uint8_t All[SensorDataInfoCount];
+} _SensorAddrSortingInfo;
 
 // 
 // #define ROMCount 9

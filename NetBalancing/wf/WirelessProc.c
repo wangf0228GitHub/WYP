@@ -15,10 +15,12 @@ uint8_t Si4463Temp[10];
 unsigned char WirelessRxList[64];
 unsigned char WirelessRxCount;
 uint32_t NoWirelessRxTick;
-_PickDatas PickDatas;
+_WirelessPacket WirelessPacket;
+
+
 void Wireless_RxINTProc(void)
 {
-	_PickDatas tmpPD;
+	_WirelessPacket tmpPD;
 	uint32_t i;
 	uint8_t sum;
 	NoWirelessRxTick=HAL_GetTick();		
@@ -29,11 +31,11 @@ void Wireless_RxINTProc(void)
 		Si4463_FIFO_INFO(Si4463Temp);		
 		if(!gFlags.bNewSensorData)//之前的新数据已经处理完了
 		{
-			sum=GetVerify_Sum(PickDatas.All,PACKET_LENGTH-1);
-			if(sum==PickDatas.sum)
+			sum=GetVerify_Sum(tmpPD.All,PACKET_LENGTH-1);
+			if(sum==tmpPD.sum)
 			{
 				for(i=0;i<PACKET_LENGTH;i++)
-					PickDatas.All[i]=tmpPD.All[i];
+					WirelessPacket.All[i]=tmpPD.All[i];
 				gFlags.bNewSensorData=1;				
 			}
 		}		

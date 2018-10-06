@@ -45,6 +45,6 @@ void ReadRTC(void);
 
 #define cID_Record 199
 #define cID_Icon_Battery 200
-
+#define cID_Bar1 15
 
 #endif

@@ -45,6 +45,7 @@
 /* USER CODE BEGIN 0 */
 #include "ATCommand.h"
 #include "..\wf\VisualTFT\cmd_queue.h"
+#include "CP1616_Client.h"
 uint8_t huart1Rx;
 uint8_t huart2Rx;
 uint8_t huart3Rx;
@@ -80,7 +81,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* UartHandle)
 	}
 	else if(UartHandle->Instance==huart3.Instance)
 	{
-		//RIO_ProcRx(RIO_Rx);
+		CP1616_Client_ProcRx(huart3Rx);
 		while(HAL_UART_Receive_IT(&huart3,&huart3Rx,1)==HAL_OK);
 	}
 }

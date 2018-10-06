@@ -30,5 +30,5 @@ typedef union
 		unsigned char sum;
 	};
 	unsigned char All[PACKET_LENGTH];
-} _PickDatas;        // general flags 
+} _WirelessPacket;        // general flags 
 #endif
