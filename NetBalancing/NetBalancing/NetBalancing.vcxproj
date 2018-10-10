@@ -76,6 +76,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\WF_Device\ATCommand.c" />
     <ClCompile Include="..\..\..\WF_Device\CP1616_Client.c" />
+    <ClCompile Include="..\..\..\WF_Device\DS18x20.c" />
     <ClCompile Include="..\..\..\WF_Device\Si4463.c" />
     <ClCompile Include="..\..\..\WF_Device\SimSPI.c" />
     <ClCompile Include="..\..\..\WF_Device\SPIROM.c" />
@@ -112,7 +113,9 @@
     <ClCompile Include="..\wf\WirelessProc.c" />
     <ClCompile Include="..\wf\WithPC.c" />
     <ClCompile Include="..\wf\WorkMode_History.c" />
+    <ClCompile Include="..\wf\WorkMode_IntervalAnalysis.c" />
     <ClCompile Include="..\wf\WorkMode_RealTime.c" />
+    <ClCompile Include="..\wf\WorkMode_Setting.c" />
     <ClInclude Include="..\..\..\WF_Device\ATCommand.h" />
     <ClInclude Include="..\..\..\WF_Device\CP1616_Client.h" />
     <ClInclude Include="..\..\..\WF_Device\DS18x20.h" />
@@ -144,7 +147,9 @@
     <ClInclude Include="..\wf\WirelessProc.h" />
     <ClInclude Include="..\wf\WithPC.h" />
     <ClInclude Include="..\wf\WorkMode_History.h" />
+    <ClInclude Include="..\wf\WorkMode_IntervalAnalysis.h" />
     <ClInclude Include="..\wf\WorkMode_RealTime.h" />
+    <ClInclude Include="..\wf\WorkMode_Setting.h" />
     <ClInclude Include="..\WirelessParam\config_470rx.h" />
     <ClInclude Include="..\WirelessParam\PickParamDefine.h" />
     <None Include="stm32.mak" />

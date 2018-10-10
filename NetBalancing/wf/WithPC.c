@@ -32,7 +32,7 @@ void ProcCommandFromPC( void )
 		NVIC_SystemReset();
 		break;
 	case 3://…Ë∂®µÿ÷∑
-		FRAM_SaveSensorAddr(CP1616_Client_RxList[pCP1616_ClientData],&CP1616_Client_RxList[pCP1616_ClientData+2],CP1616_Client_RxList[pCP1616_ClientData+1]);
+		//FRAM_SaveSensorAddr(CP1616_Client_RxList[pCP1616_ClientData],&CP1616_Client_RxList[pCP1616_ClientData+2],CP1616_Client_RxList[pCP1616_ClientData+1]);
 		CP1616_Client_EndProcCommand();
 		CP1616_Client_SendOK(Command);	
 		break;

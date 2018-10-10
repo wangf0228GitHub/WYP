@@ -52,6 +52,7 @@
 #include "TFTWorkProc.h"
 #include "WirelessProc.h"
 #include "WorkMode_RealTime.h"
+#include "WithPC.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/

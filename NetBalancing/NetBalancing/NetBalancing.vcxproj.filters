@@ -324,6 +324,15 @@
     <ClCompile Include="..\wf\WithPC.c">
       <Filter>wf</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\WF_Device\DS18x20.c">
+      <Filter>wf\LIB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\wf\WorkMode_IntervalAnalysis.c">
+      <Filter>wf\功能模块</Filter>
+    </ClCompile>
+    <ClCompile Include="..\wf\WorkMode_Setting.c">
+      <Filter>wf\功能模块</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Inc\gpio.h">
@@ -430,6 +439,12 @@
     </ClInclude>
     <ClInclude Include="..\wf\WithPC.h">
       <Filter>wf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wf\WorkMode_IntervalAnalysis.h">
+      <Filter>wf\功能模块</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wf\WorkMode_Setting.h">
+      <Filter>wf\功能模块</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

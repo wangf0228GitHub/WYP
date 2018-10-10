@@ -83,4 +83,7 @@ void NotifyWriteFlash(uint8 status);
 void NotifyReadRTC(uint8 year,uint8 month,uint8 week,uint8 day,uint8 hour,uint8 minute,uint8 second);
 
 extern uint8 cmd_buffer[CMD_MAX_SIZE];
+extern uint16_t waitSID;
+extern uint16_t waitCID;
+extern uint8_t controlValue[ControlValue_MAX_SIZE];
 #endif

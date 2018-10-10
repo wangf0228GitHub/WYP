@@ -87,7 +87,10 @@
 
 /* USER CODE BEGIN Private defines */
 #define Verify_Sum
-#define bRFIRQ() HAL_GPIO_ReadPin(RF_IRQ_GPIO_Port,RF_IRQ_Pin)
+#define Verify_CRC8
+#define TemperatureSensor 1
+#define PressureSensor 0
+#define bRFIRQ() (HAL_GPIO_ReadPin(RF_IRQ_GPIO_Port,RF_IRQ_Pin)==GPIO_PIN_RESET)
 extern _gFlags gFlags;
 /* USER CODE END Private defines */
 

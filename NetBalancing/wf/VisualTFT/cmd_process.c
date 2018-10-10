@@ -3,8 +3,14 @@
 #include "TFTWorkProc.h"
 #include "..\WirelessProc.h"
 #include "WorkMode_RealTime.h"
+#include "WorkMode_History.h"
+#include "WorkMode_IntervalAnalysis.h"
+#include "WorkMode_Setting.h"
 
 uint8 cmd_buffer[CMD_MAX_SIZE];
+uint16_t waitSID;
+uint16_t waitCID;
+uint8_t controlValue[50];
 /*! 
  *  \brief  消息处理流程，此处一般不需要更改
  *  \param msg 待处理消息
@@ -147,6 +153,42 @@ void NotifyButton(uint16 screen_id, uint16 control_id, uint8  state)
 		break;
 	case 5://实时压力柱形图
 		break;
+	case 6://历史
+		if(control_id==cID_btConfirm)//确定按键
+		{
+			HistoryModeInit();
+		}
+		break;
+	case 9://历史温度柱形图
+		if(control_id==cID_btBackward || control_id==cID_btForward)//柱形图换页
+		{
+			History_TBarChartsSwitchPage(control_id);
+		}
+		break;
+	case 19://温度间隔分析
+		if(control_id==cID_btBackward || control_id==cID_btForward)//柱形图换页
+		{
+			IntervalAnalysis_TBarChartsSwitchPage(control_id);
+		}
+		break;
+	case 25://设置：时间间隔
+		if(control_id==cID_btConfirm)//确定按键
+		{
+			Setting_IntervalAnalysis();
+		}
+		break;
+	case 26://设置：休眠时间
+		if(control_id==cID_btConfirm)
+		{
+			Setting_SleepTimesSpan();
+		}
+		break;
+	case 27://设置：终端编码
+		if(control_id==cID_btConfirm)
+		{
+			
+		}
+		break;
 	}
 }
 
@@ -159,7 +201,27 @@ void NotifyButton(uint16 screen_id, uint16 control_id, uint8  state)
  */
 void NotifyText(uint16 screen_id, uint16 control_id, uint8 *str)
 {
-	//TODO: 添加用户代码	
+	//TODO: 添加用户代码
+	uint32_t i; 
+	if(!TFTWaitCommandFlags.bWaitControlValue)
+		return;
+	if(screen_id!=waitSID)
+		return;
+	if(control_id!=waitCID)
+		return;
+	i=0;
+	while(str[i]!='\0')
+	{
+		controlValue[i]=str[i];
+		i++;
+		if(i==(ControlValue_MAX_SIZE-1))
+		{
+			break;
+		}
+	}
+	controlValue[i]='\0';
+	TFTNotifyCommandFlags.bRxControlValue=1;
+	TFTWaitCommandFlags.bWaitControlValue=0;
 }
 
 /*! 
@@ -265,6 +327,8 @@ void NotifyWriteFlash(uint8 status)
  */
 void NotifyReadRTC(uint8 year,uint8 month,uint8 week,uint8 day,uint8 hour,uint8 minute,uint8 second)
 {
+	if(!TFTWaitCommandFlags.bWaitRTC)
+		return;
 	RTCData.year=year;
 	RTCData.month=month;
 	RTCData.week=week;
@@ -272,5 +336,6 @@ void NotifyReadRTC(uint8 year,uint8 month,uint8 week,uint8 day,uint8 hour,uint8 
 	RTCData.hour=hour;
 	RTCData.minute=minute;
 	RTCData.second=second;
-	gFlags.bRxRTC=1;
+	TFTNotifyCommandFlags.bRxRTC=1;
+	TFTWaitCommandFlags.bWaitRTC=0;
 }

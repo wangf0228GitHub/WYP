@@ -8,7 +8,6 @@ typedef union
 {
 	struct
 	{		
-		unsigned bRxRTC:1;//判断是否接收的触屏的RTC数据
 		unsigned bNewSensorData:1;//是否收到了新的传感器数据
 	};
 	uint32_t AllFlag;

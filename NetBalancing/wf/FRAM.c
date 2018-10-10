@@ -7,10 +7,13 @@
 #include "WorkMode_History.h"
 #include "WirelessProc.h"
 #include "WorkMode_RealTime.h"
+#include "hmi_driver.h"
+#include "TFTWorkProc.h"
 #define eeprom_offset 1
 
 _ROMParams ROMParams;
 _SensorDataInfo SensorDataInfo;
+_SensorData LatestSensorData;
 extern uint32_t SystemSleepTick;
 extern _SensorData SensorData4Save;
 
@@ -20,12 +23,14 @@ _SensorAddrSortingInfo TSensorAddrSortingList[SensorDataItemCount];
 _SensorAddrSortingInfo PSensorAddrSortingList[SensorDataItemCount];
 uint8_t realTSensorCount;
 uint8_t realPSensorCount;
-uint8_t TSensorAddrSortingListCount;
+//温度传感器排序后数组总长度
+uint8_t TSensorAddrSortingListCount;//温度传感器排序后数组总长度
 uint8_t PSensorAddrSortingListCount;
 void FRAM_GetROMParams(void)
 {
 	uint8_t i;
 	uint32_t addr;
+	char str[50];
 	SPIROM_ReadArray(ROMParamsAddr,ROMParams.All,ROMParamsCount);
 	i=GetVerify_Sum(&ROMParams.All[1],ROMParamsCount-1);
 	i+=eeprom_offset;
@@ -45,10 +50,25 @@ void FRAM_GetROMParams(void)
 		}
 		FRAM_InitSensorData(0,100);
 	}	
-	SystemSleepTick=ROMParams.SleepTimeSpan*600;
+	sprintf(str,"%d",ROMParams.DeviceID);
+	SetTextValue(22,50,str);
+	SetTextValue(22,51,ROMParams.InstallArea);
+
+	sprintf(str,"%d",ROMParams.TimeSpan1);
+	SetTextValue(25,50,str);
+	sprintf(str,"%d",ROMParams.TimeSpan2);
+	SetTextValue(25,51,str);
+	sprintf(str,"%d",ROMParams.TimeSpan3);
+	SetTextValue(25,52,str);
+	sprintf(str,"%d",ROMParams.TimeSpan4);
+	SetTextValue(25,53,str);
+
+	sprintf(str,"%d",ROMParams.SleepTimeSpan);
+	SetTextValue(26,50,str);
 }
 void FRAM_InitSensorAddrInfo( void )
 {
+	char str[20];
 	uint32_t i,addr;
 	uint32_t TminAddr1,TminAddr2,TmaxAddr1,TmaxAddr2;
 	uint32_t PminAddr1,PminAddr2,PmaxAddr1,PmaxAddr2;
@@ -116,6 +136,10 @@ void FRAM_InitSensorAddrInfo( void )
 	realtimeTPageCountOfBarCharts=realTSensorCount/SensorCountOfBarCharts;
 	if((realTSensorCount%SensorCountOfBarCharts)!=0)
 		realtimeTPageCountOfBarCharts++;
+
+	sprintf(str,"共%u页，第%u页",realtimeTPageCountOfBarCharts,realtimeTPageOfBarCharts+1);
+	SetTextValue(4,52,str);
+
 	PSensorAddrSortingListCount=0;
 	for(addr1=PminAddr1;addr1<=PmaxAddr1;addr1++)
 	{
@@ -137,6 +161,9 @@ void FRAM_InitSensorAddrInfo( void )
 	realtimePPageCountOfBarCharts=realPSensorCount/SensorCountOfBarCharts;
 	if((realPSensorCount%SensorCountOfBarCharts)!=0)
 		realtimePPageCountOfBarCharts++;
+
+	sprintf(str,"共%u页，第%u页",realtimePPageCountOfBarCharts,realtimePPageOfBarCharts+1);
+	SetTextValue(5,52,str);
 }
 
 void FRAM_SaveROMParams(void)
@@ -153,130 +180,42 @@ void FRAM_InitSensorData(uint8_t s,uint8_t e)
 {
 	uint8_t i;
 	uint32_t addr;
+	_SensorDataInfo sdInfo;	
 	for(i=s;i<e;i++)
 	{
-		addr=TSensor1DataAddr+(uint32_t)i*SensorDataListCount+(uint32_t)21;
-		SPIROM_Fill(addr,0x00,3);
+		addr=TSensor1DataAddr+(uint32_t)i*SensorDataListCount;
+		SPIROM_ReadArray(addr,sdInfo.All,SensorDataInfoCount);
+		sdInfo.bLoop=0;
+		sdInfo.LastState=0;
+		sdInfo.curDataSaveIndex=0xff;
+		SPIROM_WriteArray(addr,sdInfo.All,SensorDataInfoCount);
 	}
 }
-void FRAM_SaveSensorData(void)
-{
-	uint8_t index;
-	uint32_t addr;
-	uint8_t curIndex;
-	index=WirelessPacket.index-1;
-	addr=TSensor1DataAddr+(uint32_t)index*SensorDataListCount;
-	addr=addr+(uint32_t)23;
-	curIndex=SPIROM_ReadByte(addr);
-	curIndex++;
-	if(curIndex>=SensorDataItemCount)
-	{
-		curIndex=0;
-		SPIROM_WriteByte(addr-1,1);
-	}
-	SPIROM_WriteByte(addr,curIndex);
-	addr=addr+(uint32_t)(curIndex-1)*6+1;
-	SPIROM_WriteArray(addr,SensorData4Save.All,6);	
-}
-void FRAM_GetSensorDataInfo(uint8_t index)
+
+void FRAM_GetSensorDataInfo(uint8_t bT,uint8_t index)
 {
 	uint32_t addr;
-	addr=TSensor1DataAddr+(uint32_t)index*SensorDataListCount;
+	if(bT!=PressureSensor)
+		addr=TSensor1DataAddr+(uint32_t)index*SensorDataListCount;
+	else
+		addr=PSensor1DataAddr+(uint32_t)index*SensorDataListCount;
 	SPIROM_ReadArray(addr,SensorDataInfo.All,SensorDataInfoCount);
-	if(SensorDataInfo.bLoop==0)//未存满
-	{	
-		History_curPageCount=(SensorDataInfo.curDataSaveIndex-1+History_PageSize)/History_PageSize;
-	}
+}
+void FRAM_GetLatestSensorData( uint8_t bT,uint8_t index )
+{
+	uint32_t addr;
+	_SensorDataInfo sdInfo;
+	if(bT!=PressureSensor)
+		addr=TSensor1DataAddr+(uint32_t)index*SensorDataListCount;
 	else
+		addr=PSensor1DataAddr+(uint32_t)index*SensorDataListCount;
+	SPIROM_ReadArray(addr,sdInfo.All,SensorDataInfoCount);
+	if(sdInfo.curDataSaveIndex==0xff)
 	{
-		History_curPageCount=History_PageCount;
+		LatestSensorData.Month=0xff;
+		return;
 	}
+	addr=addr+SensorDataInfoCount+(uint32_t)(sdInfo.curDataSaveIndex)*6;
+	SPIROM_ReadArray(addr,LatestSensorData.All,6);
 }
-void FRAM_SaveSensorAddr(uint8_t index,uint8_t* pBuff,uint8_t Count)
-{
-	uint32_t addr;
-	addr=TSensor1DataAddr+(uint32_t)index*SensorDataListCount;
-	if(Count>20)
-		Count=20;
-	SPIROM_WriteArray(addr,pBuff,Count);
-}
-void FRAM_GetSensorData(uint8_t index,uint8_t* pBuf)
-{
-	uint32_t addr;
-	if(SensorDataInfo.curDataSaveIndex==0)
-	{
-		if(SensorDataInfo.bLoop!=0)//循环了
-		{
-			addr=TSensor1DataAddr+(uint32_t)(index+1)*SensorDataListCount-7;
-		}
-		else
-		{
-			pBuf[0]=0xff;
-			return;
-		}
-	}
-	else
-	{
-		addr=TSensor1DataAddr+(uint32_t)index*SensorDataListCount+SensorDataInfoCount+(uint32_t)(SensorDataInfo.curDataSaveIndex-1)*6;
-	}
-	SPIROM_ReadArray(addr,pBuf,6);
-}
-void FRAM_HistoryGetPageSensorData()
-{
-	uint32_t addr;
-	uint16_t n;
-	uint8_t x,x1,x2,i,curIndex;
-	addr=TSensor1DataAddr+(uint32_t)History_SensorIndex*SensorDataListCount+SensorDataInfoCount;
-	if(SensorDataInfo.bLoop==0)//未存满
-	{	
-		i=History_Page*History_PageSize;		
-		x=SensorDataInfo.curDataSaveIndex-i;		
-		if(x>=History_PageSize)//还够一屏显示
-		{
-			History_ListCount=History_PageSize;			
-			n=History_PageSize*6;
-			i=History_Page+1;
-			addr=addr+(uint32_t)(History_Page*10)*6;
-			SPIROM_ReadArray(addr,SensorData4ShowList[0].All,n);
-		}
-		else
-		{
-			History_ListCount=x;
-			addr=addr+(uint32_t)(History_Page*10)*6;
-			n=x*6;
-			SPIROM_ReadArray(addr,SensorData4ShowList[0].All,n);
-		}		
-	}
-	else//开始循环存储
-	{	
-		n=History_PageSize*6;
-		History_ListCount=History_PageSize;	
-		i=(History_Page+1)*History_PageSize;
-		x1=History_Page*History_PageSize;
-		x=SensorDataMaxCount-SensorDataInfo.curDataSaveIndex;
-		if(x>=i)//头部数据已足够
-		{
-			addr=addr+(uint32_t)SensorDataInfo.curDataSaveIndex*6+(uint32_t)x1*6;			
-			SPIROM_ReadArray(addr,SensorData4ShowList[0].All,n);
-		}
-		else
-		{
-			x2=x+History_PageSize;
-			if(x2>=i)//两头取
-			{
-				addr=addr+(uint32_t)SensorDataInfo.curDataSaveIndex*6+(uint32_t)x1*6;			
-				x=x-x1;
-				SPIROM_ReadArray(addr,SensorData4ShowList[0].All,x*6);
-				x1=History_PageSize-x;
-				addr=TSensor1DataAddr+(uint32_t)History_SensorIndex*SensorDataListCount+SensorDataInfoCount;
-				SPIROM_ReadArray(addr,SensorData4ShowList[x].All,x1*6);
-			}
-			else//循环从头取
-			{
-				x2=x1-x;
-				addr+=(uint32_t)x2*6;
-				SPIROM_ReadArray(addr,SensorData4ShowList[0].All,n);
-			}
-		}		
-	}
-}
+

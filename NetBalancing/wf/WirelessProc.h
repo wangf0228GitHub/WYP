@@ -15,4 +15,5 @@ extern _WirelessPacket WirelessPacket;
 unsigned char Si4432_RSSI (void);
 void Wireless_RxInit(void);
 void Wireless_RxINTProc(void);
+void Wireless_SetInit(void);
 #endif // __WirelessProc_h__

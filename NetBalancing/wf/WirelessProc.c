@@ -8,6 +8,7 @@
 #include "PickParamDefine.h"
 
 #include "Verify.h"
+#include "FRAM.h"
 
 const unsigned char config_table[] = RADIO_CONFIGURATION_DATA_ARRAY;
 
@@ -87,7 +88,7 @@ void Wireless_RxInit(void)
 	Si4463_FIFO_INFO(Si4463Temp);
 	Si4463_INT_STATUS(Si4463Temp);
 	Si4463_PART_INFO(Si4463Temp);
-	//Si4463_START_RX(ROMParams.WirelessParamIndex,0x00,PACKET_LENGTH,0x08,0x08,0x08);//(ROMParams.WirelessParamIndex,0x00,4,0x08,0x08,0x08);
+	Si4463_START_RX(ROMParams.WirelessParamIndex,0x00,PACKET_LENGTH,0x08,0x08,0x08);//(ROMParams.WirelessParamIndex,0x00,4,0x08,0x08,0x08);
 	HAL_NVIC_ClearPendingIRQ(EXTI0_IRQn);
 	HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 }
