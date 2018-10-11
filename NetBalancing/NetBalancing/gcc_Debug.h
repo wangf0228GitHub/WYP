@@ -1376,12 +1376,12 @@
 //../../../WF_Device/stm32
 //../../../WF_Device
 //../WirelessParam
+//../wf/VisualTFT
 //..\Inc
 //..\Drivers\CMSIS\Device\ST\STM32F1xx\Include
 //..\Drivers\STM32F1xx_HAL_Driver\Inc
 //..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy
 //..\Drivers\STM32F1xx_HAL_Driver\Src
-//../wf/VisualTFT
 // --- Include directories end --- //
 
 

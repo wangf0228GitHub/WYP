@@ -4,7 +4,7 @@
 #include "gpio.h"
 #include "wfSys.h"
 
-#define SimSPI_SPI3
+#define SimSPI_SPI0
 // #define SimSPI_Delay_Ex
 // #define SimSPI_Delay() wfDelay_ms(1);
 

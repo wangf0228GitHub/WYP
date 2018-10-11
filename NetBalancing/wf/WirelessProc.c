@@ -82,14 +82,14 @@ void Wireless_Init(void)
 }
 void Wireless_RxInit(void)
 {
-	HAL_NVIC_ClearPendingIRQ(EXTI0_IRQn);
+	__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_0);
 	HAL_NVIC_DisableIRQ(EXTI0_IRQn);
 	Wireless_Init();
 	Si4463_FIFO_INFO(Si4463Temp);
 	Si4463_INT_STATUS(Si4463Temp);
 	Si4463_PART_INFO(Si4463Temp);
 	Si4463_START_RX(ROMParams.WirelessParamIndex,0x00,PACKET_LENGTH,0x08,0x08,0x08);//(ROMParams.WirelessParamIndex,0x00,4,0x08,0x08,0x08);
-	HAL_NVIC_ClearPendingIRQ(EXTI0_IRQn);
+	__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_0);
 	HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 }
 void Wireless_SetInit(void)

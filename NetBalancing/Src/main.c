@@ -117,10 +117,17 @@ int main(void)
   /* USER CODE END 2 */
 
   /* Infinite loop */
-  while(HAL_UART_Receive_IT(&huart1,&huart1Rx,1)==HAL_OK);
-  while(HAL_UART_Receive_IT(&huart2,&huart2Rx,1)==HAL_OK);
-  while(HAL_UART_Receive_IT(&huart3,&huart3Rx,1)==HAL_OK);
   /* USER CODE BEGIN WHILE */
+	
+  Wireless_RxInit();	
+  while(1)   
+  {
+	  if(gFlags.bNewSensorData)
+	  {
+		  WorkMode_RealTimeProc();
+		  gFlags.bNewSensorData=0;
+	  }
+  }
   while (1)
   {
 	  size = queue_find_cmd(cmd_buffer,CMD_MAX_SIZE); //从缓冲区中获取一条指令        
