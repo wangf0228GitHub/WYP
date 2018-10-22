@@ -43,7 +43,37 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN 0 */
-
+void ReadADC(void)
+{
+	uint32_t ad,v;
+	ADC_ChannelConfTypeDef sConfig;	
+// 	while(1)
+// 	{	
+		HAL_ADC_Stop(&hadc1);
+		sConfig.Channel = ADC_CHANNEL_5;
+		sConfig.Rank = ADC_REGULAR_RANK_1;
+		sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;
+		if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+		{
+			_Error_Handler(__FILE__, __LINE__);
+		}
+		HAL_ADC_Start(&hadc1);
+		HAL_ADC_PollForConversion(&hadc1,100); 
+		ad=HAL_ADC_GetValue(&hadc1);
+		HAL_ADC_Stop(&hadc1);
+		sConfig.Channel = ADC_CHANNEL_VREFINT;
+		sConfig.Rank = ADC_REGULAR_RANK_1;
+		sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;
+		if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+		{
+			_Error_Handler(__FILE__, __LINE__);
+		}
+		HAL_ADC_Start(&hadc1);
+		HAL_ADC_PollForConversion(&hadc1,100); 
+		v=HAL_ADC_GetValue(&hadc1);
+		HAL_ADC_Stop(&hadc1);
+//	}
+}
 /* USER CODE END 0 */
 
 ADC_HandleTypeDef hadc1;
@@ -71,7 +101,7 @@ void MX_ADC1_Init(void)
     */
   sConfig.Channel = ADC_CHANNEL_5;
   sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
@@ -94,9 +124,9 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     /**ADC1 GPIO Configuration    
     PA5     ------> ADC1_IN5 
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_5;
+    GPIO_InitStruct.Pin = BT_AD_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    HAL_GPIO_Init(BT_AD_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN ADC1_MspInit 1 */
 
@@ -118,7 +148,7 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
     /**ADC1 GPIO Configuration    
     PA5     ------> ADC1_IN5 
     */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_5);
+    HAL_GPIO_DeInit(BT_AD_GPIO_Port, BT_AD_Pin);
 
   /* USER CODE BEGIN ADC1_MspDeInit 1 */
 

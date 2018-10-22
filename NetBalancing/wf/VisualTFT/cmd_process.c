@@ -6,6 +6,7 @@
 #include "WorkMode_History.h"
 #include "WorkMode_IntervalAnalysis.h"
 #include "WorkMode_Setting.h"
+#include "WorkMode_DataAnalysis.h"
 
 uint8 cmd_buffer[CMD_MAX_SIZE];
 uint16_t waitSID;
@@ -27,7 +28,13 @@ void ProcessMessage( PCTRL_MSG msg, uint16 size )
 	switch(cmd_type)
 	{
 	case NOTIFY_REST://复位
-		NVIC_SystemReset();
+		if(TFTWaitCommandFlags.bWaitReset)//主动复位
+		{
+			TFTWaitCommandFlags.bWaitReset=0;
+			TFTNotifyCommandFlags.bRxReset=1;
+		}
+		else
+			NVIC_SystemReset();
 		break;
 	case NOTIFY_CONTROL://控件事件
 		{
@@ -159,16 +166,46 @@ void NotifyButton(uint16 screen_id, uint16 control_id, uint8  state)
 			HistoryModeInit();
 		}
 		break;
+	case 7://历史温度列表
+		if(control_id==cID_btBackward || control_id==cID_btForward)//柱形图换页
+		{
+			History_TRecordSwitchPage(control_id);
+		}
+		break;
 	case 9://历史温度柱形图
 		if(control_id==cID_btBackward || control_id==cID_btForward)//柱形图换页
 		{
 			History_TBarChartsSwitchPage(control_id);
 		}
 		break;
+	case 11://分析、栋平均温度、列表
+		if(control_id==cID_btBackward || control_id==cID_btForward)//柱形图换页
+		{
+			DataAnalysis_DA_TRecordSwitchPage(control_id);
+		}
+		break;
+	case 13://分析、单元温度、列表
+		if(control_id==cID_btBackward || control_id==cID_btForward)//柱形图换页
+		{
+			DataAnalysis_DY_TRecordSwitchPage(control_id);
+		}
+		break;
+	case 15://分析、栋平均温度、柱形图
+		if(control_id==cID_btBackward || control_id==cID_btForward)//柱形图换页
+		{
+			DataAnalysis_DA_TBarChartsSwitchPage(control_id);
+		}
+		break;
+	case 17://分析、单元温度、柱形图
+		if(control_id==cID_btBackward || control_id==cID_btForward)//柱形图换页
+		{
+			DataAnalysis_DY_TBarChartsSwitchPage(control_id);
+		}
+		break;
 	case 19://温度间隔分析
 		if(control_id==cID_btBackward || control_id==cID_btForward)//柱形图换页
 		{
-			IntervalAnalysis_TBarChartsSwitchPage(control_id);
+			IntervalAnalysis_TRecordSwitchPage(control_id);
 		}
 		break;
 	case 25://设置：时间间隔
@@ -186,7 +223,19 @@ void NotifyButton(uint16 screen_id, uint16 control_id, uint8  state)
 	case 27://设置：终端编码
 		if(control_id==cID_btConfirm)
 		{
-			
+			Setting_SensorProgram();
+		}
+		else if(control_id==41)//返回键
+		{
+			SetScreen(21);
+		}
+		break;
+	case 29:
+	case 28://对话框
+		if(control_id==100)
+		{
+			StopTimer(screen_id,cID_Timer);
+			SetScreen(autoReturnSID);
 		}
 		break;
 	}
@@ -293,6 +342,13 @@ void NotifySelector(uint16 screen_id, uint16 control_id, uint8  item)
 void NotifyTimer(uint16 screen_id, uint16 control_id)
 {
 	//TODO: 添加用户代码
+	switch(screen_id)
+	{
+	case 28:
+	case 29://自动返回
+		SetScreen(autoReturnSID);
+		break;
+	}
 }
 
 /*! 

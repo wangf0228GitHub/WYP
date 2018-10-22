@@ -8,11 +8,21 @@ typedef union
 {
 	struct
 	{		
-		char bNewSensorData:1;//是否收到了新的传感器数据
+		uint32_t bNewSensorData:1;//是否收到了新的传感器数据
 	};
 	uint32_t AllFlag;
 } _gFlags;        // general flags
 
+// typedef union   
+// {
+// 	struct
+// 	{		
+// 		uin bNewSensorData:1;//是否收到了新的传感器数据
+// 		char bb2;
+// 		char bb3;
+// 	}bits;
+// 	uint32_t AllFlag;
+// } _Test;        // general flags
 typedef union   
 {
 	struct
@@ -27,7 +37,8 @@ typedef union
 } _SensorData; 
 
 #define ROMParamsAddr 0
-#define ROMParamsCount 36
+#define AREALEN 64
+#define ROMParamsCount 16+AREALEN
 typedef union   
 {
 	struct
@@ -51,7 +62,7 @@ typedef union
 		uint16_t TimeSpan4;
 		uint16_t SleepTimeSpan;
 		uint16_t bak;
-		char InstallArea[20];//安装的小区
+		char InstallArea[AREALEN];//安装的小区
 	};
 	uint8_t All[ROMParamsCount];
 } _ROMParams;        // general flags
@@ -108,7 +119,7 @@ typedef union
 		uint8_t Addr2;		
 		uint8_t bak1;
 	};
-	uint8_t All[SensorDataInfoCount];
+	uint8_t All[4];
 } _SensorAddrSortingInfo;
 
 // 

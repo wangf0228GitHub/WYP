@@ -18,4 +18,5 @@ extern uint32_t History_PPageCountOfBarCharts;
 
 void HistoryModeInit(void);
 void History_TBarChartsSwitchPage(uint16_t cID);
+void History_TRecordSwitchPage(uint16_t cID);
 #endif

@@ -6,4 +6,6 @@
 
 void Setting_IntervalAnalysis(void);
 void Setting_SleepTimesSpan( void );
+void Setting_UIInit( void );
+void Setting_SensorProgram( void );
 #endif

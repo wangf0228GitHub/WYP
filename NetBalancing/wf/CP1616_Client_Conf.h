@@ -6,6 +6,9 @@
 #define CP1616_AddrLen 0
 #define CP1616_DataBufLen 2
 
+
+#define CP1616_Client_RxList_LenMax 400
+#define CP1616_Client_TxList_LenMax 400
 // #define CP1616_Client_Tx_OneByOne
 // #define CP1616_Client_TxByteWithVerify(x)// Uart1_VerifySumAddTxByte(x)
 // #define CP1616_Client_TxByte(x)// Uart1_PutChar(x)
@@ -22,7 +25,6 @@
 // 													{sum=0;}
 
 
-#define MAX_CP1616_Client_RX 100
 #endif
 
 

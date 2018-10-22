@@ -59,7 +59,8 @@
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void DS18B20_SetHigh(void);
+void DS18B20_SetLow(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

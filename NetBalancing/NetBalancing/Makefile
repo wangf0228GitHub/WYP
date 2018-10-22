@@ -36,7 +36,7 @@ error:
 	$(error Invalid configuration, please check your inputs)
 endif
 
-SOURCEFILES := ../../../WF_Device/ATCommand.c ../../../WF_Device/CP1616_Client.c ../../../WF_Device/DS18x20.c ../../../WF_Device/Si4463.c ../../../WF_Device/SimSPI.c ../../../WF_Device/SPIROM.c ../../../WF_Device/stm32/wfSys.c ../../../WF_Device/Verify.c ../../../WF_Device/wfUart.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c ../Src/adc.c ../Src/gpio.c ../Src/stm32f1xx_it.c ../Src/stm32f1xx_hal_msp.c ../Src/main.c ../Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c ../Src/usart.c ../wf/FRAM.c ../wf/SIM800CProc.c ../wf/TFTWorkProc.c ../wf/VisualTFT/cmd_process.c ../wf/VisualTFT/cmd_queue.c ../wf/VisualTFT/hmi_driver.c ../wf/WirelessProc.c ../wf/WithPC.c ../wf/WorkMode_History.c ../wf/WorkMode_IntervalAnalysis.c ../wf/WorkMode_RealTime.c ../wf/WorkMode_Setting.c $(BSP_ROOT)/STM32F1xxxx/StartupFiles/startup_stm32f103xe.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
+SOURCEFILES := ../../../WF_Device/ATCommand.c ../../../WF_Device/CP1616_Client.c ../../../WF_Device/DS18x20.c ../../../WF_Device/OneWire.c ../../../WF_Device/Si4463.c ../../../WF_Device/SimSPI.c ../../../WF_Device/SPIROM.c ../../../WF_Device/stm32/wfSys.c ../../../WF_Device/Verify.c ../../../WF_Device/wfDefine.c ../../../WF_Device/wfUart.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c ../Src/adc.c ../Src/gpio.c ../Src/stm32f1xx_it.c ../Src/stm32f1xx_hal_msp.c ../Src/main.c ../Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c ../Src/usart.c ../wf/FRAM.c ../wf/SIM800CProc.c ../wf/TFTWorkProc.c ../wf/VisualTFT/cmd_process.c ../wf/VisualTFT/cmd_queue.c ../wf/VisualTFT/hmi_driver.c ../wf/WirelessProc.c ../wf/WithPC.c ../wf/WorkMode_DataAnalysis.c ../wf/WorkMode_History.c ../wf/WorkMode_IntervalAnalysis.c ../wf/WorkMode_RealTime.c ../wf/WorkMode_Setting.c $(BSP_ROOT)/STM32F1xxxx/StartupFiles/startup_stm32f103xe.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
 EXTERNAL_LIBS := 
 EXTERNAL_LIBS_COPIED := $(foreach lib, $(EXTERNAL_LIBS),$(BINARYDIR)/$(notdir $(lib)))
 
@@ -194,6 +194,10 @@ $(BINARYDIR)/DS18x20.o : ../../../WF_Device/DS18x20.c $(all_make_files) |$(BINAR
 	$(CC) $(CFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
 
 
+$(BINARYDIR)/OneWire.o : ../../../WF_Device/OneWire.c $(all_make_files) |$(BINARYDIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
+
+
 $(BINARYDIR)/Si4463.o : ../../../WF_Device/Si4463.c $(all_make_files) |$(BINARYDIR)
 	$(CC) $(CFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
 
@@ -211,6 +215,10 @@ $(BINARYDIR)/wfSys.o : ../../../WF_Device/stm32/wfSys.c $(all_make_files) |$(BIN
 
 
 $(BINARYDIR)/Verify.o : ../../../WF_Device/Verify.c $(all_make_files) |$(BINARYDIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
+
+
+$(BINARYDIR)/wfDefine.o : ../../../WF_Device/wfDefine.c $(all_make_files) |$(BINARYDIR)
 	$(CC) $(CFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
 
 
@@ -331,6 +339,10 @@ $(BINARYDIR)/WirelessProc.o : ../wf/WirelessProc.c $(all_make_files) |$(BINARYDI
 
 
 $(BINARYDIR)/WithPC.o : ../wf/WithPC.c $(all_make_files) |$(BINARYDIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
+
+
+$(BINARYDIR)/WorkMode_DataAnalysis.o : ../wf/WorkMode_DataAnalysis.c $(all_make_files) |$(BINARYDIR)
 	$(CC) $(CFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
 
 

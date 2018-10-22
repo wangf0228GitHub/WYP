@@ -902,4 +902,6 @@ void Record_SetOffset(uint16 screen_id,uint16 control_id,uint16 offset);
  */
 void Record_GetCount(uint16 screen_id,uint16 control_id);
 void GetRTC();
+void ResetDevice(void);
+void Record_DeleteRow(uint16 screen_id,uint16 control_id,uint16 rowIndex);
 #endif//_HMI_DRIVER_

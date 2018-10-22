@@ -15,4 +15,5 @@ extern _SensorData SensorData4Save;
 void RealTime_TBarChartsSwitchPage(uint16_t cID);
 void WorkMode_RealTimeProc(void);
 uint32_t GetDeltaTime_Minutes(_SensorData s1,_SensorData s2);
+void WorkMode_RealTimeUIInit(void);
 #endif

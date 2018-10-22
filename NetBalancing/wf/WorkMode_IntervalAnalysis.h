@@ -11,5 +11,5 @@ extern uint32_t IntervalAnalysis_TPageIndex;
 //温度间隔分析中数据表格控件中条目的序号
 //extern uint32_t IntervalAnalysis_TRecordIndex;
 void IntervalAnalysisModeInit(void);
-void IntervalAnalysis_TBarChartsSwitchPage(uint16_t cID);
+void IntervalAnalysis_TRecordSwitchPage(uint16_t cID);
 #endif

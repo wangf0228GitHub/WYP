@@ -1,7 +1,7 @@
 #include "hmi_driver.h"
 #include "wfUart.h"
 
-#define TX_8(P1) SEND_DATA((P1)&0xFF)  //发送单个字节
+#define TX_8(P1) while(HAL_GPIO_ReadPin(TFTBusy_GPIO_Port,TFTBusy_Pin)==GPIO_PIN_SET);SEND_DATA((P1)&0xFF)  //发送单个字节
 #define TX_8N(P,N) SendNU8((uint8 *)P,N)  //发送N个字节
 #define TX_16(P1) TX_8((P1)>>8);TX_8(P1)  //发送16位整数
 #define TX_16N(P,N) SendNU16((uint16 *)P,N)  //发送N个16位整数
@@ -1329,7 +1329,16 @@ void Record_Clear(uint16 screen_id,uint16 control_id)
 	TX_16(control_id);
 	END_CMD();
 }
-
+void Record_DeleteRow(uint16 screen_id,uint16 control_id,uint16 rowIndex)
+{
+	BEGIN_CMD();
+	TX_8(0xB1);
+	TX_8(0x58);
+	TX_16(screen_id);
+	TX_16(control_id);
+	TX_16(rowIndex);
+	END_CMD();
+}
 void Record_SetOffset(uint16 screen_id,uint16 control_id,uint16 offset)
 {
 	BEGIN_CMD();
@@ -1348,5 +1357,16 @@ void Record_GetCount(uint16 screen_id,uint16 control_id)
 	TX_8(0x55);
 	TX_16(screen_id);
 	TX_16(control_id);
+	END_CMD();
+}
+
+void ResetDevice(void)
+{
+	BEGIN_CMD();
+	TX_8(0x07);
+	TX_8(0x35);
+	TX_8(0x5a);
+	TX_8(0x53);
+	TX_8(0xa5);
 	END_CMD();
 }

@@ -65,6 +65,8 @@
 #define GSM_PWR_GPIO_Port GPIOA
 #define RET_POWER_C_Pin GPIO_PIN_4
 #define RET_POWER_C_GPIO_Port GPIOA
+#define BT_AD_Pin GPIO_PIN_5
+#define BT_AD_GPIO_Port GPIOA
 #define POWER_I_Pin GPIO_PIN_6
 #define POWER_I_GPIO_Port GPIOA
 #define RF_SCLK_Pin GPIO_PIN_13
@@ -77,6 +79,16 @@
 #define RF_SDN_GPIO_Port GPIOC
 #define RF_CSN_Pin GPIO_PIN_7
 #define RF_CSN_GPIO_Port GPIOC
+#define FM25V10_CS_Pin GPIO_PIN_8
+#define FM25V10_CS_GPIO_Port GPIOC
+#define FM25V10_SCLK_Pin GPIO_PIN_9
+#define FM25V10_SCLK_GPIO_Port GPIOC
+#define FM25V10_MOSI_Pin GPIO_PIN_8
+#define FM25V10_MOSI_GPIO_Port GPIOA
+#define TFTBusy_Pin GPIO_PIN_11
+#define TFTBusy_GPIO_Port GPIOA
+#define FM25V10_MISO_Pin GPIO_PIN_12
+#define FM25V10_MISO_GPIO_Port GPIOA
 
 /* ########################## Assert Selection ############################## */
 /**

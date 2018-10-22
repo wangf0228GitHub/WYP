@@ -4,12 +4,12 @@ typedef union
 {
 	struct
 	{
-		unsigned bMove:1;//移动
-		unsigned bLowPower:1;//低电
-		unsigned bBreak:1;//故障
-		unsigned bTemperature:1;//是否为温度传感器
+		uint8_t bMove:1;//移动
+		uint8_t bLowPower:1;//低电
+		uint8_t bBreak:1;//故障
+		uint8_t bTemperature:1;//是否为温度传感器
 	};
-	unsigned char AllFlag;
+	uint8_t AllFlag;
 } _ModelState; 
 
 #ifdef TXTEST
@@ -24,11 +24,12 @@ typedef union
 {
 	struct
 	{
-		unsigned char index;		
+		uint8_t index;		
 		_ModelState StateBits;
 		uint16_t SensorData;
-		unsigned char sum;
+		uint8_t sum;
 	};
-	unsigned char All[PACKET_LENGTH];
+	uint8_t All[PACKET_LENGTH];
 } _WirelessPacket;        // general flags 
+
 #endif

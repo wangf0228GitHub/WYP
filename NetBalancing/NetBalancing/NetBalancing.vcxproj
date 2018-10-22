@@ -77,11 +77,13 @@
     <ClCompile Include="..\..\..\WF_Device\ATCommand.c" />
     <ClCompile Include="..\..\..\WF_Device\CP1616_Client.c" />
     <ClCompile Include="..\..\..\WF_Device\DS18x20.c" />
+    <ClCompile Include="..\..\..\WF_Device\OneWire.c" />
     <ClCompile Include="..\..\..\WF_Device\Si4463.c" />
     <ClCompile Include="..\..\..\WF_Device\SimSPI.c" />
     <ClCompile Include="..\..\..\WF_Device\SPIROM.c" />
     <ClCompile Include="..\..\..\WF_Device\stm32\wfSys.c" />
     <ClCompile Include="..\..\..\WF_Device\Verify.c" />
+    <ClCompile Include="..\..\..\WF_Device\wfDefine.c" />
     <ClCompile Include="..\..\..\WF_Device\wfUart.c" />
     <ClCompile Include="..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc.c" />
     <ClCompile Include="..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc_ex.c" />
@@ -112,6 +114,7 @@
     <ClCompile Include="..\wf\VisualTFT\hmi_driver.c" />
     <ClCompile Include="..\wf\WirelessProc.c" />
     <ClCompile Include="..\wf\WithPC.c" />
+    <ClCompile Include="..\wf\WorkMode_DataAnalysis.c" />
     <ClCompile Include="..\wf\WorkMode_History.c" />
     <ClCompile Include="..\wf\WorkMode_IntervalAnalysis.c" />
     <ClCompile Include="..\wf\WorkMode_RealTime.c" />
@@ -119,6 +122,7 @@
     <ClInclude Include="..\..\..\WF_Device\ATCommand.h" />
     <ClInclude Include="..\..\..\WF_Device\CP1616_Client.h" />
     <ClInclude Include="..\..\..\WF_Device\DS18x20.h" />
+    <ClInclude Include="..\..\..\WF_Device\OneWire.h" />
     <ClInclude Include="..\..\..\WF_Device\Si4463.h" />
     <ClInclude Include="..\..\..\WF_Device\SimSPI.h" />
     <ClInclude Include="..\..\..\WF_Device\SPIROM.h" />
@@ -135,6 +139,7 @@
     <ClInclude Include="..\wf\CP1616_Client_Conf.h" />
     <ClInclude Include="..\wf\FlagDefine.h" />
     <ClInclude Include="..\wf\FRAM.h" />
+    <ClInclude Include="..\wf\OneWire_Conf.h" />
     <ClInclude Include="..\wf\Si4463_Conf.h" />
     <ClInclude Include="..\wf\SIM800CProc.h" />
     <ClInclude Include="..\wf\SimSPI_Conf.h" />
@@ -146,6 +151,7 @@
     <ClInclude Include="..\wf\wfUart_Conf.h" />
     <ClInclude Include="..\wf\WirelessProc.h" />
     <ClInclude Include="..\wf\WithPC.h" />
+    <ClInclude Include="..\wf\WorkMode_DataAnalysis.h" />
     <ClInclude Include="..\wf\WorkMode_History.h" />
     <ClInclude Include="..\wf\WorkMode_IntervalAnalysis.h" />
     <ClInclude Include="..\wf\WorkMode_RealTime.h" />

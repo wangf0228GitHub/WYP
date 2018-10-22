@@ -6,14 +6,32 @@
 #include "Si4463.h"
 #include "Verify.h"
 
+void Setting_UIInit( void )
+{
+	char str[50];
+	sprintf(str,"%d\0",ROMParams.DeviceID);
+	SetTextValue(22,50,str);
+	SetTextValue(22,51,ROMParams.InstallArea);
 
+	sprintf(str,"%d\0",ROMParams.TimeSpan1);
+	SetTextValue(25,50,str);
+	sprintf(str,"%d\0",ROMParams.TimeSpan2);
+	SetTextValue(25,51,str);
+	sprintf(str,"%d\0",ROMParams.TimeSpan3);
+	SetTextValue(25,52,str);
+	sprintf(str,"%d\0",ROMParams.TimeSpan4);
+	SetTextValue(25,53,str);
+
+	sprintf(str,"%d\0",ROMParams.SleepTimeSpan);
+	SetTextValue(26,50,str);
+}
 void Setting_SensorProgram( void )
 {
 	uint8_t sensorID,tx[10],sum,testCount;
 	uint32_t SensorProgramTick,retry;
-	if(ReadTextbox(27,50)==0);
+	if(ReadTextbox(27,50)==0)
 	{
-		ShowFailDialog(27,"获取数据超时，请重试");
+		ShowFailDialog(27,"获取数据超时，请重试\0");
 		return;
 	}
 	sscanf((char *)controlValue,"%d",&sensorID);	
@@ -52,7 +70,7 @@ void Setting_SensorProgram( void )
 		}
 		if(retry==0)//发送失败
 		{
-			ShowFailDialog(27,"发送数据超时，请重试");
+			ShowFailDialog(27,"发送数据超时，请重试\0");
 			return;
 		}
 		Si4463_FIFO_INFO(Si4463Temp);
@@ -93,35 +111,35 @@ void Setting_SensorProgram( void )
 		SetProgressValue(27,51,testCount);
 	}
 	WirelessOff();
-	ShowFailDialog(27,"设置失败");
+	ShowFailDialog(27,"设置失败\0");
 }
 void Setting_IntervalAnalysis( void )
 {
 	uint32_t t1,t2,t3,t4;
-	if(ReadTextbox(25,50)==0);
+	if(ReadTextbox(25,50)==0)
 	{
-		ShowFailDialog(25,"获取数据超时，请重试");
+		ShowFailDialog(25,"获取数据超时，请重试\0");
 		return;
 	}
-	sscanf((char *)controlValue,"%d",&t1);	
-	if(ReadTextbox(25,51)==0);
+	sscanf((char *)controlValue,"%d",&t1);
+	if(ReadTextbox(25,51)==0)
 	{
-		ShowFailDialog(25,"获取数据超时，请重试");
+		ShowFailDialog(25,"获取数据超时，请重试\0");
 		return;
 	}
 	sscanf((char *)controlValue,"%d",&t2);
-	if(ReadTextbox(25,52)==0);
+	if(ReadTextbox(25,52)==0)
 	{
-		ShowFailDialog(25,"获取数据超时，请重试");
+		ShowFailDialog(25,"获取数据超时，请重试\0");
 		return;
 	}
 	sscanf((char *)controlValue,"%d",&t3);
-	if(ReadTextbox(25,53)==0);
-	{
-		ShowFailDialog(25,"获取数据超时，请重试");
-		return;
-	}
-	sscanf((char *)controlValue,"%d",&t4);
+// 	if(ReadTextbox(25,53)==0)
+// 	{
+// 		ShowFailDialog(25,"获取数据超时，请重试");
+// 		return;
+// 	}
+// 	sscanf((char *)controlValue,"%d",&t4);
 	ROMParams.TimeSpan1=t1;
 	ROMParams.TimeSpan2=t2;
 	ROMParams.TimeSpan3=t3;
@@ -131,9 +149,9 @@ void Setting_IntervalAnalysis( void )
 }
 void Setting_SleepTimesSpan( void )
 {	
-	if(ReadTextbox(26,50)==0);
+	if(ReadTextbox(26,50)==0)
 	{
-		ShowFailDialog(26,"获取数据超时，请重试");
+		ShowFailDialog(26,"获取数据超时，请重试\0");
 		return;
 	}
 	sscanf((char *)controlValue,"%d",&ROMParams.SleepTimeSpan);	

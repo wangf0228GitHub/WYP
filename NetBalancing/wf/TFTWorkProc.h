@@ -4,15 +4,17 @@
 #include "main.h"
 #include "TypeDefine.h"
 
-#define SensorCountOfBarCharts 20
-
+#define ItemCountOfBarCharts 20
+#define ItemCountOfRecord 10
 
 typedef union   
 {
 	struct
-	{		
-		unsigned bWaitRTC:1;//判断是否接收的触屏的RTC数据
-		unsigned bWaitControlValue:1;//判断是否接收到指定控件的值
+	{	
+		uint32_t bWaitReset:1;//判断当前是否为主动复位
+		uint32_t bWaitRTC:1;//判断是否接收的触屏的RTC数据
+		uint32_t bWaitControlValue:1;//判断是否接收到指定控件的值
+
 	};
 	uint32_t AllFlag;
 } _TFTWaitCommandFlags;        // general flags
@@ -23,8 +25,9 @@ typedef union
 {
 	struct
 	{		
-		unsigned bRxRTC:1;//判断是否接收的触屏的RTC数据
-		unsigned bRxControlValue:1;//判断是否接收到指定控件的值
+		uint32_t bRxReset:1;//判断是否复位完成
+		uint32_t bRxRTC:1;//判断是否接收的触屏的RTC数据
+		uint32_t bRxControlValue:1;//判断是否接收到指定控件的值
 	};
 	uint32_t AllFlag;
 } _TFTNotifyCommandFlags;        // general flags
@@ -43,7 +46,7 @@ typedef union
 		uint8_t minute;
 		uint8_t second;
 	};
-	unsigned char All[6];
+	unsigned char All[7];
 } _RTCData; 
 extern _RTCData RTCData;
 //对话框自动跳转回的屏幕id
@@ -55,6 +58,9 @@ void ReadRTC(void);
 uint32_t ReadTextbox(unsigned char sID,unsigned char cID);
 void ShowFailDialog(uint32_t returnSID,uint8_t* str);
 void ShowSuccessDialog(uint32_t returnSID);
+void ResetTFT(void);
+void TFTRxCheck(void);
+void myRecordClear(unsigned char sID,unsigned char cID,unsigned char count);
 /************************************************************************/
 /* 通用控件ID                                                           */
 /************************************************************************/
@@ -77,8 +83,10 @@ void ShowSuccessDialog(uint32_t returnSID);
 #define cID_Record 199
 #define cID_Icon_Battery 200
 #define cID_Timer 201
-#define cID_Bar1 15
-
+#define cID_Bar1 60
+#define cID_Bar1Text 80
+#define cID_Bar1Text_1 40
+#define cID_PageNum 197
 
 #define sID_Success 28
 #define sID_Fail 29

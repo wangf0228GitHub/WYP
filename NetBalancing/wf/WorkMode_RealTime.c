@@ -27,7 +27,49 @@ uint32_t GetDeltaTime_Minutes(_SensorData s1,_SensorData s2)
 	ret=t2-t1;
 	return ret;
 }
-
+void WorkMode_RealTimeUIInit(void)
+{
+	char str[20];
+	uint32_t i,addr;
+	myRecordClear(2,cID_Record,20);
+	myRecordClear(3,cID_Record,20);
+	//温度	
+	for(i=0;i<ItemCountOfBarCharts;i++)
+	{
+		SetProgressValue(4,cID_Bar1+i,0);
+		if(i>=TSensorAddrSortingListCount)
+			continue;
+		sprintf(str,"%u-%u\0",TSensorAddrSortingList[i].Addr1,TSensorAddrSortingList[i].Addr2);
+		SetTextValue(4,cID_Bar1Text+i,str);
+	}
+	if(realtimeTPageCountOfBarCharts==0)
+	{
+		SetTextValue(4,cID_PageNum,"\0");
+	}
+	else
+	{
+		sprintf(str,"共%u页，第%u页\0",realtimeTPageCountOfBarCharts,realtimeTPageOfBarCharts+1);
+		SetTextValue(4,cID_PageNum,str);
+	}
+	//压力
+	for(i=0;i<ItemCountOfBarCharts;i++)
+	{
+		SetProgressValue(5,cID_Bar1+i,0);
+		if(i>=PSensorAddrSortingListCount)
+			continue;
+		sprintf(str,"%u-%u\0",PSensorAddrSortingList[i].Addr1,PSensorAddrSortingList[i].Addr2);
+		SetTextValue(5,cID_Bar1Text+i,str);
+	}
+	if(realtimePPageCountOfBarCharts==0)
+	{
+		SetTextValue(5,cID_PageNum,"\0");
+	}
+	else
+	{
+		sprintf(str,"共%u页，第%u页\0",realtimePPageCountOfBarCharts,realtimePPageOfBarCharts+1);
+		SetTextValue(5,cID_PageNum,str);
+	}
+}
 void WorkMode_RealTimeInit(void)
 {
 	Wireless_RxInit();	
@@ -37,40 +79,44 @@ void RealTime_TBarChartsSwitchPage(uint16_t cID)
 {
 	char str[50];
 	uint32_t addr,i,sortIndex,t;
-	_SensorDataInfo sdInfo;
-	_SensorData sd;
-	if(cID==cID_btForward)
+	if(cID==cID_btBackward)
 	{
-		if(realtimeTPageOfBarCharts==realtimeTPageCountOfBarCharts)
-			realtimeTPageOfBarCharts=0;
-		else
-			realtimeTPageOfBarCharts++;
+		realtimeTPageOfBarCharts++;
+		if(realtimeTPageOfBarCharts>=realtimeTPageCountOfBarCharts)
+			realtimeTPageOfBarCharts=0;			
 	}
 	else
 	{
 		if(realtimeTPageOfBarCharts==0)
-			realtimeTPageOfBarCharts=realtimeTPageCountOfBarCharts;
+			realtimeTPageOfBarCharts=realtimeTPageCountOfBarCharts-1;
 		else
 			realtimeTPageOfBarCharts--;
 	}
-	sprintf(str,"共%u页，第%u页",realtimeTPageCountOfBarCharts,realtimeTPageOfBarCharts+1);
-	SetTextValue(5,52,str);
-	sortIndex=realtimeTPageOfBarCharts*SensorCountOfBarCharts;
-	for(i=0;i<SensorCountOfBarCharts;i++,sortIndex++)
+	sprintf(str,"共%u页，第%u页\0",realtimeTPageCountOfBarCharts,realtimeTPageOfBarCharts+1);
+	SetTextValue(4,cID_PageNum,str);
+	sortIndex=realtimeTPageOfBarCharts*ItemCountOfBarCharts;
+	for(i=0;i<ItemCountOfBarCharts;i++,sortIndex++)
 	{
 		if(sortIndex>=TSensorAddrSortingListCount)
 		{
 			SetProgressValue(4,cID_Bar1+i,0);
+			SetTextValue(4,cID_Bar1Text+i,"\0");
 		}
 		else
 		{
-			addr=TSensorAddrSortingList[sortIndex].SensorIndex*640+128;
-			SPIROM_ReadArray(addr,sdInfo.All,SensorDataInfoCount);
-			addr=addr+8+sdInfo.curDataSaveIndex*6;
-			SPIROM_ReadArray(addr,sd.All,6);
-			t=sd.SensorData;
-			t=t+0x08;
-			t=t>>4;
+			sprintf(str,"%u-%u\0",TSensorAddrSortingList[sortIndex].Addr1,TSensorAddrSortingList[sortIndex].Addr2);
+			SetTextValue(4,cID_Bar1Text+i,str);
+			FRAM_GetLatestSensorData(TemperatureSensor,TSensorAddrSortingList[sortIndex].SensorIndex);	
+			if(IsLatestSensorDataInvalid())
+			{
+				t=0;
+			}
+			else
+			{
+				t=LatestSensorData.SensorData;
+				t=t+0x08;
+				t=t>>4;
+			}
 			SetProgressValue(4,cID_Bar1+i,t);
 		}
 	}	
@@ -100,7 +146,7 @@ void WorkMode_RealTimeProc(void)
 	{
 		FRAM_GetLatestSensorData(TemperatureSensor,WirelessPacket.index-1);
 		timeInterval=GetDeltaTime_Minutes(LatestSensorData,SensorData4Save);
-		if(timeInterval>2)//新的存储
+		//if(timeInterval>2)//新的存储
 		{
 			SensorDataInfo.curDataSaveIndex++;
 			if(SensorDataInfo.curDataSaveIndex>=SensorDataItemCount)
@@ -115,20 +161,13 @@ void WorkMode_RealTimeProc(void)
 	addr=TSensor1DataAddr+(uint32_t)(WirelessPacket.index-1)*SensorDataListCount+SensorDataInfoCount+SensorDataInfo.curDataSaveIndex*6;
 	SPIROM_WriteArray(addr,SensorData4Save.All,6);
 	//处理界面显示
-	if(WirelessPacket.StateBits.bTemperature)//温度传感器
-	{
-		realtimeTDataIndex++;
-	}
-	else
-	{
-		realtimePDataIndex++;
-	}	
-	if(WirelessPacket.StateBits.bTemperature)//温度
+	if(1)//WirelessPacket.StateBits.bTemperature)//温度传感器
 	{	
+		realtimeTDataIndex++;
 		t1=(WirelessPacket.SensorData&0x0fff)>>4;
 		t2=DS18X20_ToDecicel[WirelessPacket.SensorData&0x000f];
 		//2实时列表	
-		sprintf((char *)rData,"%u;%03u;%02u:%02u:%02u;%u.%u;%u-%u",
+		sprintf((char *)rData,"%u;%03u;%02u:%02u:%02u;%u.%u;%u-%u;\0",
 			realtimeTDataIndex,WirelessPacket.index,
 			RTCData.hour,RTCData.minute,RTCData.second,
 			t1,t2,
@@ -146,8 +185,8 @@ void WorkMode_RealTimeProc(void)
 		}
 		if(x==0xff)//没找到，无法后序处理
 			return;
-		x1=realtimeTPageOfBarCharts*SensorCountOfBarCharts;
-		x2=x1+SensorCountOfBarCharts;
+		x1=realtimeTPageOfBarCharts*ItemCountOfBarCharts;
+		x2=x1+ItemCountOfBarCharts;
 		if((x1<=x) && (x<x2))//在当前显示的页面中
 		{
 			x2=x-x1;//剩余的数量，即柱形的索引
@@ -158,9 +197,10 @@ void WorkMode_RealTimeProc(void)
 	}
 	else
 	{
+		realtimePDataIndex++;
 		//等待补充：压力数据的换算方式
 		//3实时压力
-		sprintf((char *)rData,"%u;%03u;%02u:%02u:%02u;%u.%u;%u-%u",
+		sprintf((char *)rData,"%u;%03u;%02u:%02u:%02u;%u.%u;%u-%u;\0",
 			realtimePDataIndex,WirelessPacket.index,
 			RTCData.hour,RTCData.minute,RTCData.second,
 			t1,t2,
@@ -178,8 +218,8 @@ void WorkMode_RealTimeProc(void)
 		}
 		if(x==0xff)//没找到，无法后序处理
 			return;
-		x1=realtimePPageOfBarCharts*SensorCountOfBarCharts;
-		x2=x1+SensorCountOfBarCharts;
+		x1=realtimePPageOfBarCharts*ItemCountOfBarCharts;
+		x2=x1+ItemCountOfBarCharts;
 		if((x1<=x) && (x<x2))//在当前显示的页面中
 		{
 			x2=x-x1;//剩余的数量，即柱形的索引

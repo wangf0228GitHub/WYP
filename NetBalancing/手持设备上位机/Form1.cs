@@ -11,6 +11,7 @@ using WFNetLib;
 using System.Threading;
 using System.Diagnostics;
 using System.Net;
+using WFOffice2007;
 
 namespace 手持设备上位机
 {
@@ -35,7 +36,7 @@ namespace 手持设备上位机
         //连接设备
         private void button1_Click(object sender, EventArgs e)
         {
-            bool bOK = false;
+            //bool bOK = false;
             if (button1.Text == "连接设备")//启动串口扫描，连接设备
             {
                 Rx1616 = new CP1616Packet(1, 1);
@@ -72,10 +73,8 @@ namespace 手持设备上位机
                                         PortName = com;
                                         progressBar1.Value = 100;
                                         button1.Text = "断开连接";
-                                        button2.Enabled = true;
-                                        button3.Enabled = true;
-                                        button4.Enabled = true;
-                                        bOK = true;
+                                        enBT(true);
+                                        //bOK = true;
                                         break;
                                     }
                                 }
@@ -117,9 +116,8 @@ namespace 手持设备上位机
                     progressBar1.Value = 100;
                     button1.Text = "连接设备";
                     label3.Text = "";
-                    button2.Enabled = false;
-                    button3.Enabled = false;
-                    button4.Enabled = false;
+                    enBT(false);
+                    button1.Enabled = true;
                     COMPort1.Close();
                 }
                 while (true)
@@ -131,9 +129,8 @@ namespace 手持设备上位机
                             PortName = "";
                             progressBar1.Value = 100;
                             button1.Text = "连接设备";
-                            button2.Enabled = false;
-                            button3.Enabled = false;
-                            button4.Enabled = false;
+                            enBT(false);
+                            button1.Enabled = true;
                             label3.Text = "";
                             break;
                         }
@@ -145,107 +142,101 @@ namespace 手持设备上位机
             }
         }
         //同步地址信息
-        private void button2_Click(object sender, EventArgs e)
+        private void ImportAddrInfo_Click(object sender, EventArgs e)
         {
-            string session = JsonWork.login();
-            if (session == "")
-                return;
-            WFHttpWebResponse web = new WFHttpWebResponse();
-            IDictionary<string, string> p = new Dictionary<string, string>();
-            p.Add("session",session);
-            p.Add("device_id", DeviceID.ToString());
-            HttpWebResponse hr = web.CreatePostHttpResponse(JsonWork.strUrl + "get_device_list", p);
-            JsonAddrListReturn AddrList = JsonWork.GetJsonObject<JsonAddrListReturn>(web.Content);
-            if (AddrList.code != "200")
+            ExcelImport el = new ExcelImport(true, "安装位置");
+            DataTable dt = el.ExcelImportProc_OleDB();
+            if (dt == null || dt.Rows.Count != 104)
             {
-                MessageBox.Show("获取数据失败:" + AddrList.message);
+                MessageBox.Show("地址数据文件格式有问题，请检查!");
                 return;
             }
             enBT(false);
-//             ExcelImport el = new ExcelImport(true, "安装位置");
-//             DataTable dt = el.ExcelImportProc_OleDB();
-//             if (dt == null || dt.Rows.Count < 100 || dt.Columns.Count < 2)
-//             {
-//                 MessageBox.Show("地址数据文件格式有问题，请检查!");
-//                 return;
-//             }
             
-            byte[] tx;
-            byte[] temp;
-            byte[] temp1;
-            progressBar1.Maximum = AddrList.obj.list.Count;
-            progressBar1.Value = 0;
-            byte id;
-            for (int i = 0; i<AddrList.obj.list.Count; i++)
+            int areaLen = 64;
+            int addrInfoLen = areaLen + 100 * 2;
+            byte[] addrInfo = new byte[addrInfoLen];
+            for (int i = 0; i < addrInfoLen; i++)
             {
-                Debug.WriteLine(AddrList.obj.list[i].id + "," + AddrList.obj.list[i].name);
-                temp = Encoding.Default.GetBytes(AddrList.obj.list[i].name);
-                if(!byte.TryParse(AddrList.obj.list[i].id, out id))
-                    continue;
-                if (id==0)
+                addrInfo[i] = 0;
+            }
+            //设备安装小区
+            string strInstallArea = dt.Rows[2][1].ToString();
+            Debug.WriteLine("设备安装小区：" + strInstallArea);
+            byte[] byteInstallArea = Encoding.Default.GetBytes(strInstallArea);
+            if (byteInstallArea.Length >= areaLen)
+            {
+                for (int i = 0; i < areaLen; i++)
                 {
-                    continue;
-                }
-                id--;
-                if (temp.Length > 20)
-                {
-                    temp1 = new byte[23];                    
-                    temp1[0] =id;
-                    temp1[1] = 21;
-                    temp1[22] = 0;
-                    for (int j = 0; j < 20; j++)
-                        temp1[j + 2] = temp[j];
-                    tx = CP1616Packet.MakeCP1616Packet(3, 1, temp1);
-                }
-                else
-                {
-                    temp1 = new byte[3 + temp.Length];
-                    temp1[0] = id;
-                    temp1[1] = (byte)(temp.Length + 1);
-                    temp1[2 + temp.Length] = 0;
-                    for (int j = 0; j < temp.Length; j++)
-                        temp1[j + 2] = temp[j];
-                    tx = CP1616Packet.MakeCP1616Packet(3, 1, temp1);
-                }
-                int retry = 20;
-                Rx1616 = new CP1616Packet(3, 1);
-                bool bOK = false;
-                while (retry != 0)
-                {
-                    WaitMS(100);
-                    try
-                    {
-                        COMPort1.Write(tx, 0, tx.Length);
-                    }
-                    catch { retry--; continue; }
-                    while (true)
-                    {
-                        try
-                        {
-                            if (Rx1616.DataPacketed((byte)COMPort1.ReadByte()))
-                            {
-                                bOK = true;
-                                break;
-                            }
-                        }
-                        catch
-                        { break; }
-                    }
-                    if (bOK)
-                    {
-                        progressBar1.Value++;
-                        break;
-                    }
-                    retry--;
-                }
-                if (retry == 0)
-                {
-                    MessageBox.Show("第" + (i + 1).ToString() + "个传感器地址设置出错!");
-                    break;
+                    addrInfo[i] = byteInstallArea[i];
                 }
             }
-            MessageBox.Show("地址数据导入完成!");
-            enBT(true);
+            else
+            {
+                for (int i = 0; i < byteInstallArea.Length; i++)
+                {
+                    addrInfo[i] = byteInstallArea[i];
+                }
+            }
+            //栋单元信息处理
+            byte dong, danyuan;
+            for (int i = 0; i < 100; i++)
+            {
+                Debug.WriteLine("传感器" + (i + 1).ToString() + "：" + dt.Rows[4 + i][1].ToString() + "-" + dt.Rows[4 + i][2].ToString());
+                if (!byte.TryParse(dt.Rows[4 + i][1].ToString(), out dong))
+                {
+                    MessageBox.Show("单元格B"+(i+5).ToString()+"内容输入有问题，只能输入0-200的数字");
+                    return;
+                }
+                if (!byte.TryParse(dt.Rows[4 + i][2].ToString(), out danyuan))
+                {
+                    MessageBox.Show("单元格C" + (i + 5).ToString() + "内容输入有问题，只能输入0-200的数字");
+                    return;
+                }
+                addrInfo[areaLen + i * 2] = dong;
+                addrInfo[areaLen + i * 2 + 1] = danyuan;                
+            }
+            byte[] tx=CP1616Packet.MakeCP1616Packet(3, 1, addrInfo);
+            int retry = 20;
+            Rx1616 = new CP1616Packet(3, 1);
+            bool bOK = false;
+            while (retry != 0)
+            {
+                WaitMS(100);
+                try
+                {
+                    COMPort1.Write(tx, 0, tx.Length);
+                }
+                catch { retry--; continue; }
+                while (true)
+                {
+                    try
+                    {
+                        if (Rx1616.DataPacketed((byte)COMPort1.ReadByte()))
+                        {
+                            bOK = true;
+                            break;
+                        }
+                    }
+                    catch
+                    { break; }
+                }
+                if (bOK)
+                {
+                    break;
+                }
+                retry--;
+            }
+            if (retry == 0)
+            {
+                MessageBox.Show("地址数据导入失败，请重试!");
+                enBT(true);
+            }
+            else
+            {
+                MessageBox.Show("地址数据导入完成!");
+                enBT(true);
+            }
         }
         void enBT(bool ben)
         {
@@ -253,6 +244,7 @@ namespace 手持设备上位机
             button2.Enabled = ben;
             button3.Enabled = ben;
             button4.Enabled = ben;
+            button5.Enabled = ben;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -264,6 +256,12 @@ namespace 手持设备上位机
         private void button4_Click(object sender, EventArgs e)
         {
             Form3 f = new Form3(COMPort1);
+            f.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form4 f = new Form4(COMPort1);
             f.ShowDialog();
         }
     }   

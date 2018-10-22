@@ -9,7 +9,8 @@
 #include "WorkMode_RealTime.h"
 #include "hmi_driver.h"
 #include "TFTWorkProc.h"
-#define eeprom_offset 1
+#include "CP1616_Client.h"
+#define eeprom_offset 2
 
 _ROMParams ROMParams;
 _SensorDataInfo SensorDataInfo;
@@ -17,10 +18,18 @@ _SensorData LatestSensorData;
 extern uint32_t SystemSleepTick;
 extern _SensorData SensorData4Save;
 
+
+uint32_t TminAddr1,TminAddr2,TmaxAddr1,TmaxAddr2;
+uint32_t PminAddr1,PminAddr2,PmaxAddr1,PmaxAddr2;
+
 _SensorAddrInfo TSensorAddrList[SensorDataItemCount];
 _SensorAddrInfo PSensorAddrList[SensorDataItemCount];
 _SensorAddrSortingInfo TSensorAddrSortingList[SensorDataItemCount];
 _SensorAddrSortingInfo PSensorAddrSortingList[SensorDataItemCount];
+uint8_t TAddr1ListCount;
+uint8_t PAddr1ListCount;
+uint8_t TAddr1List[SensorDataItemCount];
+uint8_t PAddr1List[SensorDataItemCount];
 uint8_t realTSensorCount;
 uint8_t realPSensorCount;
 //温度传感器排序后数组总长度
@@ -30,7 +39,7 @@ void FRAM_GetROMParams(void)
 {
 	uint8_t i;
 	uint32_t addr;
-	char str[50];
+	_SensorDataInfo sdInfo;
 	SPIROM_ReadArray(ROMParamsAddr,ROMParams.All,ROMParamsCount);
 	i=GetVerify_Sum(&ROMParams.All[1],ROMParamsCount-1);
 	i+=eeprom_offset;
@@ -42,36 +51,28 @@ void FRAM_GetROMParams(void)
 		ROMParams.TimeSpan3=60;
 		ROMParams.TimeSpan4=300;
 		ROMParams.SleepTimeSpan=30;
+		ROMParams.InstallArea[0]='\0';
 		FRAM_SaveROMParams();	
+		sdInfo.bLoop=0;
+		sdInfo.LastState=0;
+		sdInfo.curDataSaveIndex=0xff;
+		sdInfo.Addr1=0;
+		sdInfo.Addr2=0;
 		for(i=0;i<100;i++)
 		{
-			addr=TSensor1DataAddr+(uint32_t)i*SensorDataListCount;
-			SPIROM_Fill(addr,0x00,SensorDataInfoCount);
+			addr=TSensor1DataAddr+(uint32_t)i*SensorDataListCount;		
+			SPIROM_WriteArray(addr,sdInfo.All,SensorDataInfoCount);
+			addr=PSensor1DataAddr+(uint32_t)i*SensorDataListCount;		
+			SPIROM_WriteArray(addr,sdInfo.All,SensorDataInfoCount);
 		}
-		FRAM_InitSensorData(0,100);
-	}	
-	sprintf(str,"%d",ROMParams.DeviceID);
-	SetTextValue(22,50,str);
-	SetTextValue(22,51,ROMParams.InstallArea);
-
-	sprintf(str,"%d",ROMParams.TimeSpan1);
-	SetTextValue(25,50,str);
-	sprintf(str,"%d",ROMParams.TimeSpan2);
-	SetTextValue(25,51,str);
-	sprintf(str,"%d",ROMParams.TimeSpan3);
-	SetTextValue(25,52,str);
-	sprintf(str,"%d",ROMParams.TimeSpan4);
-	SetTextValue(25,53,str);
-
-	sprintf(str,"%d",ROMParams.SleepTimeSpan);
-	SetTextValue(26,50,str);
+	}
+	
+	FRAM_InitSensorAddrInfo();	
 }
 void FRAM_InitSensorAddrInfo( void )
 {
 	char str[20];
-	uint32_t i,addr;
-	uint32_t TminAddr1,TminAddr2,TmaxAddr1,TmaxAddr2;
-	uint32_t PminAddr1,PminAddr2,PmaxAddr1,PmaxAddr2;
+	uint32_t i,addr;	
 	uint32_t addr1,addr2,x1,x2;
 	TminAddr1=0xff;
 	TminAddr2=0xff;
@@ -83,12 +84,19 @@ void FRAM_InitSensorAddrInfo( void )
 	PmaxAddr2=0;
 	realTSensorCount=0;
 	realPSensorCount=0;
+	TAddr1ListCount=0;
+	PAddr1ListCount=0;
+	for(i=0;i<SensorDataItemCount;i++)
+	{
+		TAddr1List[i]=0;
+		PAddr1List[i]=0;
+	}
 	for(i=0;i<SensorDataItemCount;i++)
 	{
 		addr=TSensor1DataAddr+i*SensorDataListCount;
 		SPIROM_ReadArray(addr,TSensorAddrList[i].All,2);
 		//确定栋及单元的取值范围
-		if(TSensorAddrList[i].Addr1!=0xff)
+		if(TSensorAddrList[i].Addr1!=0)
 		{
 			realTSensorCount++;
 			if(TSensorAddrList[i].Addr1>TmaxAddr1)
@@ -98,11 +106,11 @@ void FRAM_InitSensorAddrInfo( void )
 			if(TSensorAddrList[i].Addr2>TmaxAddr2)
 				TmaxAddr2=TSensorAddrList[i].Addr2;
 			if(TSensorAddrList[i].Addr2<TminAddr2)
-				TminAddr2=TSensorAddrList[i].Addr2;
+				TminAddr2=TSensorAddrList[i].Addr2;			
 		}
 		addr=PSensor1DataAddr+i*SensorDataListCount;
 		SPIROM_ReadArray(addr,PSensorAddrList[i].All,2);
-		if(PSensorAddrList[i].Addr1!=0xff)
+		if(PSensorAddrList[i].Addr1!=0)
 		{
 			realPSensorCount++;
 			if(PSensorAddrList[i].Addr1>PmaxAddr1)
@@ -133,12 +141,20 @@ void FRAM_InitSensorAddrInfo( void )
 			}
 		}
 	}
-	realtimeTPageCountOfBarCharts=realTSensorCount/SensorCountOfBarCharts;
-	if((realTSensorCount%SensorCountOfBarCharts)!=0)
+	for(addr1=TminAddr1;addr1<=TmaxAddr1;addr1++)
+	{
+		for(i=0;i<SensorDataItemCount;i++)
+		{
+			if(TSensorAddrList[i].Addr1==addr1)
+			{
+				TAddr1List[TAddr1ListCount++]=addr1;
+				break;
+			}
+		}
+	}
+	realtimeTPageCountOfBarCharts=realTSensorCount/ItemCountOfBarCharts;
+	if((realTSensorCount%ItemCountOfBarCharts)!=0)
 		realtimeTPageCountOfBarCharts++;
-
-	sprintf(str,"共%u页，第%u页",realtimeTPageCountOfBarCharts,realtimeTPageOfBarCharts+1);
-	SetTextValue(4,52,str);
 
 	PSensorAddrSortingListCount=0;
 	for(addr1=PminAddr1;addr1<=PmaxAddr1;addr1++)
@@ -158,12 +174,21 @@ void FRAM_InitSensorAddrInfo( void )
 			}
 		}
 	}
-	realtimePPageCountOfBarCharts=realPSensorCount/SensorCountOfBarCharts;
-	if((realPSensorCount%SensorCountOfBarCharts)!=0)
+	for(addr1=PminAddr1;addr1<=PmaxAddr1;addr1++)
+	{
+		for(i=0;i<SensorDataItemCount;i++)
+		{
+			if(PSensorAddrList[i].Addr1==addr1)
+			{
+				PAddr1List[PAddr1ListCount++]=addr1;
+				break;
+			}
+		}
+	}
+	realtimePPageCountOfBarCharts=realPSensorCount/ItemCountOfBarCharts;
+	if((realPSensorCount%ItemCountOfBarCharts)!=0)
 		realtimePPageCountOfBarCharts++;
-
-	sprintf(str,"共%u页，第%u页",realtimePPageCountOfBarCharts,realtimePPageOfBarCharts+1);
-	SetTextValue(5,52,str);
+	
 }
 
 void FRAM_SaveROMParams(void)
@@ -174,8 +199,29 @@ void FRAM_SaveROMParams(void)
 	SPIROM_WriteArray(ROMParamsAddr,ROMParams.All,ROMParamsCount);
 	SystemSleepTick=ROMParams.SleepTimeSpan*60000;
 }
+void FRAM_SaveSensorAddr(void)
+{
+	uint32_t i;
+	uint32_t addr;
+	_SensorDataInfo sdInfo;		
+	for(i=0;i<AREALEN;i++)
+	{
+		ROMParams.InstallArea[i]=CP1616_Client_RxList[pCP1616_ClientData+i];
+	}
+	FRAM_SaveROMParams();	
+	for(i=0;i<100;i++)
+	{
+		addr=TSensor1DataAddr+(uint32_t)i*SensorDataListCount;
+		SPIROM_ReadArray(addr,sdInfo.All,SensorDataInfoCount);
+		sdInfo.Addr1=CP1616_Client_RxList[pCP1616_ClientData+AREALEN+i*2];
+		sdInfo.Addr2=CP1616_Client_RxList[pCP1616_ClientData+AREALEN+i*2+1];
+// 		sdInfo.bLoop=0;
+// 		sdInfo.LastState=0;
+// 		sdInfo.curDataSaveIndex=0xff;
+		SPIROM_WriteArray(addr,sdInfo.All,SensorDataInfoCount);
+	}
 
-
+}
 void FRAM_InitSensorData(uint8_t s,uint8_t e)
 {
 	uint8_t i;

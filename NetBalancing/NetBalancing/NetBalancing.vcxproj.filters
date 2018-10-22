@@ -333,6 +333,15 @@
     <ClCompile Include="..\wf\WorkMode_Setting.c">
       <Filter>wf\功能模块</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\WF_Device\wfDefine.c">
+      <Filter>wf\LIB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\wf\WorkMode_DataAnalysis.c">
+      <Filter>wf\功能模块</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\WF_Device\OneWire.c">
+      <Filter>wf\LIB</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Inc\gpio.h">
@@ -445,6 +454,15 @@
     </ClInclude>
     <ClInclude Include="..\wf\WorkMode_Setting.h">
       <Filter>wf\功能模块</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wf\WorkMode_DataAnalysis.h">
+      <Filter>wf\功能模块</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\WF_Device\OneWire.h">
+      <Filter>wf\LIB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wf\OneWire_Conf.h">
+      <Filter>wf\conf</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

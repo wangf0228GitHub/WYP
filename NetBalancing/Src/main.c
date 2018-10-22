@@ -53,6 +53,10 @@
 #include "WirelessProc.h"
 #include "WorkMode_RealTime.h"
 #include "WithPC.h"
+#include "wfUart.h"
+#include "FRAM.h"
+#include "WorkMode_Setting.h"
+#include "DS18x20.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -62,6 +66,7 @@
 /* Private variables ---------------------------------------------------------*/
 _gFlags gFlags;
 uint32_t SystemSleepTick;
+extern void ReadADC(void);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -84,7 +89,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	qsize  size = 0;
+	
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -100,7 +105,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+  
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -110,31 +115,33 @@ int main(void)
   MX_USART3_UART_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
+  wfDelay_init(72);
+  SimSPI2_Init();
   Si4463_Init();
-  Si4463_RESET();
+  WirelessOff();
   ATCommand_Init();	
   CP1616_Client_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	
-  Wireless_RxInit();	
-  while(1)   
-  {
-	  if(gFlags.bNewSensorData)
-	  {
-		  WorkMode_RealTimeProc();
-		  gFlags.bNewSensorData=0;
-	  }
-  }
+//   while(1)
+//   {
+// 	  DS18X20_StartMeas();
+// 	  HAL_Delay(1000);
+// 	  DS18X20_ReadMeas(1);
+//   }
+  ReadADC();
+  while(HAL_UART_Receive_IT(&huart1,&huart1Rx,1)==HAL_OK);
+  while(HAL_UART_Receive_IT(&huart2,&huart2Rx,1)==HAL_OK);
+  while(HAL_UART_Receive_IT(&huart3,&huart3Rx,1)==HAL_OK);
+  ResetTFT();
+  FRAM_GetROMParams();
+  WorkMode_RealTimeUIInit();
+  Setting_UIInit();
   while (1)
   {
-	  size = queue_find_cmd(cmd_buffer,CMD_MAX_SIZE); //从缓冲区中获取一条指令        
-	  if(size>0)//接收到指令
-	  {
-		  ProcessMessage((PCTRL_MSG)cmd_buffer, size);//指令处理
-	  }	
+	  TFTRxCheck();
 	  if(CP1616_Client_Flags.Bits.bRx)
 	  {
 		  ProcCommandFromPC();
@@ -148,7 +155,6 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-	HAL_Delay(32);
   }
   /* USER CODE END 3 */
 
