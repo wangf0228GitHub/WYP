@@ -47,13 +47,14 @@ namespace 手持设备上位机
                 perCount = ports.Length * 3;
                 per = 100 / perCount;
                 foreach (string com in ports)
-                {
-                    COMPort1.PortName = com;
+                {                    
                     for (int i = 0; i < 3; i++)
                     {
                         progressBar1.Value += per;
                         try
                         {
+                            COMPort1.Close();
+                            COMPort1.PortName = com;
                             COMPort1.Open();
                             byte[] tx = CP1616Packet.MakeCP1616Packet(1, 1, 1);
                             try

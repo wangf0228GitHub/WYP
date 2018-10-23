@@ -87,6 +87,11 @@ void IntervalAnalysis_TRecordSwitchPage(uint16_t cID)
 		else
 			IntervalAnalysis_TPageIndex--;
 	}
+	ReadRTC();
+	curSD.Month=RTCData.month;
+	curSD.Day=RTCData.day;
+	curSD.Minute=RTCData.minute;
+	curSD.Hour=RTCData.hour;
 	sprintf(str,"¹²%uÒ³£¬µÚ%uÒ³\0",IntervalAnalysis_TPageCount,IntervalAnalysis_TPageIndex+1);
 	SetTextValue(19,cID_PageNum,str);
 	myRecordClear(19,cID_Record,20);	

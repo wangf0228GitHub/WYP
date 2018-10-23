@@ -42,36 +42,70 @@
 
 #include "gpio.h"
 
+
 /* USER CODE BEGIN 0 */
-void ReadADC(void)
+#include "TFTWorkProc.h"
+#include "hmi_driver.h"
+uint32_t BATV=100;
+void ReadBATV(void)
 {
-	uint32_t ad,v;
+	uint32_t ad,v,bat,i;
 	ADC_ChannelConfTypeDef sConfig;	
 // 	while(1)
 // 	{	
-		HAL_ADC_Stop(&hadc1);
-		sConfig.Channel = ADC_CHANNEL_5;
-		sConfig.Rank = ADC_REGULAR_RANK_1;
-		sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;
-		if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-		{
-			_Error_Handler(__FILE__, __LINE__);
-		}
+// 		HAL_ADC_Stop(&hadc1);
+// 		sConfig.Channel = ADC_CHANNEL_5;
+// 		sConfig.Rank = ADC_REGULAR_RANK_1;
+// 		sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;
+// 		if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+// 		{
+// 			_Error_Handler(__FILE__, __LINE__);
+// 		}
 		HAL_ADC_Start(&hadc1);
 		HAL_ADC_PollForConversion(&hadc1,100); 
 		ad=HAL_ADC_GetValue(&hadc1);
-		HAL_ADC_Stop(&hadc1);
-		sConfig.Channel = ADC_CHANNEL_VREFINT;
-		sConfig.Rank = ADC_REGULAR_RANK_1;
-		sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;
-		if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+		v=ad*300;
+		v>>=12;//»»ËãÎª0.01v
+		if(v>275)
 		{
-			_Error_Handler(__FILE__, __LINE__);
+			bat=0;
 		}
-		HAL_ADC_Start(&hadc1);
-		HAL_ADC_PollForConversion(&hadc1,100); 
-		v=HAL_ADC_GetValue(&hadc1);
-		HAL_ADC_Stop(&hadc1);
+		else if(v>265)
+		{
+			bat=1;
+		}
+		else if(v>255)
+		{
+			bat=2;
+		}
+		else if(v>245)
+		{
+			bat=3;
+		}
+		else //if(BATV>280)
+		{
+			bat=4;
+		}
+		if(bat!=BATV)
+		{
+			BATV=bat;
+			for(i=1;i<30;i++)
+			{
+				AnimationPlayFrame(i,cID_Icon_Battery,bat);
+			}
+		}
+// 		HAL_ADC_Stop(&hadc1);
+// 		sConfig.Channel = ADC_CHANNEL_VREFINT;
+// 		sConfig.Rank = ADC_REGULAR_RANK_1;
+// 		sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;
+// 		if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+// 		{
+// 			_Error_Handler(__FILE__, __LINE__);
+// 		}
+// 		HAL_ADC_Start(&hadc1);
+// 		HAL_ADC_PollForConversion(&hadc1,100); 
+// 		v=HAL_ADC_GetValue(&hadc1);
+// 		HAL_ADC_Stop(&hadc1);
 //	}
 }
 /* USER CODE END 0 */

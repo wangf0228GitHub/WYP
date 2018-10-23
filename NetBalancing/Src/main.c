@@ -66,7 +66,11 @@
 /* Private variables ---------------------------------------------------------*/
 _gFlags gFlags;
 uint32_t SystemSleepTick;
-extern void ReadADC(void);
+uint32_t SleepSecond;
+uint32_t SleepSecondMax;
+uint32_t LEDTick;
+uint32_t ADTick;
+extern void ReadBATV(void);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -89,7 +93,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	
+	uint32_t x;
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -130,8 +134,7 @@ int main(void)
 // 	  DS18X20_StartMeas();
 // 	  HAL_Delay(1000);
 // 	  DS18X20_ReadMeas(1);
-//   }
-  ReadADC();
+//   }  
   while(HAL_UART_Receive_IT(&huart1,&huart1Rx,1)==HAL_OK);
   while(HAL_UART_Receive_IT(&huart2,&huart2Rx,1)==HAL_OK);
   while(HAL_UART_Receive_IT(&huart3,&huart3Rx,1)==HAL_OK);
@@ -139,8 +142,48 @@ int main(void)
   FRAM_GetROMParams();
   WorkMode_RealTimeUIInit();
   Setting_UIInit();
+  ReadBATV();
+  while(HAL_GPIO_ReadPin(POWER_I_GPIO_Port,POWER_I_Pin)==GPIO_PIN_RESET);  
   while (1)
   {
+	  if(GetDeltaTick(SystemSleepTick)>1000)
+	  {
+		  SystemSleepTick=HAL_GetTick();
+		  SleepSecond++;
+		  if(SleepSecond>=SleepSecondMax)
+		  {
+			  HAL_GPIO_WritePin(RET_POWER_C_GPIO_Port,RET_POWER_C_Pin,GPIO_PIN_RESET);
+			  while(1);
+		  }
+	  }
+	  if(GetDeltaTick(LEDTick)>1000)
+	  {
+		  HAL_GPIO_TogglePin(RUN_LED_C_GPIO_Port,RUN_LED_C_Pin);
+		  LEDTick=HAL_GetTick();
+	  }
+ 	  if(HAL_GPIO_ReadPin(POWER_I_GPIO_Port,POWER_I_Pin)==GPIO_PIN_RESET)
+ 	  {
+ 		  x=0;
+  		  while(1)
+  		  {
+  			  HAL_Delay(20);
+  			  x++;
+  			  if(x>50)
+  			  {
+  				  HAL_GPIO_WritePin(RET_POWER_C_GPIO_Port,RET_POWER_C_Pin,GPIO_PIN_RESET);
+  				  while(1);
+  			  }
+  			  if(HAL_GPIO_ReadPin(POWER_I_GPIO_Port,POWER_I_Pin)==GPIO_PIN_SET)
+  			  {
+  				  break;
+  			  }
+  		  }
+ 	  }
+	  if(GetDeltaTick(ADTick)>1000)
+	  {
+		  ReadBATV();
+		  ADTick=HAL_GetTick();
+	  }
 	  TFTRxCheck();
 	  if(CP1616_Client_Flags.Bits.bRx)
 	  {

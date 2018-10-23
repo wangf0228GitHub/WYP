@@ -12,6 +12,9 @@ uint8 cmd_buffer[CMD_MAX_SIZE];
 uint16_t waitSID;
 uint16_t waitCID;
 uint8_t controlValue[50];
+
+
+extern uint32_t SleepSecond;
 /*! 
  *  \brief  消息处理流程，此处一般不需要更改
  *  \param msg 待处理消息
@@ -25,6 +28,7 @@ void ProcessMessage( PCTRL_MSG msg, uint16 size )
 	uint16 screen_id = PTR2U16(&msg->screen_id_high);//画面ID
 	uint16 control_id = PTR2U16(&msg->control_id_high);//控件ID
 	uint32 value = PTR2U32(msg->param);//数值
+	SleepSecond=0;
 	switch(cmd_type)
 	{
 	case NOTIFY_REST://复位

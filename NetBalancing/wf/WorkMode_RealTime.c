@@ -146,7 +146,7 @@ void WorkMode_RealTimeProc(void)
 	{
 		FRAM_GetLatestSensorData(TemperatureSensor,WirelessPacket.index-1);
 		timeInterval=GetDeltaTime_Minutes(LatestSensorData,SensorData4Save);
-		//if(timeInterval>2)//新的存储
+		if(timeInterval>2)//新的存储
 		{
 			SensorDataInfo.curDataSaveIndex++;
 			if(SensorDataInfo.curDataSaveIndex>=SensorDataItemCount)

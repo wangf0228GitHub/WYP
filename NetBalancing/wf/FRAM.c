@@ -17,6 +17,7 @@ _SensorDataInfo SensorDataInfo;
 _SensorData LatestSensorData;
 extern uint32_t SystemSleepTick;
 extern _SensorData SensorData4Save;
+extern uint32_t SleepSecondMax;
 
 
 uint32_t TminAddr1,TminAddr2,TmaxAddr1,TmaxAddr2;
@@ -66,7 +67,7 @@ void FRAM_GetROMParams(void)
 			SPIROM_WriteArray(addr,sdInfo.All,SensorDataInfoCount);
 		}
 	}
-	
+	SleepSecondMax=ROMParams.SleepTimeSpan*60;	
 	FRAM_InitSensorAddrInfo();	
 }
 void FRAM_InitSensorAddrInfo( void )
@@ -197,7 +198,7 @@ void FRAM_SaveROMParams(void)
 	ROMParams.sum=GetVerify_Sum(&ROMParams.All[1],ROMParamsCount-1);
 	ROMParams.sum+=eeprom_offset;
 	SPIROM_WriteArray(ROMParamsAddr,ROMParams.All,ROMParamsCount);
-	SystemSleepTick=ROMParams.SleepTimeSpan*60000;
+	SleepSecondMax=ROMParams.SleepTimeSpan*60;
 }
 void FRAM_SaveSensorAddr(void)
 {

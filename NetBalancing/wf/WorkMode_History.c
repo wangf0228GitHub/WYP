@@ -192,7 +192,6 @@ void History_TRecordSwitchPage(uint16_t cID)
 		if((i>=x1) && (i<x2))
 		{			
 			SPIROM_ReadArray(addr,sd.All,6);
-			sd.SensorData+=0x08;
 			t1=(sd.SensorData&0x0fff)>>4;
 			t2=sd.SensorData&0x000f;
 			sprintf(str,"%u;%02u-%02u %02u:%02u;%u.%u;\0",

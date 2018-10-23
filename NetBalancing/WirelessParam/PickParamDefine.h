@@ -24,9 +24,9 @@ typedef union
 {
 	struct
 	{
-		uint8_t index;		
-		_ModelState StateBits;
+		uint8_t index;	
 		uint16_t SensorData;
+		_ModelState StateBits;		
 		uint8_t sum;
 	};
 	uint8_t All[PACKET_LENGTH];

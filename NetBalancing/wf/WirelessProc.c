@@ -9,6 +9,7 @@
 
 #include "Verify.h"
 #include "FRAM.h"
+#include "wfDefine.h"
 
 const unsigned char config_table[] = RADIO_CONFIGURATION_DATA_ARRAY;
 
@@ -21,22 +22,23 @@ _WirelessPacket WirelessPacket;
 
 void Wireless_RxINTProc(void)
 {
-	_WirelessPacket tmpPD;
+	uint8_t tmpPD[PACKET_LENGTH];
 	uint32_t i;
 	uint8_t sum;
 	NoWirelessRxTick=HAL_GetTick();		
 	Si4463_INT_STATUS(Si4463Temp);
 	if((Si4463Temp[3] & ( 1<<4 ))!=0)
 	{
-		Si4463_READ_PACKET(tmpPD.All);
+		Si4463_READ_PACKET(tmpPD);
 		Si4463_FIFO_INFO(Si4463Temp);		
 		if(!gFlags.bNewSensorData)//之前的新数据已经处理完了
 		{
-			sum=GetVerify_Sum(tmpPD.All,PACKET_LENGTH-1);
-			if(sum==tmpPD.sum)
+			sum=GetVerify_Sum(tmpPD,PACKET_LENGTH-1);
+			if(sum==tmpPD[PACKET_LENGTH-1])
 			{
-				for(i=0;i<PACKET_LENGTH;i++)
-					WirelessPacket.All[i]=tmpPD.All[i];
+				WirelessPacket.index=tmpPD[0];
+				WirelessPacket.SensorData=MAKE_SHORT(tmpPD[2],tmpPD[1]);
+				WirelessPacket.StateBits.AllFlag=tmpPD[3];
 				gFlags.bNewSensorData=1;				
 			}
 		}		
