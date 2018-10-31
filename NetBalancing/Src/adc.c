@@ -42,7 +42,6 @@
 
 #include "gpio.h"
 
-
 /* USER CODE BEGIN 0 */
 #include "TFTWorkProc.h"
 #include "hmi_driver.h"
@@ -66,19 +65,20 @@ void ReadBATV(void)
 		ad=HAL_ADC_GetValue(&hadc1);
 		v=ad*300;
 		v>>=12;//»»ËãÎª0.01v
-		if(v>275)
+		bat=BATV;
+		if(v>277)
 		{
 			bat=0;
 		}
-		else if(v>265)
+		else if(v>266 && v<=275)
 		{
 			bat=1;
 		}
-		else if(v>255)
+		else if(v>255 && v<=2.64)
 		{
 			bat=2;
 		}
-		else if(v>245)
+		else if(v>244 && v<=2.53)
 		{
 			bat=3;
 		}

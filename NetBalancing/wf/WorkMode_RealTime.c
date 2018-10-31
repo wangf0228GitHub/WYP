@@ -189,7 +189,7 @@ void WorkMode_RealTimeProc(void)
 		x2=x1+ItemCountOfBarCharts;
 		if((x1<=x) && (x<x2))//在当前显示的页面中
 		{
-			x2=x-x1;//剩余的数量，即柱形的索引
+			x2=x-x1-1;//剩余的数量，即柱形的索引
 			if(t2>4)
 				t1++;
 			SetProgressValue(4,cID_Bar1+x2,t1);

@@ -35,9 +35,9 @@ void Setting_SensorProgram( void )
 		return;
 	}
 	sscanf((char *)controlValue,"%d",&sensorID);	
-	Wireless_SetInit();
-	testCount=20;
 	SetProgressValue(27,51,testCount);//重试次数20次
+	Wireless_SetInit();
+	testCount=20;	
 	tx[0]=sensorID;
 	tx[1]=0;//sensorFreq;
 	while(testCount!=0)
