@@ -9,6 +9,7 @@ typedef union
 	struct
 	{		
 		uint32_t bNewSensorData:1;//是否收到了新的传感器数据
+		uint32_t bRealTime:1;
 	};
 	uint32_t AllFlag;
 } _gFlags;        // general flags

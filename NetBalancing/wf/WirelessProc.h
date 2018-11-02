@@ -10,7 +10,7 @@ extern unsigned char WirelessRxList[64];
 extern unsigned char WirelessRxCount;
 extern uint32_t NoWirelessRxTick;
 extern _WirelessPacket WirelessPacket;
-#define WirelessOff() Si4463_SDN_High()
+#define WirelessOff() Si4463_SDN_High();gFlags.bRealTime=0;HAL_GPIO_WritePin(RUN_LED_C_GPIO_Port,RUN_LED_C_Pin,GPIO_PIN_RESET)
 #define RSSI_SAMPLES 10
 unsigned char Si4432_RSSI (void);
 void Wireless_RxInit(void);

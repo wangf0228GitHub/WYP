@@ -31,7 +31,11 @@ void ProcCommandFromPC( void )
 		break;
 	case 2://断开连接		
 		CP1616_Client_EndProcCommand();
-		CP1616_Client_SendOK(Command);	
+		CP1616_Client_SendOK(Command);			
+// 		FRAM_GetROMParams();
+// 		WorkMode_RealTimeUIInit();
+// 		Setting_UIInit();
+// 		SetScreen(1);
 		NVIC_SystemReset();
 		break;
 	case 3://设定地址

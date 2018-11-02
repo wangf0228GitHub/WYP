@@ -1,16 +1,21 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetBalancing", "NetBalancing\NetBalancing.vcxproj", "{C632D49D-DBD2-45A0-87C2-E94D85165295}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|VisualGDB = Debug|VisualGDB
 		Debug|Win32 = Debug|Win32
+		Release|VisualGDB = Release|VisualGDB
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C632D49D-DBD2-45A0-87C2-E94D85165295}.Debug|VisualGDB.ActiveCfg = Debug|VisualGDB
+		{C632D49D-DBD2-45A0-87C2-E94D85165295}.Debug|VisualGDB.Build.0 = Debug|VisualGDB
 		{C632D49D-DBD2-45A0-87C2-E94D85165295}.Debug|Win32.ActiveCfg = Debug|Win32
 		{C632D49D-DBD2-45A0-87C2-E94D85165295}.Debug|Win32.Build.0 = Debug|Win32
+		{C632D49D-DBD2-45A0-87C2-E94D85165295}.Release|VisualGDB.ActiveCfg = Release|VisualGDB
+		{C632D49D-DBD2-45A0-87C2-E94D85165295}.Release|VisualGDB.Build.0 = Release|VisualGDB
 		{C632D49D-DBD2-45A0-87C2-E94D85165295}.Release|Win32.ActiveCfg = Release|Win32
 		{C632D49D-DBD2-45A0-87C2-E94D85165295}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection

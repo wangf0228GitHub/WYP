@@ -61,28 +61,33 @@ void ReadBATV(void)
 // 			_Error_Handler(__FILE__, __LINE__);
 // 		}
 		HAL_ADC_Start(&hadc1);
-		HAL_ADC_PollForConversion(&hadc1,100); 
-		ad=HAL_ADC_GetValue(&hadc1);
+		ad=0;
+		for(i=0;i<8;i++)
+		{
+			HAL_ADC_PollForConversion(&hadc1,100); 
+			ad+=HAL_ADC_GetValue(&hadc1);
+		}
+		ad=ad>>3;
 		v=ad*300;
 		v>>=12;//»»ËãÎª0.01v
 		bat=BATV;
-		if(v>277)
+		if(v>=274)
 		{
 			bat=0;
 		}
-		else if(v>266 && v<=275)
+		else if(v>263 && v<=272)
 		{
 			bat=1;
 		}
-		else if(v>255 && v<=2.64)
+		else if(v>249 && v<=261)
 		{
 			bat=2;
 		}
-		else if(v>244 && v<=2.53)
+		else if(v>235 && v<=247)
 		{
 			bat=3;
 		}
-		else //if(BATV>280)
+		else if(v<=233)
 		{
 			bat=4;
 		}

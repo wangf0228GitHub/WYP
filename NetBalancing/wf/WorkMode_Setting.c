@@ -29,15 +29,15 @@ void Setting_SensorProgram( void )
 {
 	uint8_t sensorID,tx[10],sum,testCount;
 	uint32_t SensorProgramTick,retry;
+	testCount=20;	
+	SetProgressValue(27,51,testCount);//重试次数20次
 	if(ReadTextbox(27,50)==0)
 	{
 		ShowFailDialog(27,"获取数据超时，请重试\0");
 		return;
 	}
-	sscanf((char *)controlValue,"%d",&sensorID);	
-	SetProgressValue(27,51,testCount);//重试次数20次
-	Wireless_SetInit();
-	testCount=20;	
+	sscanf((char *)controlValue,"%d",&sensorID);		
+	Wireless_SetInit();	
 	tx[0]=sensorID;
 	tx[1]=0;//sensorFreq;
 	while(testCount!=0)
@@ -94,6 +94,7 @@ void Setting_SensorProgram( void )
 							if(Si4463Temp[0]==sensorID && Si4463Temp[2]=='o' && Si4463Temp[3]=='k')// && Si4463Temp[1]==sensorFreq)
 							{
 								WirelessOff();
+								SetProgressValue(27,51,0);
 								ShowSuccessDialog(27);
 								return;
 							}

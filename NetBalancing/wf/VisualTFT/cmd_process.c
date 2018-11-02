@@ -38,7 +38,10 @@ void ProcessMessage( PCTRL_MSG msg, uint16 size )
 			TFTNotifyCommandFlags.bRxReset=1;
 		}
 		else
-			NVIC_SystemReset();
+		{
+			WirelessOff();
+		}
+		/*	NVIC_SystemReset();*/
 		break;
 	case NOTIFY_CONTROL://控件事件
 		{
@@ -153,7 +156,27 @@ void NotifyButton(uint16 screen_id, uint16 control_id, uint8  state)
 	//TODO: 添加用户代码	
 	//处理公共按钮控件
 	if(JumpButtonProc(control_id)!=0)
+	{
+		if((screen_id==3) ||(screen_id==4) ||(screen_id==5) ||(screen_id==2))
+		{
+			switch(control_id)
+			{
+			case 1:
+				SetScreen(1);
+				break;
+			case 5:
+				SetScreen(6);
+				break;
+			case 8:
+				SetScreen(21);
+				break;
+			case 11:
+				SetScreen(30);
+				break;
+			}
+		}
 		return;
+	}
 	switch(screen_id)
 	{
 	case 4://实时温度柱形图

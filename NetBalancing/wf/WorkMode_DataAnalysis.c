@@ -35,7 +35,7 @@ void DataAnalysisModeInit( void )
 	myRecordClear(11,cID_Record,20);		
 	for(i=0;i<TAddr1ListCount;i++)
 	{
-		if(i>ItemCountOfRecord)
+		if(i>=ItemCountOfRecord)
 			break;
 		t=0;
 		tCount=0;
@@ -98,7 +98,6 @@ void DataAnalysisModeInit( void )
 			if (tCount!=0)
 			{
 				t=t/tCount;
-				t+=0x08;
 				t1=(t&0x0fff)>>4;		
 				SetProgressValue(15,cID_Bar1+i,t1);				
 			}
@@ -120,7 +119,7 @@ void DataAnalysisModeInit( void )
 	myRecordClear(13,cID_Record,20);		
 	for(i=0;i<TSensorAddrSortingListCount;i++)
 	{
-		if(i>ItemCountOfRecord)
+		if(i>=ItemCountOfRecord)
 			break;
 		FRAM_GetLatestSensorData(TemperatureSensor,TSensorAddrSortingList[i].SensorIndex);
 		if(IsLatestSensorDataValid())
@@ -158,7 +157,6 @@ void DataAnalysisModeInit( void )
 			if(IsLatestSensorDataValid())
 			{
 				t=LatestSensorData.SensorData;
-				t+=0x08;
 				t1=(t&0x0fff)>>4;		
 				SetProgressValue(17,cID_Bar1+i,t1);		
 			}
@@ -283,7 +281,6 @@ void DataAnalysis_DA_TBarChartsSwitchPage(uint16_t cID)
 			if (tCount!=0)
 			{
 				t=t/tCount;
-				t+=0x08;
 				t1=(t&0x0fff)>>4;		
 				SetProgressValue(15,cID_Bar1+i,t1);				
 			}
@@ -381,7 +378,6 @@ void DataAnalysis_DY_TBarChartsSwitchPage(uint16_t cID)
 			if(IsLatestSensorDataValid())
 			{
 				t=LatestSensorData.SensorData;
-				t+=0x08;
 				t1=(t&0x0fff)>>4;		
 				SetProgressValue(17,cID_Bar1+i,t1);		
 			}

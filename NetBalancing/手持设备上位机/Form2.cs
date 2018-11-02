@@ -49,6 +49,7 @@ namespace 手持设备上位机
                             ee = new ExcelExport(100);
                             ee.ExcelWorkbookCallbackProc = new ExcelExport.ExcelWorkbookCallback(curdataExcelWorkbookCallbackProc);
                             ee.ExcelExportProc();
+                            MessageBox.Show("导出完毕");
                             break;
                         }
                     }
@@ -130,6 +131,7 @@ namespace 手持设备上位机
                     ee = new ExcelExport(-1,rxSensorIndexList.Count);
                     ee.ExcelWorkbookCallbackProc = new ExcelExport.ExcelWorkbookCallback(historydataExcelWorkbookCallbackProc);
                     ee.ExcelExportProc();
+                    MessageBox.Show("导出完毕");
                 }
                 else
                 {
@@ -216,6 +218,7 @@ namespace 手持设备上位机
                     ee.SheetCount = rxSensorIndexList.Count;
                     ee.ExcelWorkbookCallbackProc = new ExcelExport.ExcelWorkbookCallback(historydataExcelWorkbookCallbackProc);
                     ee.ExcelExportProc();
+                    MessageBox.Show("导出完毕");
                 }
                 else
                 {
@@ -256,8 +259,10 @@ namespace 手持设备上位机
                 dr = wSheet.get_Range("A1", "D102");
                 dr.Columns.AutoFit();
                 dr.HorizontalAlignment = XlHAlign.xlHAlignCenter;
-                dr.Borders.LineStyle = XlLineStyle.xlContinuous;              
-                
+                dr.Borders.LineStyle = XlLineStyle.xlContinuous;
+                dr = wSheet.get_Range("B1", "B1");
+                dr.Columns.AutoFit();
+                dr.HorizontalAlignment = XlHAlign.xlHAlignLeft;                
             }
             else
             {               
@@ -272,7 +277,7 @@ namespace 手持设备上位机
                 {
                     str = Rx1616.Data[64 + itemIndex * 8 + 2].ToString("D02") + "-" + Rx1616.Data[64 + itemIndex * 8 + 3].ToString("D02") + " " + Rx1616.Data[64 + itemIndex * 8 + 4].ToString("D02") + ":" + Rx1616.Data[64 + itemIndex * 8 + 5].ToString("D02");
                     wSheet.Cells[3 + itemIndex, 3] = str;
-                    wSheet.Cells[3 + itemIndex, 4] = ((BytesOP.MakeShort(Rx1616.Data[64 + itemIndex * 8 + 6], Rx1616.Data[64 + itemIndex * 8 + 7])) * 0.0625 + 0.05).ToString("f1");
+                    wSheet.Cells[3 + itemIndex, 4] = ((BytesOP.MakeShort(Rx1616.Data[64 + itemIndex * 8 + 7], Rx1616.Data[64 + itemIndex * 8 + 6])) * 0.0625).ToString("f1");
                 }                
                 if (itemIndex % 2 == 1)
                 {
@@ -297,7 +302,17 @@ namespace 手持设备上位机
                 wSheet.Cells[1, 1] = "设备编号";
                 wSheet.Cells[1, 2] = rxSensorIndexList[ee.SheetIndex - 1].ToString();
                 wSheet.Cells[2, 1] = "安装地址";
-                wSheet.Cells[2, 2] = Encoding.Default.GetString(historyDataList[ee.SheetIndex - 1], 0, 64) + ":" + historyDataList[ee.SheetIndex - 1][64].ToString() + "-" + historyDataList[ee.SheetIndex - 1][65].ToString();
+                int len = 0;
+                for (int i = 0; i < 64;i++ )
+                {
+                    if (historyDataList[ee.SheetIndex - 1][i]=='\0')
+                    {
+                        len = i;
+                        break;
+                    }
+                }
+                str = Encoding.Default.GetString(historyDataList[ee.SheetIndex - 1],0,len);
+                wSheet.Cells[2, 2] = str+ ":" + historyDataList[ee.SheetIndex - 1][64].ToString() + "-" + historyDataList[ee.SheetIndex - 1][65].ToString();
                 dr = wSheet.get_Range("A1", "A2");
                 dr.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.DarkOrange);
                 dr.Interior.Pattern = XlPattern.xlPatternSolid;
@@ -321,6 +336,9 @@ namespace 手持设备上位机
                 dr.Columns.AutoFit();
                 dr.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 dr.Borders.LineStyle = XlLineStyle.xlContinuous;
+                dr = wSheet.get_Range("B2", "B2");
+                dr.Columns.AutoFit();
+                dr.HorizontalAlignment = XlHAlign.xlHAlignLeft;
             }
             else
             {
@@ -339,7 +357,7 @@ namespace 手持设备上位机
                 }
                 else
                 {
-                    wSheet.Cells[4 + itemIndex, 2] = ((t) * 0.0625 + 0.05).ToString("f1");
+                    wSheet.Cells[4 + itemIndex, 2] = ((t) * 0.0625).ToString("f1");
                 }
 
                 if (itemIndex % 2 == 1)

@@ -16,7 +16,7 @@ _RTCData RTCData;
 uint32_t WaitTFTTick;
 _TFTNotifyCommandFlags TFTNotifyCommandFlags; 
 _TFTWaitCommandFlags TFTWaitCommandFlags;
-
+extern uint32_t LEDTick;
 void myRecordClear(unsigned char sID,unsigned char cID,unsigned char count)
 {
 	uint8_t i;
@@ -126,9 +126,12 @@ uint32_t JumpButtonProc(uint16_t control_id)
 	switch(control_id)
 	{
 	case 1://返回
-		WirelessOff();
+		WirelessOff();		
 		break;
 	case 4://实时数据
+		gFlags.bRealTime=1;
+		LEDTick=HAL_GetTick();
+		HAL_GPIO_WritePin(RUN_LED_C_GPIO_Port,RUN_LED_C_Pin,GPIO_PIN_SET);
 		SetScreen(2);//切换显示到实时数据采集页面
 		Wireless_RxInit();//启动接收		
 		break;

@@ -168,9 +168,6 @@
     <ClCompile Include="..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_gpio.c">
       <Filter>Source files\STM32Cube HAL\GPIO</Filter>
     </ClCompile>
-    <None Include="stm32.mak">
-      <Filter>Source files\Device-specific files</Filter>
-    </None>
     <ClCompile Include="$(BSP_ROOT)\STM32F1xxxx\StartupFiles\startup_stm32f103xe.c">
       <Filter>Source files\Device-specific files</Filter>
     </ClCompile>
@@ -342,6 +339,9 @@
     <ClCompile Include="..\..\..\WF_Device\OneWire.c">
       <Filter>wf\LIB</Filter>
     </ClCompile>
+    <None Include="stm32.props">
+      <Filter>Source files\Device-specific files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Inc\gpio.h">

@@ -162,36 +162,39 @@ int main(void)
 	  /************************************************************************/
 	  /* LED运行灯                                                            */
 	  /************************************************************************/
-	  if(GetDeltaTick(LEDTick)>1000)
+	  if(gFlags.bRealTime)
 	  {
-		  HAL_GPIO_TogglePin(RUN_LED_C_GPIO_Port,RUN_LED_C_Pin);
-		  LEDTick=HAL_GetTick();
+		  if(GetDeltaTick(LEDTick)>1000)
+		  {
+			  HAL_GPIO_TogglePin(RUN_LED_C_GPIO_Port,RUN_LED_C_Pin);
+			  LEDTick=HAL_GetTick();
+		  }
 	  }
 	  /************************************************************************/
 	  /* 开关机判断                                                                     */
 	  /************************************************************************/
- 	  if(HAL_GPIO_ReadPin(POWER_I_GPIO_Port,POWER_I_Pin)==GPIO_PIN_RESET)
- 	  {
- 		  x=0;
-  		  while(1)
-  		  {
-  			  HAL_Delay(20);
-  			  x++;
-  			  if(x>50)
-  			  {				  
-  				  HAL_GPIO_WritePin(RET_POWER_C_GPIO_Port,RET_POWER_C_Pin,GPIO_PIN_RESET);
-  				  while(1)
-				  {
-					  SetScreen(33);
-					  HAL_Delay(2000);
-				  }
-  			  }
-  			  if(HAL_GPIO_ReadPin(POWER_I_GPIO_Port,POWER_I_Pin)==GPIO_PIN_SET)
-  			  {
-  				  break;
-  			  }
-  		  }
- 	  }
+  	  if(HAL_GPIO_ReadPin(POWER_I_GPIO_Port,POWER_I_Pin)==GPIO_PIN_RESET)
+  	  {
+  		  x=0;
+   		  while(1)
+   		  {
+   			  HAL_Delay(20);
+   			  x++;
+   			  if(x>50)
+   			  {				  
+   				  HAL_GPIO_WritePin(RET_POWER_C_GPIO_Port,RET_POWER_C_Pin,GPIO_PIN_RESET);
+   				  while(1)
+ 				  {
+ 					  SetScreen(33);
+ 					  HAL_Delay(2000);
+ 				  }
+   			  }
+   			  if(HAL_GPIO_ReadPin(POWER_I_GPIO_Port,POWER_I_Pin)==GPIO_PIN_SET)
+   			  {
+   				  break;
+   			  }
+   		  }
+  	  }
 	  /************************************************************************/
 	  /* 每秒采集AD，更新系统电量                                             */
 	  /************************************************************************/

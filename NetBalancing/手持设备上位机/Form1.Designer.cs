@@ -55,7 +55,7 @@
             this.label1.Location = new System.Drawing.Point(28, 19);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(406, 22);
+            this.label1.Size = new System.Drawing.Size(498, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "供热管网热平衡诊断仪数据录入读取工具";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -106,7 +106,7 @@
             // COMPort1
             // 
             this.COMPort1.BaudRate = 115200;
-            this.COMPort1.ReadTimeout = 500;
+            this.COMPort1.ReadTimeout = 2000;
             this.COMPort1.WriteTimeout = 1000;
             // 
             // label2
@@ -114,7 +114,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(37, 403);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 19);
+            this.label2.Size = new System.Drawing.Size(82, 24);
             this.label2.TabIndex = 3;
             this.label2.Text = "label2";
             // 
@@ -203,7 +203,7 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(505, 499);
             this.Controls.Add(this.groupBox2);

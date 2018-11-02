@@ -114,7 +114,6 @@ void RealTime_TBarChartsSwitchPage(uint16_t cID)
 			else
 			{
 				t=LatestSensorData.SensorData;
-				t=t+0x08;
 				t=t>>4;
 			}
 			SetProgressValue(4,cID_Bar1+i,t);

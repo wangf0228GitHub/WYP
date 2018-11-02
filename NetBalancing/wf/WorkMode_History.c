@@ -123,7 +123,6 @@ void HistoryModeInit(void)
 			continue;
 		}
 		SPIROM_ReadArray(addr,sd.All,6);
-		sd.SensorData +=0x08;
 		t1=(sd.SensorData&0x0fff)>>4;
 		sprintf(str,"%02u-%02u\0",sd.Month,sd.Day);	
 		SetTextValue(9,cID_Bar1Text+i,str);
@@ -251,7 +250,6 @@ void History_TBarChartsSwitchPage(uint16_t cID)
 		if((i>=x1) && (i<x2))//加入到柱形图中
 		{			
 			SPIROM_ReadArray(addr,sd.All,6);
-			sd.SensorData+=0x08;
 			t1=(sd.SensorData&0x0fff)>>4;
 			sprintf(str,"%02u-%02u\0",sd.Month,sd.Day);	
 			SetTextValue(9,cID_Bar1Text+barIndex,str);
