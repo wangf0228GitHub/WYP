@@ -7,6 +7,7 @@
 #include "WorkMode_IntervalAnalysis.h"
 #include "WorkMode_Setting.h"
 #include "WorkMode_DataAnalysis.h"
+#include "FRAM.h"
 
 uint8 cmd_buffer[CMD_MAX_SIZE];
 uint16_t waitSID;
@@ -154,6 +155,7 @@ int32 StringToInt32(uint8 *str)
 void NotifyButton(uint16 screen_id, uint16 control_id, uint8  state)
 {
 	//TODO: 添加用户代码	
+	char str[50];
 	//处理公共按钮控件
 	if(JumpButtonProc(control_id)!=0)
 	{
@@ -240,11 +242,29 @@ void NotifyButton(uint16 screen_id, uint16 control_id, uint8  state)
 		{
 			Setting_IntervalAnalysis();
 		}
+		else
+		{
+			sprintf(str,"%d\0",ROMParams.TimeSpan1);
+			SetTextValue(25,50,str);
+			sprintf(str,"%d\0",ROMParams.TimeSpan2);
+			SetTextValue(25,51,str);
+			sprintf(str,"%d\0",ROMParams.TimeSpan3);
+			SetTextValue(25,52,str);
+			sprintf(str,"%d\0",ROMParams.TimeSpan4);
+			SetTextValue(25,53,str);
+			SetScreen(21);
+		}
 		break;
 	case 26://设置：休眠时间
 		if(control_id==cID_btConfirm)
 		{
 			Setting_SleepTimesSpan();
+		}
+		else
+		{
+			sprintf(str,"%d\0",ROMParams.SleepTimeSpan);
+			SetTextValue(26,50,str);
+			SetScreen(21);
 		}
 		break;
 	case 27://设置：终端编码
