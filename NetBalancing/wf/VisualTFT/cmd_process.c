@@ -237,6 +237,24 @@ void NotifyButton(uint16 screen_id, uint16 control_id, uint8  state)
 			IntervalAnalysis_TRecordSwitchPage(control_id);
 		}
 		break;
+	case 24://设置：时间间隔
+// 		if(control_id==cID_btConfirm)//确定按键
+// 		{
+// 			Setting_IntervalAnalysis();
+// 		}
+// 		else
+// 		{
+// 			sprintf(str,"%d\0",ROMParams.TimeSpan1);
+// 			SetTextValue(25,50,str);
+// 			sprintf(str,"%d\0",ROMParams.TimeSpan2);
+// 			SetTextValue(25,51,str);
+// 			sprintf(str,"%d\0",ROMParams.TimeSpan3);
+// 			SetTextValue(25,52,str);
+// 			sprintf(str,"%d\0",ROMParams.TimeSpan4);
+// 			SetTextValue(25,53,str);
+// 			SetScreen(21);
+// 		}
+		break;
 	case 25://设置：时间间隔
 		if(control_id==cID_btConfirm)//确定按键
 		{
