@@ -1,0 +1,341 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=F:\work\WYP\NBIoT\Display.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File001]
+Location=F:\work\WYP\NBIoT\Init.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File002]
+Location=F:\work\WYP\NBIoT\Main.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File003]
+Location=F:\work\WYP\NBIoT\Function.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File004]
+Location=F:\work\WYP\NBIoT\TestProc.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File005]
+Location=F:\work\WYP\NBIoT\afx.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File006]
+Location=F:\work\WYP\NBIoT\ATCommand.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File007]
+Location=F:\work\WYP\NBIoT\DS18x20.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File008]
+Location=F:\work\WYP\NBIoT\OneWire.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File009]
+Location=F:\work\WYP\NBIoT\TCN75.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File010]
+Location=F:\work\WYP\NBIoT\Uart.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File011]
+Location=F:\work\WYP\NBIoT\Verify.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File012]
+Location=F:\work\WYP\NBIoT\SimI2C.p1
+Folder=Intermediary
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File013]
+Location=F:\work\WYP\NBIoT\BC28.cof
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File014]
+Location=F:\work\WYP\NBIoT\BC28.hex
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File015]
+Location=F:\work\WYP\NBIoT\BC28.sym
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File016]
+Location=F:\work\WYP\NBIoT\BC28.map
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File017]
+Location=F:\work\WYP\NBIoT\BC28.hxl
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File018]
+Location=F:\work\WYP\NBIoT\startup.lst
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File019]
+Location=F:\work\WYP\NBIoT\startup.rlf
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File020]
+Location=F:\work\WYP\NBIoT\doprnt.p1
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File021]
+Location=F:\work\WYP\NBIoT\doprnt.pre
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File022]
+Location=F:\work\WYP\NBIoT\BC28.obj
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File023]
+Location=F:\work\WYP\NBIoT\BC28.lst
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File024]
+Location=F:\work\WYP\NBIoT\BC28.rlf
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
+[File025]
+Location=F:\work\WYP\NBIoT\BC28.sdb
+Folder=Output
+DeviceName=PIC16F1937
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|Display.c|Init.c|Main.c|Function.c|TestProc.c|afx.c|ATCommand.c|DS18x20.c|OneWire.c|TCN75.c|Uart.c|Verify.c|SimI2C.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C6=31 DB=0 DC=9 DF=0 DD=1 C2=0 C3=0 DE=1 D7=1 11E=0 121=0 122=0 123=0 124=0 125=0 11F=94 C9=1,2 FE=39 EC=1 F0=0 EF=1 EE=0 104=0 E9= C4=0 F2= F3= F4= F8=1 F5= F9=0 FA=1 FB=0 C0=0 C1=0 BD=0 BC=0 BB=0 BF=0 BE=0 B8= 101=0 103= 102=0 BA= FF=0 100=0 106=0 109=0 10A=1 10B=0 10C=0 10E=0 10F=1 110=0 118=0 116=0 117= 10D=0 114=-1 113=-1 111=0 115=-1 F5=0 E5=0 E7=0 E8=0 126=0 F1=0 F6= F7= B9=-1 107=0 
+TraceCmdString=
+DebugOptions=
