@@ -26,7 +26,7 @@ void TestProc(void)
 			else
 			{
 				ErrState=NoErr;
-				CallTestProc();	
+				CallProc();//CallTestProc();	
 				if(ErrState!=NoErr)
 				{
 					LED1_W=0;
@@ -52,112 +52,112 @@ void TestProc(void)
 		}
 	}
 }
-void CallTestProc(void)
-{
-#ifndef NoScreen
-	while(WA==0);//请勿按键
-	S01=1;
-	while(WA==0);
-	S03=1;
-	while(WA==0);
-	S07=0;
-	while(WA==0);
-	S08=0;
-	if(gFlags.bNotify)
-	{
-		while(WA==0);//低温投诉
-		S05=1;
-		while(WA==0);
-		S06=1;
-	}
-#endif
-	unsigned char retry=2;
-	while(retry!=0)
-	{
-		ErrState=NoErr;	
-		//显示“请勿按键”
-		if(PowerON()==0)
-		{
-			ErrState=Miss900a;
-		}
-		else
-		{
-			CallTestSend();
-			if(ErrState!=NoErr)
-			{
-				if(STATUS_R==isPowerOFF)//自动关机
-				{
-					ErrState=MissPower;
-				}
-			}
-			PowerDown();
-		}
-		if(gFlags.bRetry)
-		{
-			retry--;
-			LcdDisplay_CurTemp();
-			__delay_20ms(3000);//未连接上服务器，等一分钟重试一次
-		}
-		else
-			break;
-	}
-	//取消“请勿按键”
-#ifndef NoScreen
-	while(WA==0);//请勿按键
-	S01=0;
-	while(WA==0);
-	S03=0;
-	while(WA==0);//低温投诉
-	S05=0;
-	while(WA==0);
-	S06=0;
-	if(ErrState!=NoErr)
-	{
-		LcdDisplay_Err();
-	}
-	else
-	{
-		LcdDisplay_CurTemp();
-	}
-#endif
-}
-void CallTestSend(void)
-{
-	unsigned char ret;
-	char *strx=0;		
-	InitGPRS();
-	if(ErrState!=NoErr)
-		return;
-	if(ATCommand_SendCmd("AT+NSOCR=STREAM,6,0,1\0")!=ATACK_OK)
-	{
-		ErrState=MissAT_NSOCR;
-		return;
-	}
-	ATCommand_RetryTimes=1;
-	ATCommand_WaitACKTimes=600;
-	if(ATCommand_SendCmd("AT+NSOCO=1,\"www.wlwdjcy.com\",12129\0")!=ATACK_OK)
-	{
-		ErrState=MissAT_NSOCR;
-		return;
-	}
-
-	__delay_20ms(50);
-
-	ret=InteractServer();
-// 	if(ret!=ATACK_OK)
+// void CallTestProc(void)
+// {
+// #ifndef NoScreen
+// 	while(WA==0);//请勿按键
+// 	S01=1;
+// 	while(WA==0);
+// 	S03=1;
+// 	while(WA==0);
+// 	S07=0;
+// 	while(WA==0);
+// 	S08=0;
+// 	if(gFlags.bNotify)
 // 	{
-// 		if(ErrState==MissAT_ServerClose)
-// 		{	
-// 			gFlags.bRetry=1;
-// 			return;
-// 		}
-// 		ret=InteractServer();
-// 		if(ret!=ATACK_OK)
-// 		{
-// 			gFlags.bRetry=1;
-// 			return;
-// 		}
+// 		while(WA==0);//低温投诉
+// 		S05=1;
+// 		while(WA==0);
+// 		S06=1;
 // 	}
-	
-}
+// #endif
+// 	unsigned char retry=2;
+// 	while(retry!=0)
+// 	{
+// 		ErrState=NoErr;	
+// 		//显示“请勿按键”
+// 		if(PowerON()==0)
+// 		{
+// 			ErrState=Miss900a;
+// 		}
+// 		else
+// 		{
+// 			CallTestSend();
+// 			if(ErrState!=NoErr)
+// 			{
+// 				if(STATUS_R==isPowerOFF)//自动关机
+// 				{
+// 					ErrState=MissPower;
+// 				}
+// 			}
+// 			PowerDown();
+// 		}
+// 		if(gFlags.bRetry)
+// 		{
+// 			retry--;
+// 			LcdDisplay_CurTemp();
+// 			__delay_20ms(3000);//未连接上服务器，等一分钟重试一次
+// 		}
+// 		else
+// 			break;
+// 	}
+// 	//取消“请勿按键”
+// #ifndef NoScreen
+// 	while(WA==0);//请勿按键
+// 	S01=0;
+// 	while(WA==0);
+// 	S03=0;
+// 	while(WA==0);//低温投诉
+// 	S05=0;
+// 	while(WA==0);
+// 	S06=0;
+// 	if(ErrState!=NoErr)
+// 	{
+// 		LcdDisplay_Err();
+// 	}
+// 	else
+// 	{
+// 		LcdDisplay_CurTemp();
+// 	}
+// #endif
+// }
+// void CallTestSend(void)
+// {
+// 	unsigned char ret;
+// 	char *strx=0;		
+// 	InitGPRS();
+// 	if(ErrState!=NoErr)
+// 		return;
+// 	if(ATCommand_SendCmd("AT+NSOCR=STREAM,6,0,1\0")!=ATACK_OK)
+// 	{
+// 		ErrState=MissAT_NSOCR;
+// 		return;
+// 	}
+// 	ATCommand_RetryTimes=1;
+// 	ATCommand_WaitACKTimes=600;
+// 	if(ATCommand_SendCmd("AT+NSOCO=1,\"www.wlwdjcy.com\",12129\0")!=ATACK_OK)
+// 	{
+// 		ErrState=MissAT_NSOCR;
+// 		return;
+// 	}
+// 
+// 	__delay_20ms(50);
+// 
+// 	ret=InteractServer();
+// // 	if(ret!=ATACK_OK)
+// // 	{
+// // 		if(ErrState==MissAT_ServerClose)
+// // 		{	
+// // 			gFlags.bRetry=1;
+// // 			return;
+// // 		}
+// // 		ret=InteractServer();
+// // 		if(ret!=ATACK_OK)
+// // 		{
+// // 			gFlags.bRetry=1;
+// // 			return;
+// // 		}
+// // 	}
+// 	
+// }
 

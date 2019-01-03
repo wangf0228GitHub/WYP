@@ -112,8 +112,6 @@ enum {NoErr=0,MissT,Miss900a,MissAT,MissSimCard,MissNet,ErrMSG,ErrCSQ,
 	MissAT_CIPCSGP,MissAT_CSTT,MissAT_CIICR,MissAT_CIFSR,MissAT_CIPSTART,
 	MissAT_CIPSEND,MissAT_SendData,MissAT_NoServerData,MissAT_ErrServerData,MissAT_ServerClose,MissAT_NSOCR};
 void InitSystem( void );
-unsigned char PowerON(void);
-unsigned char PowerDown(void);
 void CallProc(void);
 void CallSend(void);
 void ReadTData(void);

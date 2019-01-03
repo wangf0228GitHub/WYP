@@ -21,7 +21,7 @@
     </SccLocalPath>
     <SccProvider>
     </SccProvider>
-    <ProjectName>SimXXX_GPRS</ProjectName>
+    <ProjectName>NBIoT</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -103,11 +103,8 @@
     <ClInclude Include="Verify.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Debug\Sim800C_GPRS_Test2M.hex" />
+    <None Include="BC28.mcw" />
     <None Include="pSIM900a.DSN" />
-    <None Include="Sim800C_GPRS_Test2M.mcp" />
-    <None Include="Sim800C_GPRS_Test2M.mcs" />
-    <None Include="Sim800C_GPRS_Test2M.mcw" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

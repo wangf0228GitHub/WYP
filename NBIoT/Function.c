@@ -3,6 +3,13 @@
 #include "stdio.h"
 #include <ctype.h>
 #include "stdlib.h"
+void PowerON(void)
+{
+	POWER_ON_W=1;
+	__delay_20ms(5);
+	POWER_ON_W=0;
+	__delay_20ms(500);	
+}
 void CallProc(void)
 {
 #ifndef NoScreen
@@ -26,24 +33,8 @@ void CallProc(void)
 	while(retry!=0)
 	{
 		ErrState=NoErr;	
-		gFlags.bRetry=0;
-		//显示“请勿按键”
-		if(PowerON()==0)
-		{
-			ErrState=Miss900a;
-		}
-		else
-		{
-			CallSend();
-			if(ErrState!=NoErr)
-			{
-				if(STATUS_R==isPowerOFF)//自动关机
-				{
-					ErrState=MissPower;
-				}
-			}
-			PowerDown();
-		}
+		gFlags.bRetry=0;	
+		CallSend();
 		if(gFlags.bRetry)
 		{
 			retry--;
@@ -113,63 +104,9 @@ void CallSend(void)
 	ret=InteractServer();
 	if(ret!=ATACK_OK)
 	{
-		if(ErrState==MissAT_ServerClose)
-		{
-			gFlags.bRetry=1;
-			return;
-		}
-		ErrState=NoErr;
-		ret=InteractServer();
-		if(ret!=ATACK_OK)
-		{
-			gFlags.bRetry=1;
-			return;
-		}
-	}
-	//分析服务器返回的数据
-// 	strx=strstr((const char*)ATCommand_RxList,"#KO$");
-// 	if(strx==0)
-// 	{
-// 		ErrState=MissAT_ErrServerData;
-// 		return;
-// 	}
-// #ifndef Test
-// 	i=strx[4];
-// 	i=i-'0';
-// 	if(i!=RomParams.bWinter)//切换冬夏
-// 	{
-// 		RomParams.bWinter=i;
-// 		SaveRomData();
-// 		if(RomParams.bWinter==0)//夏天
-// 		{
-// 			NeedMeasurementTick=36000;//每小时测量一次
-// #ifndef NoScreen
-// 			while(WA==0);//请勿按键
-// 			S10=1;//感叹号
-// #endif
-// 		}
-// 		else
-// 		{
-// 			NeedMeasurementTick=6000;//每10分钟测量一次
-// #ifndef NoScreen
-// 			while(WA==0);//请勿按键
-// 			S10=0;//感叹号
-// #endif
-// 		}
-// 	}
-// #endif	
-	//__delay_20ms(300);
-// 	if(ATCommand_SendCmd("AT+CIPCLOSE=1\0")!=ATACK_OK)
-// 	{
-// // 		ErrState=MissAT_CIPCLOSE;
-// // 		return;
-// 	}
-// 
-// 	if(ATCommand_SendCmd("AT+CIPSHUT\0")!=ATACK_OK)
-// 	{
-// // 		ErrState=MissAT_CIPSHUT;
-// // 		return;
-// 	}
+		gFlags.bRetry=1;
+		return;
+	}	
 }
 unsigned char InteractServer()
 {
@@ -237,13 +174,13 @@ unsigned char InteractServer()
 					{
 						txLen+=60;
 					}
-					txLen+59;
+					txLen+=59;
 					if(txLen/100!=0)
-						Uart1_PutHex('0'+txLen/100);//659,
+						Uart1_PutChar('0'+txLen/100);//659,
 					txLen=txLen%100;
-					Uart1_PutHex('0'+txLen/10);
-					Uart1_PutHex('0'+txLen%10);
-					Uart1_PutHex(',');
+					Uart1_PutChar('0'+txLen/10);
+					Uart1_PutChar('0'+txLen%10);
+					Uart1_PutChar(',');
 				}
 			}
 			else
@@ -323,7 +260,6 @@ unsigned char InteractServer()
 			}
 			for(i=0;i<MaxTList;i++)
 			{
-				txLen+=59;
 				MakeTxTemperature(TList.T[i]);
 				for(int j=0;j<4;j++)
 				{
@@ -338,34 +274,16 @@ unsigned char InteractServer()
 		Uart1_PutHex('#');
 		Uart1_PutHex('@');
 		ATCommand_WaitACKTimes=400;
-		strcpy(ATCommand_OkString,"NSOCLI");	
+		strcpy(ATCommand_OkString,"NSONMI");	
 		strcpy(ATCommand_ErrString,"ERROR");
-		ATCommand_PutString(ATCommand_EndChar);	
-		
+		ATCommand_Clear='+';
+		ATCommand_PutString(ATCommand_EndChar);		
 		res=ATCommand_WaitData();
-// 		for(i=0;i<ATCommand_RxCount;i++)
-// 		{
-// 			Uart1_PutHex(ATCommand_RxList[i]);
-// 		}
 		if(res!=ATACK_Null)
 			break;
 		ATCommand_WaitClientInterval();
 		retry--;
 	}
-// 	if(res!=ATACK_OK)
-// 	{
-// 		if(res==ATACK_Err)
-// 			ErrState=MissAT_ServerClose;
-// 		else
-// 			ErrState=MissAT_NoServerData;
-// 		return res;
-// 	}
-// 	ATCommand_WaitACKTimes=200;//等待服务器返回，20s
-// 	strcpy(ATCommand_OkString,"$OK#");
-// 	res=ATCommand_WaitData();
-// 	if(res!=ATACK_OK)
-// 		return MissAT_NoServerData;
-	//等待服务器回复
 	return res;
 }
 void MakeTxTemperature(uint T)
@@ -425,7 +343,7 @@ void InitGPRS(void)
 {
 	unsigned char retry,i;
 	char *strx=0;
-	__delay_20ms(150);
+	PowerON();
 	if(ATCommand_SendCmd("AT\0")!=ATACK_OK)
 	{
 		ErrState=MissAT;
@@ -437,11 +355,6 @@ void InitGPRS(void)
 		ErrState=MissAT_ATE1;
 		return;
 	}	
-// 	if(ATCommand_SendCmd("AT+CFUN=1\0")!=ATACK_OK)
-// 	{
-// 		ErrState=MissAT_ATE1;
-// 		return;
-// 	}
 	retry=10;
 	while(retry!=0)
 	{
@@ -481,23 +394,6 @@ void InitGPRS(void)
 		}
 			
 	}
-	//sim900a_send_cmd("AT+CIPCLOSE=1","CLOSE OK",100);	//关闭连接
-	//关闭短信提示
-// 	if(ATCommand_SendCmd("AT+CNMI=0,0\0")!=ATACK_OK)
-// 	{
-// 		ErrState=MissAT_CNMI;
-// 		return;
-// 	}	
-// 	//txt形式短信
-// 	if(ATCommand_SendCmd("AT+CMGF=1\0")!=ATACK_OK)
-// 	{
-// 		ErrState=MissAT_CMGF;
-// 		return;
-// 	}
-	//	while(1)
-	//	{
-	//		ATCommand_SendCmd("AT+CSQ\0");
-	//	}	
 	retry=100;
 	CSQ=0xff;
 	while(retry!=0)
@@ -531,28 +427,6 @@ void InitGPRS(void)
 		ErrState=MissAT_CSQ;
 		return;
 	}
-	//查询是否注册上网络
-// 	retry=10;
-// 	while(retry!=0)
-// 	{
-// 		if(ATCommand_SendCmd("AT+COPS?\0")!=ATACK_OK)
-// 		{		
-// 			ErrState=MissAT_COPS;
-// 			return;
-// 		}
-// 		strx=strstr((const char*)ATCommand_RxList,"+COPS: 0,0,\"");
-// 		if(strx!=0)
-// 		{
-// 			break;
-// 		}
-// 		__delay_20ms(150);
-// 		retry--;		
-// 	}
-// 	if(retry==0)
-// 	{
-// 		ErrState=MissNet;//没有网络
-// 		return;
-// 	}
 	retry=20;
 	while(retry!=0)
 	{
@@ -566,11 +440,6 @@ void InitGPRS(void)
 		{
 			break;
 		}
-// 		strx=strstr((const char*)ATCommand_RxList,"+CEREG: 0,5");
-// 		if(strx!=0)
-// 		{
-// 			break;
-// 		}
 		__delay_20ms(150);
 		retry--;		
 	}
@@ -580,147 +449,6 @@ void InitGPRS(void)
 		return;
 	}
 
-// 	if(ATCommand_SendCmd("AT+CLCC=1\0")!=ATACK_OK)
-// 	{
-// 		ErrState=MissAT_CLCC;
-// 		return;
-// 	}
-	//尝试关闭ip连接
-	// 	strcpy(ATCommand_OkString,"CLOSE OK");
-	// 	ATCommand_SendCmd("AT+CIPCLOSE\0");
-	// 
-	// 	strcpy(ATCommand_OkString,"SHUT OK");
-	// 	if(ATCommand_SendCmd("AT+CIPSHUT\0")!=ATACK_OK)
-	// 	{
-	// 		ErrState=MissAT_CIPSHUT;
-	// 		return;
-	// 	}
-	//设置GPRS移动台类别为B,支持包交换和数据交换
-// 	if(ATCommand_SendCmd("AT+CGCLASS=\"B\"\0")!=ATACK_OK)
-// 	{
-// 		ErrState=MissAT_CGCLASS;
-// 		gFlags.bRetry=1;
-// 		return;
-// 	}
-	//设置PDP上下文,互联网接协议,接入点等信息
-// 	if(ATCommand_SendCmd("AT+CGDCONT=1,\"IP\",\"CMNET\"\0")!=ATACK_OK)
-// 	{
-// 		ErrState=MissAT_CGDCONT;
-// 		gFlags.bRetry=1;
-// 		return;
-// 	}
-	//附着GPRS业务
-// 	if(ATCommand_SendCmd("AT+CGATT=1\0")!=ATACK_OK)
-// 	{
-// 		ErrState=MissAT_CGATT;
-// 		gFlags.bRetry=1;
-// 		return;
-// 	}
-// 	//设置为GPRS连接模式
-// 	if(ATCommand_SendCmd("AT+CIPCSGP=1,\"CMNET\"\0")!=ATACK_OK)
-// 	{
-// 		ErrState=MissAT_CIPCSGP;
-// 		gFlags.bRetry=1;
-// 		return;
-// 	}
-// 	if(ICCID[0]=='6'|| ICCID[0]=='1')
-// 	{
-// 		if(ATCommand_SendCmd("AT+CSTT=\"UNIM2M.NJM2MAPN\",\"\",\"\"\0")!=ATACK_OK)
-// 		{
-// 			ErrState=MissAT_CSTT;
-// 			gFlags.bRetry=1;
-// 			return;
-// 		}
-// 	}
-// 	else
-// 	{
-// 		if(ATCommand_SendCmd("AT+CSTT=\"CMMTM\",\"\",\"\"\0")!=ATACK_OK)
-// 		{
-// 			ErrState=MissAT_CSTT;
-// 			gFlags.bRetry=1;
-// 			return;
-// 		}
-// 	}
-// 	ATCommand_WaitACKTimes=400;
-// 	if(ATCommand_SendCmd("AT+CIICR\0")!=ATACK_OK)
-// 	{
-// 		ErrState=MissAT_CIICR;
-// 		gFlags.bRetry=1;
-// 		return;
-// 	}
-// 	// 	//查询本机ip
-// 	ATCommand_SendCmd("AT+CIFSR\0");
 }
-unsigned char PowerDown(void)
-{
-	unsigned char i;
-	return 1;
-	if(STATUS_R==isPowerON)//已经开机，先关机
-	{
-		POWER_ON_W=1;
-		__delay_20ms(70);
-		POWER_ON_W=0;
-		i=15;
-		while(i!=0)
-		{
-			__delay_20ms(50);
-			if(STATUS_R==isPowerOFF)
-				break;			
-			i--;
-		}
-	}
-	if(i==0)
-		return 0;
-	return 1;
-}
-unsigned char PowerON(void)
-{
-	unsigned char i;
-	POWER_ON_W=1;
-	__delay_20ms(5);
-	POWER_ON_W=0;
-	__delay_20ms(500);
-	return 1;
-	/************************************************************************/
-	/*                                                                      */
-	/************************************************************************/
-	if(STATUS_R==isPowerON)//已经开机，先关机
-	{
-		if(PowerDown()==0)
-		{
-			ErrState=Miss900a;
-			return 0;
-		}
-		__delay_20ms(150);
-	}	
-	POWER_ON_W=1;	
-	i=15;
-	while(i!=0)
-	{
-		ATCommand_RetryTimes=1;
-		if(ATCommand_SendCmd("AT\0")==ATACK_OK)
-		{
-			ErrState=MissAT;
-			POWER_ON_W=0;
-			return 1;
-		}
-		i--;
-	}
-	POWER_ON_W=0;
-	return 0;
 
-// 	POWER_ON_W=1;
-// 	__delay_20ms(70);
-// 	POWER_ON_W=0;
-// 	i=15;
-// 	while(i!=0)
-// 	{
-// 		__delay_20ms(50);
-// 		if(STATUS_R==isPowerON)
-// 			break;
-// 		i--;
-// 	}
-// 	if(i==0)
-// 		return 0;
-// 	return 1;
-}
+

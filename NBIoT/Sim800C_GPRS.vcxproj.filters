@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Test2M">
-      <UniqueIdentifier>{0935c867-07a6-4e5b-974f-0adc96fc2edd}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Display.c">
@@ -112,18 +109,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sim800C_GPRS_Test2M.mcp">
-      <Filter>Test2M</Filter>
-    </None>
-    <None Include="Sim800C_GPRS_Test2M.mcs">
-      <Filter>Test2M</Filter>
-    </None>
-    <None Include="Sim800C_GPRS_Test2M.mcw">
-      <Filter>Test2M</Filter>
-    </None>
-    <None Include="Debug\Sim800C_GPRS_Test2M.hex">
-      <Filter>Test2M</Filter>
-    </None>
     <None Include="pSIM900a.DSN" />
+    <None Include="BC28.mcw">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

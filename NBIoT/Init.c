@@ -65,22 +65,7 @@ void InitVariable(void)
 	}
 	gFlags.AllFlag=0;		
 	SystemTick=0;	
-#ifdef Test12M
-	NeedMeasurementTick=600;
-#elif defined(Test2M)
-	NeedMeasurementTick=100;
-#elif defined(Test)
-	NeedMeasurementTick=1;
-#else
-	if(RomParams.bWinter==0)//夏天
-	{
-		NeedMeasurementTick=36000;//每小时测量一次
-	}
-	else
-	{
-		NeedMeasurementTick=6000;//每10分钟测量一次
-	}
-#endif	
+	NeedMeasurementTick=6000;//每10分钟测量一次	
 	TxErrDataIndex=0;
 }
 
