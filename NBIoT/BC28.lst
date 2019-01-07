@@ -1,7 +1,7 @@
 
 
 HI-TECH Software PIC PRO Macro Assembler V9.71a build 6446 
-                                                                                               Thu Jan 03 13:32:12 2019
+                                                                                               Fri Jan 04 12:40:14 2019
 
 HI-TECH Software Omniscient Code Generator (PRO mode) build 6446
      1                           	processor	16F1937
@@ -10747,7 +10747,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 6446
 
 
 HI-TECH Software PICC Macro Assembler V9.71a build 6446 
-Symbol Table                                                                                   Thu Jan 03 13:32:12 2019
+Symbol Table                                                                                   Fri Jan 04 12:40:14 2019
 
               ___bmul@product 0021                            _RD 0CA8                            _WA 3C94  
                           _WR 0CA9           ___wmul@multiplicand 0022                           _GIE 005F  

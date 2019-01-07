@@ -25,7 +25,7 @@ Linker command line:
   -ACONFIG=08007h-08008h -pconfig=CONFIG -DCONFIG=2 -AIDLOC=08000h-08003h \
   -pidloc=IDLOC -DIDLOC=2 -AEEDATA=00h-0FFh/0F000h -peeprom_data=EEDATA \
   -DEEDATA=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
-  C:\Users\ADMINI~1\AppData\Local\Temp\s8ak.obj BC28.obj 
+  C:\Users\ADMINI~1\AppData\Local\Temp\sfks.obj BC28.obj 
 
 Object code version is 3.10
 
@@ -34,7 +34,7 @@ Machine type is 16F1937
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\ADMINI~1\AppData\Local\Temp\s8ak.obj
+C:\Users\ADMINI~1\AppData\Local\Temp\sfks.obj
                 end_init                             29       29        3        8       0
                 reset_vec                             0        0        3        0       0
 BC28.obj        intentry                              4        4       25        8       0
