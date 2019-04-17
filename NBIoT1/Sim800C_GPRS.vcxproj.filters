@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Display.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Function.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Init.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LowPowerProc.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestProc.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="afx.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ATCommand.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DS18x20.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OneWire.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SimI2C.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TCN75.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Uart.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Verify.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Display.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FlagDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pic16f1937.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SimI2C_Conf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdint.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="afx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ATCommand.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DS18x20.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareProfile.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OneWire.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SimI2C.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TCN75.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Uart.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Verify.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="pSIM900a.DSN" />
+    <None Include="BC28.mcw">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+</Project>
