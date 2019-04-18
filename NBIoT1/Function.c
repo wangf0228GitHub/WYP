@@ -12,6 +12,8 @@ void PowerON(void)
 }
 void CallProc(void)
 {
+	TXSTA=0b00100110;//异步方式、使能发送(bit6=1是9位数据)八位字长、高波特率(bit2低速0)
+	RCSTA=0b10010000; //使能串口、使能接收、异步方式、(bit6=1是9位数据)八位字长
 #ifndef NoScreen
 	if(gFlags.bNotify)
 	{
@@ -48,6 +50,8 @@ void CallProc(void)
 		LcdDisplay_CurTemp();
 	}
 #endif
+	TXSTA=0;//异步方式、使能发送(bit6=1是9位数据)八位字长、高波特率(bit2低速0)
+	RCSTA=0; //使能串口、使能接收、异步方式、(bit6=1是9位数据)八位字长
 }
 
 void CallSend(void)
@@ -72,7 +76,7 @@ void CallSend(void)
 		return;
 	}
 	ATCommand_RetryTimes=1;
-	ATCommand_WaitACKTimes=1200;
+	ATCommand_WaitACKTimes=300;
 	if(ATCommand_SendCmd("AT+NSOCO=2,\"www.wlwdjcy.com\",12129\0")!=ATACK_OK)
 	//if(ATCommand_SendCmd("AT+NSOCO=2,221.208.158.3,12129\0")!=ATACK_OK)
 	{
@@ -89,16 +93,17 @@ void CallSend(void)
 		return;
 	}	
 	ATCommand_SendCmd("AT+NSOCL=2\0");//断开连接
-	ATCommand_SendCmd("AT+CPSMS=1,,,\"11100000\",\"11100000\"\0");
+	ATCommand_SendCmd("AT+CPSMS=1,,,01000111,00000001\0");
 	//ATCommand_SendCmd("AT+CPSMS=1,,,11100000,11100000\0");
 	ATCommand_SendCmd("AT+NPSMR=1\0");//开启psm状态通知
-	for(i=0;i<100;i++)
-	{
-		ATCommand_SendCmd("AT+NPSMR?\0");
-		__delay_20ms(50);
-		ATCommand_SendCmd("AT+CEREG?\0");
-		__delay_20ms(50);
-	}
+//	ATCommand_SendCmd("AT+CFUN=0\0");//开启psm状态通知
+// 	for(i=0;i<100;i++)
+// 	{
+// 		//ATCommand_SendCmd("AT+NPSMR?\0");
+// 		__delay_20ms(50);
+// 		//ATCommand_SendCmd("AT+CEREG?\0");
+// 		__delay_20ms(50);
+// 	}
 }
 unsigned char InteractServer()
 {
@@ -347,6 +352,9 @@ void InitGPRS(void)
 		ErrState=MissAT_ATE1;
 		return;
 	}	
+	ATCommand_SendCmd("AT+CPSMS?\0");
+	ATCommand_SendCmd("AT+CPSMS=1,,,01000111,00000001\0");
+	ATCommand_SendCmd("AT+CPSMS?\0");
 	retry=10;
 	while(retry!=0)
 	{
@@ -383,8 +391,7 @@ void InitGPRS(void)
 				retry--;
 				__delay_20ms(150);
 			}
-		}
-			
+		}			
 	}
 	retry=100;
 	CSQ=0xff;

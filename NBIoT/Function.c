@@ -92,7 +92,7 @@ void CallSend(void)
 		return;
 	}
 	ATCommand_RetryTimes=1;
-	ATCommand_WaitACKTimes=600;
+	ATCommand_WaitACKTimes=300;
 	if(ATCommand_SendCmd("AT+NSOCO=1,\"www.wlwdjcy.com\",12129\0")!=ATACK_OK)
 	{
 		ErrState=MissAT_NSOCR;
@@ -102,6 +102,8 @@ void CallSend(void)
 	__delay_20ms(50);
 
 	ret=InteractServer();
+	ATCommand_SendCmd("AT+NSOCL=1\0");//¶Ï¿ªÁ¬½Ó
+	ATCommand_SendCmd("AT+CPSMS=1,,,01000111,00000001\0");
 	if(ret!=ATACK_OK)
 	{
 		gFlags.bRetry=1;
