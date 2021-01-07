@@ -40,7 +40,7 @@
   </PropertyGroup>
   <PropertyGroup Label="VisualGDBPackageDefinitions">
     <ToolchainID>com.visualgdb.arm-eabi</ToolchainID>
-    <ToolchainVersion>7.2.0/8.0.1/r3</ToolchainVersion>
+    <ToolchainVersion>9.3.1/9.2.0/r2</ToolchainVersion>
     <BSP_ID>com.sysprogs.arm.stm32</BSP_ID>
     <BSP_VERSION>2018.08</BSP_VERSION>
   </PropertyGroup>

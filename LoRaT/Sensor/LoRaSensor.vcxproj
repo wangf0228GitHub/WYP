@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A228398A-493F-4B86-8974-613126F149BA}</ProjectGuid>
+    <RootNamespace>LoRaSensor</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>F:\work\WYP\LoRaT\LoRaMac-node\src\boards\ASR6505;F:\work\WYP\LoRaT\SDKRadio;F:\work\WYP\LoRaT\LoRaMac-node\src\boards;F:\work\WYP\LoRaT\STM8L15x_StdPeriph_Driver\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Lib\TMRList.C" />
+    <ClCompile Include="..\SDKRadio\radio.c" />
+    <ClCompile Include="..\SDKRadio\sx126x.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_aes.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_clk.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_dma.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_exti.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_flash.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_gpio.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_i2c.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_iwdg.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_lcd.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_pwr.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_rtc.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_spi.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_syscfg.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim1.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim2.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim3.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim4.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim5.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_usart.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_wwdg.c" />
+    <ClCompile Include="main.c" />
+    <ClCompile Include="src\stm8l15x_it.c" />
+    <ClCompile Include="src\stm8_interrupt_vector.c" />
+    <ClCompile Include="Sx1262Proc.c" />
+    <ClCompile Include="SystemInit.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Lib\TMRList.H" />
+    <ClInclude Include="..\SDKRadio\radio.h" />
+    <ClInclude Include="..\SDKRadio\sx126x.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_adc.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_aes.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_beep.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_clk.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_comp.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_dac.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_dma.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_exti.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_flash.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_gpio.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_i2c.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_irtim.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_itc.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_iwdg.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_lcd.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_pwr.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_rst.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_rtc.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_spi.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_syscfg.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_tim1.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_tim2.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_tim3.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_tim4.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_tim5.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_usart.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_wfe.h" />
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_wwdg.h" />
+    <ClInclude Include="HardwareProfile.h" />
+    <ClInclude Include="inc\stm8l15x_conf.h" />
+    <ClInclude Include="inc\stm8l15x_it.h" />
+    <ClInclude Include="inc\test_cases.h" />
+    <ClInclude Include="src\stm8l15x_conf.h" />
+    <ClInclude Include="Sx1262Proc.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="STM8L15x_StdPeriph_Driver">
+      <UniqueIdentifier>{1de6442b-2d63-4593-8a85-9c8b30126cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STM8L15x_StdPeriph_Driver\inc">
+      <UniqueIdentifier>{e35b6112-cbe0-4290-969b-eaf4c5345133}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STM8L15x_StdPeriph_Driver\src">
+      <UniqueIdentifier>{840f37b3-a103-4a53-938d-450c19d7a104}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User">
+      <UniqueIdentifier>{3d9e33b5-1db3-4092-8232-7af3ee46ce49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User\inc">
+      <UniqueIdentifier>{db911a44-d479-457e-96b9-61817307033a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User\src">
+      <UniqueIdentifier>{7e0939aa-eedd-482e-9a37-14e9f4c63065}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDKRadio">
+      <UniqueIdentifier>{d7c240d0-1f8c-41bf-8908-30f8f09e3385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib">
+      <UniqueIdentifier>{10147e2d-917c-4fcb-8863-c0620fc58abc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sx1262Proc.c" />
+    <ClCompile Include="src\stm8_interrupt_vector.c">
+      <Filter>User\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stm8l15x_it.c">
+      <Filter>User\src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c" />
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_aes.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_clk.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_dma.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_exti.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_flash.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_gpio.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_i2c.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_iwdg.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_lcd.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_pwr.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_rtc.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_spi.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_syscfg.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim1.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim2.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim3.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim4.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim5.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_usart.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\STM8L15x_StdPeriph_Driver\src\stm8l15x_wwdg.c">
+      <Filter>STM8L15x_StdPeriph_Driver\src</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemInit.c" />
+    <ClCompile Include="..\SDKRadio\radio.c">
+      <Filter>SDKRadio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SDKRadio\sx126x.c">
+      <Filter>SDKRadio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Lib\TMRList.C">
+      <Filter>Lib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sx1262Proc.h" />
+    <ClInclude Include="inc\stm8l15x_conf.h">
+      <Filter>User\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\stm8l15x_it.h">
+      <Filter>User\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\test_cases.h">
+      <Filter>User\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stm8l15x_conf.h">
+      <Filter>User\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_adc.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_aes.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_beep.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_clk.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_comp.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_dac.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_dma.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_exti.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_flash.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_gpio.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_i2c.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_irtim.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_itc.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_iwdg.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_lcd.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_pwr.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_rst.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_rtc.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_spi.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_syscfg.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_tim1.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_tim2.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_tim3.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_tim4.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_tim5.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_usart.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_wfe.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\STM8L15x_StdPeriph_Driver\inc\stm8l15x_wwdg.h">
+      <Filter>STM8L15x_StdPeriph_Driver\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareProfile.h" />
+    <ClInclude Include="..\SDKRadio\radio.h">
+      <Filter>SDKRadio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SDKRadio\sx126x.h">
+      <Filter>SDKRadio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Lib\TMRList.H">
+      <Filter>Lib</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
